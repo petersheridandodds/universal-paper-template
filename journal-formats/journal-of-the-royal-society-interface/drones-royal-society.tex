@@ -1,0 +1,81 @@
+% To compile:
+% latex drones
+% bibtex drones
+% latex drones
+% latex drones
+% dvipdf drones
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+\usepackage[T1]{fontenc}
+
+\usepackage[nofiglist,nofighead,nomarkers]{endfloat}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{sidecap}
+\usepackage[pdftex]{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{cite}
+\usepackage{color} 
+\usepackage{soul}
+\usepackage[super,comma,sort&compress]{natbib}
+\usepackage{url}
+\urlstyle{rm} % typeset urls in roman instead of in typewriter style
+\makeatletter
+\renewcommand\@biblabel[1]{#1} %from [1] to 1
+\makeatother
+
+\usepackage[margin=21mm]{geometry}
+\usepackage[labelfont=bf,font=small,labelsep=period,justification=raggedright]{caption}
+%% \bibliographystyle{./vancouver}
+\bibliographystyle{unsrtabbrv}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+\pagestyle{myheadings}
+\begin{document}
+
+
+\begin{flushleft}
+{\huge
+\textbf{\input{drones.title}}
+}\smallbreak
+
+Javier Garcia-Bernardo\textsuperscript{1}, 
+Peter Sheridan Dodds\textsuperscript{2}, 
+Neil F. Johnson\textsuperscript{3}
+\\
+\textsuperscript{1}Department of Computer Science, University of Vermont, Burlington VT 05405, USA \\
+\textsuperscript{2}Computational Story Lab, Department of Mathematics and Statistics, Vermont Complex Systems Center \& the Vermont Advanced Computing Core, University of Vermont, Burlington VT 05405, USA \\
+\textsuperscript{3}Department of Physics, University of Miami, Coral Gables, FL 33124, USA
+\end{flushleft}
+
+\section*{Abstract}
+\input{drones.abs}
+
+\noindent \textbf{Keywords}: Drones, escalation, conflict, patterns
+
+\input{drones.body}
+
+\bibliography{drones}
+
+\section*{Acknowledgements}
+\input{drones.acknowledgments}
+
+\bigskip
+\bigskip
+
+\noindent
+\textbf{Short title:} \input{drones.title}
+
+\end{document}
+

@@ -1,0 +1,76 @@
+\documentclass[pre,twocolumn,twoside,byrevtex,superscriptaddress,floatfix]{revtex4-1}
+
+%% \documentclass[pre,twocolumn,twoside,byrevtex,superscriptaddress,showpacs,floatfix]{revtex4-1}
+
+
+%%\documentclass[aps,twocolumn]{revtex4}
+%%\documentclass[aps,preprint]{revtex4}
+%%\documentclass[aps,twocolumn,draft]{revtex4}
+
+%% general settings, packages, macros
+
+%% load in root name
+\usepackage{currfile}
+\input{\currfilebase.settings}
+\input{\filenamebase.settings}
+
+\setboolean{twocolswitch}{true}
+
+%% \bibliographystyle{unsrtabbrv}p
+
+%%%%%% author(s), address(es) plus abstract
+
+\begin{document}
+
+\title{\protect
+\input{\filenamebase.title}
+}
+
+\input{\filenamebase.author}
+
+\date{\today}
+
+\begin{abstract}
+  \protect
+  \input{\filenamebase.abs} 
+\end{abstract}
+
+\input{\filenamebase.pacs}
+
+\maketitle
+
+%%%%%%%%% end of author(s), address(es) plus abstract
+
+\input{\filenamebase.body}
+
+%% \section{Methods}
+%% 
+%% \input{\filenamebase.methods}
+
+\acknowledgments
+\input{\filenamebase.acknowledgments}
+
+\input{\filenamebase.biblio}
+
+\clearpage
+
+%% %% supplementary
+%% 
+%% %% following records the starting page number of the supplementary
+%% %% section in a file called startsupp.txt
+%% %% enables script-based breaking of manuscript and supplementary
+%% \newwrite\tempfile
+%% \immediate\openout\tempfile=startsupp.txt
+%% \immediate\write\tempfile{\thepage}
+%% \immediate\closeout\tempfile
+%% 
+%% \setcounter{page}{1}
+%% \renewcommand{\thepage}{S\arabic{page}}
+%% \renewcommand{\thefigure}{S\arabic{figure}}
+%% \renewcommand{\thetable}{S\arabic{table}}
+%% \setcounter{figure}{0}
+%% \setcounter{table}{0}
+%% 
+%% \input{\filenamebase.supplementary}
+
+\end{document}

@@ -1,0 +1,5 @@
+echo 'creating drones-elsarticle-package.tgz...';
+
+cd package;
+tar cvfzph ../drones-elsarticle-package.tgz fig[0-9][0-9]*.pdf  drones-elsarticle-combined.tex
+

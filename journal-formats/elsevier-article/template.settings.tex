@@ -1,0 +1,120 @@
+\lefthyphenmin=3
+\righthyphenmin=2
+
+\usepackage{graphicx,epsfig,verbatim,enumerate}
+\usepackage{amssymb,amsmath}
+\usepackage{ifthen}
+
+\usepackage{longtable}
+
+\usepackage{mathtools}
+%% \usepackage{abraces}
+
+%% \usepackage{tikz-cd}
+%% \usetikzlibrary{arrows}
+%% \tikzset{
+%%   commutative diagrams/.cd,
+%%   arrow style=tikz,
+%%  diagrams={>=space}}
+
+\newboolean{twocolswitch}
+
+\newcommand{\avg}[1]{\left\langle#1\right\rangle}
+\newcommand{\tavg}[1]{\langle#1\rangle}
+
+\newcommand{\LavgHa}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\LavgHaN}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\Lavg}{\tavg{L}}
+
+\newcommand{\sindex}[1]{}
+\newcommand{\nindex}[1]{}
+
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\www}[1]{\url{#1}}
+\newcommand{\req}[1]{(\ref{#1})}
+\newcommand{\Req}[1]{Eq.~(\ref{#1})}
+
+% Lettrines
+\usepackage{lettrine}
+%% \renewcommand{\line}{\begin{tabularx}{\textwidth}{X>{\raggedleft}X}\hline\\\end{tabularx}\\[-0.5cm]}
+
+\newcommand{\yes}{}
+\newcommand{\no}{}
+\newcommand{\tbf}{\textbf}
+\newcommand{\tit}{\textit}
+
+\newcommand{\dee}[1]{\mbox{d}#1}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdiffsq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
+\newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^2}}
+\newcommand{\tdiff}[2]{\mbox{d} #1/\mbox{d} #2}
+\newcommand{\tdiffsq}[2]{\mbox{d}^{2} #1/\mbox{d} {#2}^2}
+\newcommand{\tpdiff}[2]{\partial #1/\partial #2}
+\newcommand{\tpdiffsq}[2]{\partial^2 #1/\partial {#2}^2}
+\newcommand{\postdee}[1]{\,\mbox{d}#1}
+
+\usepackage{color}
+\newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
+
+\newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
+
+%% contagion
+
+% \newcommand{\kstar}{d^{\ast}}
+% \newcommand{\kstari}{k_i^\ast}
+\newcommand{\kstar}{d^\ast}
+\newcommand{\kstari}{d_i^\ast}
+
+\newcommand{\dstar}{d^\ast}
+\newcommand{\dstari}{d_i^\ast}
+
+\newcommand{\phifix}{{\phi^{\ast}}}
+\newcommand{\phifixc}{{\phi_c^{\ast}}}
+\newcommand{\phifixb}{{\phi_b^{\ast}}}
+
+\newcommand{\phiiactive}{\phi_{i,t}}
+
+\newcommand{\phiiup}{{\phi_{i,\rm on}}}
+\newcommand{\phiidown}{{\phi_{i,\rm off}}}
+
+\newcommand{\phiup}{{\phi_{\rm on}}}
+\newcommand{\phidown}{{\phi_{\rm off}}}
+
+
+\newcommand{\Gfun}{G}
+
+\newcommand{\dstardist}{g}
+\newcommand{\dosedist}{f}
+\newcommand{\dosedistk}{f^{k\star}}
+
+% chaotic contagion
+\newcommand{\edgeinfprob}{\rho}
+\newcommand{\nodeinfprob}{\phi}
+
+\newcommand{\avgdegree}{k_{\rm avg}}
+
+\newcommand{\stateA}{S_{0}}
+\newcommand{\stateB}{S_{1}}
+
+\newcommand{\lcce}{H}
+
+%% \newcommand{\effectivecount}{f_{\textnormal{eff}}}
+
+\newcommand{\effectivecount}{f_{q,\textnormal{exp}}}
+\newcommand{\effectivecountq}[1]{f_{#1,\textnormal{exp}}}
+
+\newcommand{\simonrho}{\rho}
+\newcommand{\zipfexponent}{\alpha}
+
+\newcommand{\partitionprob}{q}
+\newcommand{\partitiontype}[1]{$\partitionprob$$=$$#1$}
+
+\newcommand{\onehalf}{\frac{1}{2}}
+\newcommand{\onequarter}{\frac{1}{4}}
+
+\newcommand{\clgamma}{\hat{\zipfexponent}}
+\newcommand{\xmin}{r_{\textnormal{max}}}
+\newcommand{\kstat}{D}
+\newcommand{\clp}{\mbox{$p$-value}}
+\newcommand{\sigamma}{1-\simonrho}

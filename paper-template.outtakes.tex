@@ -1,0 +1,1368 @@
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{cartoon_highlight.pdf}
+  \caption{
+    Partioning of Charles Dickens's ``Tale of Two Cities''
+    into five different kinds of elements: 
+    clauses (red),
+    pure random partitioning phrases ($\partitionprob=\frac{1}{2}$, orange),
+    words (yellow),
+    pure random partitioning graphemes ($\partitionprob=\frac{1}{2}$,
+    green),
+    and
+    letters (blue).
+    \textbf{A.}
+    Partition examples for the start of the work.
+    The specific phrases and graphemes shown are for one realization
+    of pure random partitioning.
+    \textbf{B.}
+    Zipf distributions for the five kinds of partitions
+    along with estimates of exponents.
+    See supplementary material for measurement details.
+    \todo{add connecting line for letters only as a guide}
+    \todo{remove estimate for letters? not signficant?}
+    \todo{2 decimal places with errors.}
+    \todo{Change 'slope' to $\simonalpha$.}
+   }
+  \label{fig:tpz.twocities}
+\end{figure*}
+
+
+
+\todo{Insert note that clauses are the most independent and follow something like a Simon's model}
+
+
+Continuing with the statistical mechanical analogy,
+we see that because random partitioning can be viewed as an infinite 
+temperature limit ($\beta=0$, $T=\infty$), we may be reassured that the resulting Zipf
+distribution is robust for a wide range of adjacent partitions (i.e., $\beta$ near 0).
+The traditional zero temperature word-centric partition 
+($\beta \rightarrow \infty$, $T \rightarrow 0^{+}$) 
+both performs poorly and lacks stability.
+In allowing the non-physical but abstractly allowable adjustment to
+$\beta \rightarrow -\infty$ ($T \rightarrow 0^{-}$),
+we would have clauses partitioned only as themselves,
+and the resulting distribution of so many disparate, unique entities
+would depart even further from a pure scaling form.\\
+\todo{Fix the above up given new figures.}
+\todo{Can we say this?}\\
+We note that the appearance of a power law is not guaranteed.
+As a simple example, if we apply random partitioning to a repeating sequence
+of the same word, say `ook', then the resulting rank distribution
+will be exponential.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{twoCitiesVertCartoon.pdf}
+  \caption{
+    \todo{Add caption.}
+    \todo{Measure exponents.}
+    This is one random 
+  }
+  \label{fig:tpz.twocities}
+\end{figure}
+
+
+%% Here, we present a fast, efficient, and scalable method for
+%% partitioning arbitrary, large-scale texts into meaningful words and phrases.
+
+%% n-grams
+%% requiring our collective analysis 
+
+
+\todo{Reconciling with text-mixing: Decay of phrase introduction is
+  slower when phrases are involved.  Word order matters.}
+
+\todo{Do following for Fig. 1}\\
+\todo{Please convert to $\log_{10} r$, etc.} \\
+\todo{Remove bold from headings}\\
+\todo{increase font size for axis labels}\\
+\todo{Underlay main figure with normal Zipf distribution?
+  That is, take the lower subplots out.
+  Could have the normal one offset lower.
+  Main thing is to make the comparison as clear as possible.}
+
+
+For each corpus we observe a scaling
+break of reduced severity following the regime over which Zipf's
+law (black line main plot, dashed red in the lower left) is
+present. 
+
+
+This reduction in the severity of the lower tail is
+consistent with text mixing theory, as differences of word sets
+between the texts of a corpus are compunded with word order, which
+creates a greater diversity of symbols---hence a decreased rate of
+symbol-introduction decay---between texts. 
+
+Also, we observe that
+despite having a greater number of unique words, the Twitter
+dataset has fewer partitioned elements than either the New York
+Times or 
+This is possibly due to the
+character limit on the tweet lengths, and the fact that alphabetic
+sequences are used in creating URLs, which, despite having little
+semantic
+meaning are picked up by our parser as word forms.
+
+
+\begin{figure}[tbp!]
+  \centering
+  \includegraphics[width=.47\textwidth]{Grandma.pdf}
+  \caption{
+    The possible random partitions of the string `let's eat
+    Grandma' ($\sigma$).
+    Each partition is equally likely giving rise
+    to expected weights for the phrases they contain.
+    The six phrases along with their weights are
+    `let's' (1/2),
+    `eat' (1/4),
+    `Grandma' (1/2),
+    `let's eat' (1/4),
+    `eat Grandma' (1/4),
+    and 
+    `let's eat Grandma' (1/4).
+    These weights sum to that the number of words 
+    in the string, $n_\sigma=3$.
+    \todo{Add weights for random partitions}
+    \todo{Choose a more friendly phrase?}
+    \todo{Use / or $\mid$ instead of comma}
+  }
+  \label{fig:textpart.grandma}
+\end{figure}
+
+
+We show a simple example of random partitioning for the
+punctuation-sensitive phrase `let's eat Grandma'.  in
+Fig.~\ref{fig:textpart.grandma}.
+
+
+
+Random Partitioning gives us a useful way to measure
+the `strength' of a given phrase $\tau$ with respect to its local contexts---what we will
+call $\tau$'s \textit{local context conditional entropy} $\lcce_\tau$---in the following way.
+First, we define the phrase neighborhood $\mathcal{N}_\tau$
+`generated' by a phrase $\tau$ as the collection of
+all length $n_{\tau}+1$ phrases found in the text $T$
+that can be formed from $\tau$ by an insertion of a single word.
+We in turn define the neighborhoods to which a phrase 
+owes membership as its \textit{internal contexts}.
+Our example phrase `let's eat Grandma' 
+is thus a member of three internal
+contexts (if they exist in $T$): 
+$\mathcal{N}_{\textnormal{let's eat}}$, 
+$\mathcal{N}_{\textnormal{let's Grandma}}$, 
+and $\mathcal{N}_{\textnormal{eat Grandma}}$.
+Denoting a context as $C$ and the set of all
+internal contexts of $\tau$ as $\mathcal{C}_\tau$, we define 
+$\lcce_\tau = \max_{C \in \mathcal{C}_\tau} - \log_{2} P(\tau \mid C)$.
+Thus, $\lcce_\tau$ is derived from 
+most unlikely and most information rich
+inner context of $\tau$.
+
+\todo{Include somewhere?}: Though there is no reason to assume that a distribution of text
+separated $\&$ rank-order phrase counts abides the Zipfian hypothesis,
+it is known that a pure Zipfian word distribution can only allow for
+non-Zipfian $n$-gram distributions \cite{egghe????a}.
+
+\todo{Include somewhere?:
+A great deal of research has been done in the
+way of MWE extraction, where most successful developments often rely
+upon parallel corpora.  
+In this investigation we provide an extraction
+technique that relies upon the text being interpreted alone.}
+
+
+\section{Discussion}
+\label{sec:textpart.discussion}
+
+A perhaps understated feature of the Serial Partitioning algorithm is
+the means by which likelihood data might be accessed.
+The method relies upon local likelihoods defined by the internal
+context model. 
+These likelihoods are determined according to the tree structure
+proposed in~\cite{???}.
+Interestingly, one could just as well store these likelihoods on the
+aforementioned tree.
+Accessing this data then becomes computationally efficient (searches
+are log-time on data trees), which allows for biologically feasiblity. 
+
+As mentioned in~\cite{williams2013a} language occurs on a multitude of
+scales. 
+This paper focuses on the phrase scale, for its position as a highly
+active regime.
+Serial Partitioning provides a novel technique for the detection of
+meaningful language units.  
+In the N.L.P. community these techniques could easily be implemented
+to build better translation services with no need for pre-translated
+parallel corpora.  
+From any serially encoded text, our method extracts likely lexical
+content - providing a means to direct the (context-dependent)
+identification and translation of idioms in the most advanced
+M.T. techniques.
+
+In the phrase distributions section above we describe the distribution
+of expected counts.
+For a text, this distribtuion is defined by a random and independent
+partitioning of text strings into contiguous sequences of words.
+Here we perform precisely this operation, heretofore referred to as
+random partitioning.
+
+Our Serial Partitioning algorithm is in large effective due to a
+strong conditioning present in our context model.
+This conditioning on the words is precisely a realization of the
+non-independence of word appearances as one reads a text.
+Hence, the words of a text do no appear in accord to the original
+Simon model~\cite{simon1955a}, i.e. independently.
+
+As a premise for this work, we supposed that meaningfully partitioned
+phrases are directly interpretable for meaning.
+These phrases
+
+This can be explained by the independance of partitioned phrases from
+any other previously partitoned phrases. 
+So phrases of a meaningfully partitioned text appear more
+independently than the words.
+
+ 
+This then is our heuristic justification for why informed text
+partitions adehere to Zipf's law more so than words.
+What is more, we expect that the phrases of a random partition will be
+even more independent (they are without reference to possible
+meaning-dependencies), and hence be even more in accord with the
+Zipf-Simon relationship.
+
+We present a random partition performed on the NY times text (Figure
+2).
+Note that this distribution posseses a small number of units scaling
+more shallowly than the $-1$ exponent, and then rigidly follows a
+scaling quite close to $-1$.
+these two regions are indeed in direct accord to the analysis of the
+original Simon model.
+To test the possibility that a random partition is a realization of
+the Simon model, we perform Kolmogorov-Smirnov \todo{check spelling
+  and perform test} tests on randomly partitioned texts against
+distributions of the same size generated as per the Simon model (Table
+2).
+\todo{make table of K-S test results for various innovation rates}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\todo{Cite Sole papers}
+
+\todo{Explain partitioning in one or two paragraphs}
+
+\todo{Describe empirical results}
+
+\todo{Describe Model}
+
+\todo{Describe Analysis}
+
+\todo{Give results of model}
+
+\todo{Discussion}
+
+
+
+\todo{Include music lyrics again?}
+
+
+\todo{Show that Random Partitioning does a good job for Zipf?}
+
+In Fig.~\ref{fig:textpart.mobydick_randompart}, we compared
+the standard Zipf distribution for Moby Dick with the 
+phrase weight distribution we obtain from randomly partitioning.\\
+\todo{Expand on these results.}\\
+\todo{Add NYT or Wiki?}
+
+
+\begin{figure*}[tbp!]
+  \centering
+  \includegraphics[width=\textwidth]{2013-10-generatedLanguage.pdf}
+  \caption{
+    A. Generated language word distribution. 
+    B. Generated language phrase distribution. 
+    Both word and phrase distribution upper ($\gamma_{1}$) and lower ($\gamma_{2}$) 
+    scaling exponents reported in graph. 
+    C. The percentage of usage of words by order (1,\ldots,10 represented cold to hot), 
+    with both rank and inception as predictor variable. 
+    D. Grey bars indicate the percent of all units counted that each order possesses, 
+    and red bars indicate the percent of all unique units each order possesses. 
+    E. A log-log heat map of word inception vs word rank. 
+    F. Shannon phrase (red) and word (black) distribution entropies over of time. 
+    G. Phrase (red) and word (black) distribution nullity over time.
+  }
+  \label{fig:textpart.generatedlanguage}
+\end{figure*}
+
+
+\todo{Lead into why we must go to serial partitioning}
+
+\textbf{Local Serial Partitioning}---Random Partitioning gives us a background distribution
+of phrases to work with, but one that clearly does not account for how a
+reader might parse text
+(necessarily working with limited cognitive resources~\cite{levy????a}),
+but rather provides us with only an ensemble of possible partitions.
+To capture the act of interpretation, we introduce a local serial
+partitioning method 
+which `reads' through strings to find phrases which
+maximize entropy local context conditional entropy.
+
+\begin{figure}[tbp!]
+  \centering
+  \includegraphics[width=.47\textwidth]{Grandma.pdf}
+  \caption{
+    The possible random partitions of the statement `let's eat Grandma'.
+  }
+  \label{fig:textpart.grandma}
+\end{figure}
+
+
+Below, we step through an example of Serial Partitioning for the string `let's eat Grandma'.
+Starting at the left, we set our first partition to be the null phrase
+$\varphi$ 
+which has local context conditional entropy $\lcce_\varphi =  0$.
+The first word is concatenated onto our partition, producing the phrase `let's',
+whose positive entropy keeps the process going.
+The word `eat' is then concatenated to form `let's eat'. 
+Since the entropy increases, we keep the phrase and continue.
+Upon adding the word `Grandma', the entropy decreases, 
+and we fix the phrase `let's eat' as the first partition.
+The process begins again with the null phrase $\varphi$.
+The next phrase continues with the word `Grandma' and the partitioning
+is complete (and ethically sound).
+\begin{enumerate}
+\item let's eat Grandma /  $\lcce_\varphi=0$
+\item $\underbracket[0.5pt]{\textnormal{\textbf{let's}}}$ eat Grandma /  $\lcce_\text{let's}>\lcce_\varphi=0$
+\item $\underbracket[0.5pt]{\textnormal{\textbf{let's eat}}}$ Grandma /  $\lcce_\text{let's eat}>\lcce_\text{let's}$
+\item $\underbracket[0.5pt]{\textnormal{\textbf{let's eat Grandma}}}$ / $\lcce_\text{let's eat Grandma}$$<$$\lcce_\text{let's eat}$
+\item $\underbracket[0.5pt]{\textnormal{let's eat}} \,|\,$ Grandma /  $\lcce_\varphi=0$
+\item $\underbracket[0.5pt]{\textnormal{let's eat}} \,|\,$ $\underbracket[0.5pt]{\textnormal{\textbf{Grandma}}}$ / $\lcce_\text{Grandma}>\lcce_\varphi= 0$
+\end{enumerate}
+By moving through the full text $T$, treating string by string 
+with Serial Partitioning, we extract a unique partition of $T$ into words and phrases.
+
+\begin{figure*}[tbp!]
+  \centering
+  \includegraphics[width=\textwidth]{dick_random_english_counts.pdf}
+  \caption{
+    \todo{Finish caption.}\\
+    \textbf{A.} Word frequency as a function of rank for Moby Dick.
+    \todo{Describe inset in A.}
+    \textbf{B.} The weight distribution for Randomly Partitioned phrases.
+    }
+  \label{fig:textpart.mobydick_randompart}
+\end{figure*}
+
+\begin{figure*}[tbp!]
+  \centering
+  \includegraphics[width=\textwidth]{2013-07-times_counts.pdf}
+  \caption{
+    \textbf{A.} The distribution of words from the New York Times corpus.
+    \todo{Describe inset in A.}
+    \textbf{B.} Serially partitioned phrases from the New York Times corpus. 
+    An ideal Zipf distribution will appear as a straight line of slope $-1$ (red dotted line for reference). 
+    The inset bar plot shows the percent of all unique symbols
+    partitioned at each phrase length (pink), 
+    and the percent of the total number of units partitioned at each
+    order (grey)
+    \todo{more clarify in preceding.}
+    The phrases presented are ranks $10^n$ ($n=0,...,6$) in both the word and phrase separated distributions. 
+    Even at high ranks, phrase units are interpretable (often idiomatic) regular language components, 
+    while high ranking words like `cabbage', `mysteriousness' and
+    `fish-slicing' are difficult to glean meaning from outside of
+    context.\newline
+    \todo{describe double fit and give errors}\newline
+    \todo{Change order to 'phrase length' in plot}\newline
+    \todo{Move slopes to be near actual fits}\newline
+    \todo{Move example phrases so they are attached to points on plot}\newline
+    \todo{Add examples of 3, 4, 5, 6 word phrases?}
+    }
+  \label{fig:textpart.nytimes}
+\end{figure*}
+
+
+We now employ this Serial Partitioning scheme to examine
+two disparate, large-scale corpora: 
+the English version of Wikipedia and the New York Times (see Methods).
+We show how the standard word frequency distribution compares with
+the serially partitioned  phrase distribution for the New York Times in
+Fig.~\ref{fig:textpart.nytimes}
+(see Fig.~\ref{fig:textpart.wikipedia} for the Wikipedia plots).
+The characteristic scaling break (or `knee') of the Zipf  word distribution
+(Fig.~\ref{fig:textpart.nytimes}A)
+is in strong evidence, occurring between word ranks of $10^3$ and $10^4$.
+For low rank words, frequency $f_r$ scales as $r^{-0.98 \pm ??}$, in
+accordance with Zipf's original observations~\cite{zipf1949a} and many that have followed.
+Above the break, the slope becomes much steeper with 
+$f_r \sim r^{-1.85 \pm ??}$.
+\todo{Describe the inset in A}
+
+But for both corpora, this break in scaling largely evaporates
+for the distribution for phrases.
+For the New York Times, the scaling for infrequent phrases 
+follows  $r^{-1.19 \pm}$, weakly different from $r^{-1}$ (Fig.~\ref{fig:textpart.nytimes}B).
+Points are colored according to phrase length, revealing a gradual,
+mixed transition through phrases of increasing length as rank increases.
+
+
+The reduction of a break in scaling comes about 
+becomes words that appear frequently and are very likely to appear in sequence
+will agglomerate into higher order units (see `new york', `york city', and
+`new york city' in Fig.~\ref{fig:textpart.nytimes}B \todo{Bring these back?}). 
+This process not only diminishes the frequency of the individual words
+(suppressing the scaling break), but introduces new, lower-frequency
+atoms (phrases with two or more words),
+which fill out the tail.
+
+\todo{Explain insets}
+
+Apart from the phrase distribution's close adherence to an idealized Zipf's
+relationship, we also find that the most frequently occurring phrases are
+interpretable, quite representative of the source corpora, and often
+idiomatic (see Tabs.~\ref{tab:textpart.nytimesphrases} and~\ref{tab:textpart.wikipediaphrases}).
+Given the relatively simple nature of Serial Paritioning,
+the dramatic movement toward a pure Zipf distribution along with the extraction
+of reasonable phrases suggests that improved or alternate methods of
+partitioning should produce similar results.
+
+\todo{Add more description}
+
+
+Plotting the resulting phrase distributions for phrases up to length
+10, we see that the Zipfian
+hypothesis is supported remarkably well.
+
+
+
+\section{Stochastic Model}
+\label{sec:textpart.model}
+
+
+
+In~\cite{araujo2013}, the argument is made that a `mature' natural
+langauge is of a Ziphan statistical structure.
+Their argument hinges on the property that the Zipfian (harmonic)
+distribution has an entropy sum that diverges (in the limit).
+Consequently, a Zipfian distributuion may have an arbitrarily large
+average entropy as more units are incorporated.
+The perspective then is that there is little rank-mobility; the
+language is matured or saturated.
+
+However as we and others~\cite{ha2009a,gerlach2013a} have observed, large
+enough samples of text produce a break in scaling in their rank-frequency
+distributions.
+Though some hold the perspective that those words beyond the scaling break are
+`junk'~\cite{???}, we view this as case in point of a
+non-Zipfian word distribution.
+Assuming then that the word distributions are in some way non-Zipfian,
+we develop a model based on Simon's~\cite{simon1955a}.
+In this model we seek to determine what language development processes
+can lead to the formation of a scaling break.
+
+Integral to this development are two interacting distributions: a
+`phrase distribution' of constructed units, and a `word
+distribution' that is the atomization of the former.
+With each time step there are three probabilities, $\alpha$,
+$\beta_1$, and $\beta_2$ that govern the construction process. With
+each step one will:
+\begin{itemize}
+\item[$\cdot$] 
+  choose a word with probability $\beta_1$;
+\item[$\cdot$] 
+  choose no word with probability $1-\beta_1$;
+\item[$\cdot$] 
+  choose a phrase with probability $\beta_2$;
+\item[$\cdot$] 
+  choose no phrase with probability $1-\beta_2$;
+\end{itemize}
+where if a word is chose, it will be
+\begin{itemize}
+\item[$\cdot$] 
+  a new word with probability $\alpha$;
+\item[$\cdot$] 
+  an old word with probability $1-\alpha$.
+\end{itemize}
+
+In general any phrase chosen will be an old one, and old words and
+phrase are chosen in proportion to the number of times they have
+previously appeared. If no word and no phrase are chosen, then the
+process is null, rendering no phrase. If both word and phrase are
+chosen, then the two will be composed to form the newly constructed
+phrase that is counted into the phase distribution, and whose
+constituent words are counted into the word distribution.
+
+Perhaps the most straightforward manner to compose phrase and word
+then would be to concatenate the word onto the phrase, but, as it
+changes our analysis of the resulting word distribution in no way, we
+compose the word and phrase together in a more nuanced manner.
+In particular, if our phrase has length $n$, we keep track of the
+insertion frequncy of usage of each of the $n+1$ possible insertion
+points (every phrase insertion history is initialized to a nuiform
+state upon its inception). Then, chooseing an insertion point in
+proportion to its frequency of usage, the word is inserted
+accordingly.
+
+
+\section{Model Analysis}
+\label{sec:textpart.modelanalysis}
+
+To describe the the growth of the word distribution in the stochastic
+model presented in the previous section we define $\mathcal{N}_k$ to be the
+number of $k$-count words in the word distribution, $n_w$ to be the
+total number of words in the word distribution, $n_p$ to be the number
+of phrases in the phrase distribution, and $M_k(i)$ to be the number
+of (non-unique) phrases in the phrase distribution with $i$ words of
+word-count $k$. Then, measuring time by $t$, the number of non-null
+construction steps, the growth in $\mathcal{N}_k$ per non-null construction
+event is given by
+\begin{equation}
+\frac{\rm{d}\mathcal{N}_k}{\rm{d}t}
+=
+\beta_1\frac{\rm{d}\mathcal{N}_k}{\rm{d}n_w}
++
+\frac{\beta_2}{n_p}
+\left[
+  \sum_{i=1}^\infty iM_{k-1}(i)-\sum_{i=1}^\infty iM_{k}(i)
+\right],
+\end{equation}
+where as in~\cite{simon1955a,krapivsky2001a} we know
+$$\frac{\rm{d}\mathcal{N}_k}{\rm{d}n_w}=\frac{1}{n_w}\left[(k-1)\mathcal{N}_{k-1}-k\mathcal{N}_k\right](1-\alpha)+\alpha\delta_{k,1}$$
+and similarly assume that $n_wp_k=\mathcal{N}_k$. On the left hand side we
+immediately find the differential,
+$\text{d}n_{w}/\text{d}t$.  
+So, since the $M_k(i)$ have the nice property:
+$$
+\sum_{i=1}^{\infty}
+iM_{k}(i) 
+=
+k\mathcal{N}_k,
+$$
+the right hand side becomes,
+$$
+\left[
+\beta_1(1-\alpha)
++
+\beta_2
+\frac{n_w}{n_p}
+\right]
+\left[
+(k-1)p_{k-1}-kp_k
+\right]
++\alpha\beta_1\delta_{k,1}.
+$$
+On average a constructed phrase will have been the result of $\beta_1$
+word-drawn words and $\beta_2(n_w/n_p-\beta_1)$ phrase-drawn words. As
+such we expect that the approximation
+$$\frac{\rm{d} n_w}{\rm{d}t}\approx\beta_1+\beta_2\left(\frac{n_w}{n_p}-\beta_1\right)$$
+will hold for large $t$. Putting this all together we find the recursion equation
+$$p_k=p_{k-1}\frac{(k-1)}{k+1/\eta},$$
+where
+$$\eta=\frac{\beta_2\frac{n_w}{n_p}+\beta_1(1-\alpha)}{\beta_2\frac{n_w}{n_p}+\beta_1(1-\beta_2)}.$$
+
+As usual the recursion equation is solved in terms of gamma functions,
+where the resulting fit applies to the low-$k$ words. In particular,
+if $t_b$ is the time at which the $b^\text{th}$ new word
+appears, those words in teh vicinity of rank $b$ will scale with
+exponent $-\eta_{t_b}$ in the rank-frequency distribution. The
+proportion $n_w/n_p$ does grow (though slowly) over time, and the
+result there is tail, initial steep, but gradually increasing.
+
+While foregoing an analysis of the phrase distribution, we do take
+time to consider what value $\eta$ may take. Note that if $\beta_2=0$
+the model collapses back to that of Simon, with rank-frequency
+exponent $\eta=1-\alpha$. In general, we see that if $\beta_2>\alpha$
+one ahs $\eta>1$, and that $\eta$ indeed rises with $\beta_2$. If
+$\beta_2$ is quite nearly $1$, we obtain
+$$\eta\approx1+\beta_1(1-\alpha)\frac{n_w}{n_p},$$
+which has the upper limit $1+n_p/n_w$ as $\beta_1\rightarrow 1$ and
+$\alpha\rightarrow 0$.
+
+\section{Simulation Results}
+\label{sec:textpart.simresults}
+
+We find that indeed the analysis of our model aligns with those runs
+observe, where the fit is indeed better as $t$ becomes large. In fact
+the fit converges faster for larger values of $\beta_2$ (the phrase
+construction process is more dominant then). A peculiar aspect of the
+model as presented is that the words with the highest count will
+frequently reside in a family of very repetitive phrases. Aside from a
+small class of lyrics and chat phrases in our partitioning experiments
+(e.g. `ha ha ha...', `la la la...', etc.), most realistic phrases
+do not involve word reptition (and certinly no the mose frequent
+ones). As such a more nuanced model may have some form of repetition
+inhibition. As seen in Fig. 4, such a low-reptition accommodation does
+not cause the model to deviate from the analysis, while producing a
+more reasonable collection of phrases.
+
+In th previous section our analysis shows that our model is capable of
+producing rank-frequency exponents steeper than $-1$. Further, since
+$\beta_2=0$ produces the Simon model we may create a knee (see Fig. 4)
+in the word distribution via the stepwise procedure: initiate the
+model with $\beta_2=0$ to produce a Zipf-like scaling of $f\propto
+r^{1-\alpha}$, and after the $b^\text{th}$ word appears begin
+the phrasing process by setting $\beta_2>0$.
+
+Supposing the growth of a language follows the course outlined above, it 
+initiates with words forming and recurring independently, i.e. the
+Simon model. For this period the words bear no relation to one another, 
+i.e. are free of interword context. At some point a language participant 
+changes the game, lifting a sequence of words from their literal meaning, 
+now as an entity of its own. In the war of communication the process
+snowballs with other participants borrowing meaning from existing words
+to build their own colorful and abstracted interpretations. Though in
+the model the point of transition is not endogenously artificed, it is
+indeed conceivable in the realm of social dynamics.
+
+%%%%%%
+
+\todo{Sort the following out.  The main problem is that
+serial partitioning does not seem to be exactly the plan
+when we consider all possible internal contexts.  Also,
+all decisions are made on global information, and only
+in part on past experience.}
+
+\todo{internal versus local contexts.}
+
+
+%% jake:
+%% http://www.longtail.com/the_long_tail/2006/09/is_zipfs_law_ju.html
+
+
+In general, we consider the joint pdf for phrases and contexts
+$P(\tau,C)$ with $\tau \in \mathcal{T}$ and $C \in \mathcal{C}$, their
+full sets.
+The conditional distribution $P(\tau \,|\, C)$
+then gives the probability of a phrase $\tau$ appearing
+given context $C$.
+We refer to these probabilities as \textit{local likelihoods}, 
+and use them as a basis for our serial partitioning method.
+
+Let $\mathcal{T}$ be the usual collection of all phrases constructable from a
+finite word set.
+With our context collection $\mathcal{C}$, we must now make some
+assumptions to form a valid joint pdf on $\mathcal{T}\times\mathcal{C}$.
+Suppose that an interpreter experiences each internal context upon
+presentation with a phrase.
+
+
+For local contexts, we define the phrase neighborhood generated by a phrase
+$\tau$, $\mathcal{N}_\tau$, as the collection of
+all length $n_{\tau}+1$ phrases found in the text $T$
+that can be formed from $\tau$ by an insertion of a single word.
+We in turn define the neighborhoods to which a phrase 
+owes membership as its \textit{internal contexts}.
+Our example phrase `let's eat Grandma' 
+is a member of three internal
+contexts: $\mathcal{N}_{\textnormal{let's eat}}$, 
+$\mathcal{N}_{\textnormal{let's Grandma}}$, 
+and $\mathcal{N}_{\textnormal{eat Grandma}}$.
+
+Upon presentation of the phrase
+`let's eat Grandma', each of the contexts
+$\mathcal{N}_{\textnormal{let's eat}}$,
+$\mathcal{N}_{\textnormal{let's Grandma}}$, and
+  $\mathcal{N}_{\textnormal{eat Grandma}}$ are experienced once.
+So, using Random Partitioning to generate
+a distribution of phrase weights for a text, we draw a
+phrase from $\mathcal{T}$ in proportion to its count, and define a joint pdf
+from the marginals:
+$$
+P(\tau)=P(\textnormal{an internal context is experienced from $\tau$})
+$$
+and
+$$
+P(C=\mathcal{N}_\tau)
+=
+P(\textnormal{the internal context $\mathcal{N}_\tau$ is experienced}).
+$$
+
+
+Note that we can represent the first marginal by weighting the counts
+of each phrase by its length, but the framing does not aid in the
+formation of a joint distribution, as it is without reference to
+context experience.
+
+
+
+We then take that a written body is separable, with ideal separations
+accessible via some ``minimal effort'' algorithmic optimization.
+
+
+
+
+Our objective is to break partition a text into meaningful units.
+
+To the computational linguist, what we refer to here as phrases are
+often called multi-word expressions (MWEs) or $n$-grams. 
+
+The identification of MWEs in natural
+language poses one of the largest obstacles to accurate machine
+translation~\cite{sag????a}.
+
+A great deal of research has been done in the
+way of MWE extraction, where most successful developments often rely
+upon parallel corpora.  
+
+In this investigation we provide an extraction
+technique that relies upon the text being interpreted alone.
+
+Others have noted similar results by combining frequency distributions of n-grams,
+though this approach overcounts words~\cite{ha2002a}.
+
+
+A natural language speaker must consider the likelihood of a statement
+or phrase's interpretation in context, that much is clear. 
+But what precisely is context? 
+For us it is both the previously experienced corpus and the content of
+the utterance thus far. 
+Previous approaches~\cite{piantadosi2011a} define the context-- for us,
+\emph{local context}-- as follows. 
+Given a phrase of length $n$, the context of the final word is the
+sequence of $n-1$ preceding words.
+In \cite{williams2013a} the bent on phrases (as opposed to just words)
+allows for a more general definition. 
+
+
+If words formed a layer of units of meaning,
+then Simon's model would suffice for an approximate
+origin of language model.
+
+
+for phrase extraction to partition natural language,
+we
+
+At the core of much quantitative language analysis
+is simple word counting.  
+
+Models 
+
+Zipf's law has 
+
+
+
+
+In previous work \cite{Williams2013a} a natural language is defined
+recursively, with the notion of lexicon made relative to the scale of
+language being considered.
+Assuming this to be the case, we ask how a text's lexicon of
+meaningful phrases may be uncovered.
+It is easy to ask questions about the collections of fundamental
+pieces (e.g. letters in words, or words in clauses), but the trickier
+business lies with `meaningful' units in clauses and words.
+Since these non-trivial regimes are defined by interpretation through
+similarity of past experience, we develop a model for the
+identification of lexical atoms based on morphological similarity and
+accumulated inferential data.
+
+
+
+
+It is of some surprise then that Zipf's law is surprisingly limited
+for language, applying typically to only around the first few thousand
+most frequently used words whereupon a clear break in scaling
+appears~\cite{bentknee,ferrericancho,ha2009a}.
+
+
+\begin{figure}[tbp!]
+  \centering
+  \includegraphics[width=0.48\textwidth, angle=0]{mary2.pdf}
+  \caption{
+    X-bar theoretic decomposition of the sentence `Mary had a ball at
+    her dance recital and knocked it out of the park'. Observe that
+    the grammatical dissection finds both `ball' and `it' as subjects
+    possessed by `Mary', acted on in conjoined verb phrases. From this
+    perspective it seems that `it' is the `ball'.
+  }
+  \label{fig:textpart.mary}
+\end{figure}
+
+
+Let's observe the severity of the phrase identification problem and consider whether or not the statement
+\begin{center}
+\begin{minipage}{.9\linewidth}
+\center
+Mary had a ball at her dance recital and knocked it out of the park.
+\end{minipage}
+\end{center}
+\noindent is so easily interpreted grammatically (Diagram 1), or
+literally.  Were this the only option, we might believe that Mary had
+a dance recital in a park where she somehow knocked a toy sphere
+beyond the park's limits. This is troubling since the colloquial
+speaker will immediately know that Mary's ball was not a toy sphere,
+but instead a positive experience. The root of this concern may be
+seen through a naive grammatical interpretation that implies ``it'' in
+the phrase, ``knocked it out of the park'', is the ``ball'' (Diagram
+1). Though ``it'' was indeed the positive experience that Mary
+excelled at, equating the two easily leads a non-native speaker to the
+incorrect literal interpretation, after all, a ball might certainly be
+batted about. For the native speaker, knowledge of context directs
+their interpretation of ``knocked it out of the park'' as a closed
+structure; i.e. ``it'' is internal and fixed within an atomic phrase--
+that is, it cannot be broken down any further.
+
+
+\clearpage
+
+Previous:
+
+Let's observe the severity of the phrase identification problem and
+consider whether or not the statement
+\begin{center}
+\begin{minipage}{.9\linewidth}
+\center
+Mary had a ball at her dance recital and knocked it out of the park.
+\end{minipage}
+\end{center}
+is so easily interpreted grammatically~\ref{fig:textpart.mary}, or literally.
+Were this the only option, we might believe that Mary had a dance
+recital in a park where she somehow knocked a toy sphere beyond the
+park's limits. This is troubling since the colloquial speaker will
+immediately know that Mary's ball was not a toy sphere, but instead a
+positive experience. The root of this concern may be seen through a
+naive grammatical interpretation that implies `it' in the phrase,
+`knocked it out of the park', is the `ball'~\ref{fig:textpart.mary}. 
+Though `it'
+was indeed the positive experience that Mary excelled at, equating the
+two easily leads a non-native speaker to the incorrect literal
+interpretation, after all, a ball might certainly be batted about. For
+the native speaker, knowledge of context directs their interpretation
+of `knocked it out of the park' as a closed structure; i.e. `it' is
+internal and fixed within an atomic phrase-- that is, it cannot be
+broken down any further.
+
+The linguist Brame \cite{Brame01} viewed natural language as a
+recursive system - one where complex relational structures build up
+from smaller ones until they gel into the fundamental pieces of the
+next scale. Assuming this to be the case, how do we know which
+portions of an utterance are atomic and cannot be parsed further? It
+is easy to ask questions about the collections of fundamental pieces
+(e.g., letters in words, or words in clauses), but the thornier
+territory is always in the mixing regimes (e.g., the morphemes in
+words, or `meaningful' phrases in clauses). Being that these
+non-trivial regimes are defined by interpretation through similarity
+of past experience, we develop a model for the identification of
+lexical atoms based on morphological similarity and accumulated
+inferential data.
+
+A natural language speaker must consider the likelihood of a statement
+or phrase's interpretation in context, that much is clear. But what
+precisely is context? For us it is both the previously experienced
+corpus, and the content of the utterance thus far. Previous approaches
+\cite{Piantadosi01} define the context-- for us, \emph{local
+context}-- as follows. Given a phrase of length $n$, the context of
+the final word is the sequence of $n-1$ preceding words. We may, by
+allowing phrases (as opposed to just words) to be the context-bearing
+units, find a more general definition. Instead of just the $n-1$
+leading words it is well to consider any $n-1$ length subsequence of
+words. Here we build a top-down approach to local context which
+replaces the assumption that the role filled by a word is fixed at
+its' utterance, and replaces it with a windowed flexibility. We thus
+look to organize language by collections of phrases with similarly
+ordered sub-structures, this being the shape of languages of recursion
+grown.
+
+
+
+\section{The tree structure of phrases and resulting metric}
+
+Let $W$ be the collection of words in a language including the null
+word, $\varnothing$, and $S$ be the collection of all finite-length
+sequences of words from $W$. We will refer to elements of $S$ as
+phrases. For phrases $\sigma,\tau\in S$ we define the relation
+$\preceq$ by setting $\tau\preceq\sigma$ if and only if $\sigma$ may
+be constructed from $\tau$ through successive insertions. For example,
+if $\tau=(the\:brown\:fox)$, and
+$\sigma=(the\:quick\:brown\:fox\:jumped)$, then $\tau\preceq\sigma$.
+
+The collection of all phrases in a language is immediately an
+infinite, unbounded tree - a partially ordered set of phrases
+branching out from the null word. With this structure in mind, we
+refer to the first neighborhood of an element $\sigma$, or $N_\sigma$,
+as the set of all phrases constructible from $\sigma$ by a single
+insertion, e.g., with $\sigma$ as in the previous we see that $(the\:
+quick\: brown\: fox)\in N_\sigma$.
+
+As is shown in Appendix III, the collection of phrases has a wealth of
+structure endowed to it via the metric induced by $\preceq$. First one
+defines the \emph{order} map $\#: S\rightarrow\mathbb{Z}$ to send
+$\sigma$ to the number terms (words) it contains. Then, for any
+$\sigma,\tau\in S$ define $\eta$ to be a \emph{maximal sequential
+intersection} of the pair, if $\eta$ is a subsequence of both $\sigma$
+and $\tau$ that has order at least as big as any other subsequence
+common to the pair. Then the function $d:S^2\rightarrow\mathbb{Z}$
+defined by
+$$d(\sigma,\tau)=\#\sigma+\#\tau-2\#\eta$$
+is a metric on $S$ (Appendix III). The main value of the metric is the
+opportunity to build a notion of similarity on $S$. This is easily
+accomplished by defining the normalized value
+$\rho:S^2\rightarrow\mathbb{Q}$
+$$\rho(\sigma,\tau)=\frac{d(\sigma,\tau)}{\#\sigma+\#\tau}.$$
+The similarity function then shows us that $N_\sigma$ is for $\sigma$
+the set of $\rho$-maximal similar elements (Appendix III), which we
+then take as justification of the choice of the $N_\sigma$ as the
+local contexts. The graph and resulting metric framework provide a
+means to tease apart the regular recursive forms, but as we will see
+shortly, it is these sequential perspectives in combination with
+inferential data that directs the process of interpretation.
+
+\section{Counting distributions}
+In \cite{Zipf01}, George K. Zipf demonstrated that most frequently
+appearing words in the English language strongly adhered to a simple
+relationship. If the words were ranked ascending according to their
+counts descending (i.e. the most frequently appearing word gets rank
+1), then a word's rank, $R$, would be inversely proportional to its
+count $R$, that is $R\times S= C$, for some universal constant $C$. In
+part this observation achieved such fame for it's ubiquity and
+simplicity. Zipf offered a simple formula representing the
+interrelations between the words of a language, a possible
+quantitative lead on the psychological processes underpinning a
+language - his hypothesis being the `principle of least
+effort''\cite{Zipf04}.
+
+Regardless of the meaning behind Zipf's observation, implicit in his
+analysis was the assumption that words form the natural atomization
+for the clauses of a text. This assumption offers a very convenient
+separation of a corpus, i.e. a counting by words assures that no
+portion of a text is accounted for more than once. Here we seek
+alternate and natural ways to separate a text.  In particular, we
+develop distributions of phrases which arise from text separations.
+
+To date the most extensively developed corpus of higher order lexical
+in the computational linguistics community is that created by the
+Google corporation \cite{Google01}. Despite its recent appearance as
+data in various scholarly articles\cite{Garcia01,Piantadosi01} , the
+perspective taken by Google and much of the $n$-grams community lacks
+a thorough consideration of the active function of non-alphanumeric
+symbols, ignoring punctuative boundaries and essentially considering
+sequences embedded with punctuation to be potentially interpretable
+phrases. In the Google corpus the entity `it's' is considered a phrase
+of three words, with the apostrophe given the same status as a
+word. This perspective is stuck, straddling the character-atomic and
+word-atomic views simultaneously. Furthermore, as a consequence of the
+sliding-window method of counting $n$-grams, the resulting
+distribution cannot be integrated into a single distribution
+meaningfully (each word forms a portion of many different $n$-grams).
+
+Previous work has shown that a Zipfian word distribution can only
+allow for non-Zipfian phrase distributions \cite{Egghe01}.
+We, as
+\cite{Ha01} have done, take a posteriori that the word distribution is
+in fact non-Zipfian (since the relationship does break down).
+Though
+\cite{Ha01} tried to extend Zipf's work to $n$-grams, their attempts
+utilized the sliding-window method of counting $n$-grams, immediately
+destroying the statistical integrity of an integrated distribution.
+
+As an alternative to these approaches this work takes punctuation
+characters as rigid boundaries, and then bends the notion of counting
+to be probabilistic.
+Behind the punctuation-boundary assumption is the
+observation that punctuation gives the interpreter an understanding of
+where interpretable phrases start or end.
+By `counting' words in a
+probabilistic way, we construct a distribution of phrases respectful
+to the distribution of words in a text.
+
+
+Suppose now that of the (infinite?) collection of possible
+interpretations of a clause, some reasonable interpretations are
+modeled by the various separations, or, partitions of that clause.  In
+particular, we assume that different partitions correlate to different
+inflections, which correlate to different meanings.  We formalize this
+as follows: given a clause $\sigma\in S$ of order $n$, define the
+\emph{naive partition liklihood}, $p_\sigma(\tau)$, for any
+\emph{full} (contiguous) phrase $\tau\preceq\sigma$, to be the
+probability that a partition chosen at random (among the possible
+$2^{n-1}$) isolates $\tau$.
+
+As an example we let $\sigma=(let's\:eat\:grandma)$.  The possible
+partitions of a clause nicely represented through the placement of
+commas~\ref{fig:textpart.grandma}.
+Of the four possible partitions of $\sigma$ we see
+\begin{align*}
+p_\sigma(let's)=1/2 \hspace{30pt}&\hspace{10pt} p_\sigma(let's\:eat)=1/4\\
+p_\sigma(eat)=1/4 \hspace{36pt}&\hspace{10pt} p_\sigma(eat\:grandma)=1/4\\
+p_\sigma(grandma)=1/2 \hspace{10pt}&\hspace{10pt} p_\sigma(let's\:eat\:grandma)=1/4.
+\end{align*}
+Among the first of things to note is, that each boundary a phrase
+shares with the clause increases its partition probability by a factor
+of 2. Also, since these probabilities are not mutually exclusive, they
+do not sum to 1. In general we see that for any $\sigma\in S$ of order
+$n$ and $\tau\preceq\sigma$, a full phrase of order $k$, that
+$$
+p_\sigma(\tau)
+=
+2^{b-(k+1)},
+$$
+where $b$ is the number of boundaries (left or right) that $\sigma$
+and $\tau$ share (Appendix III).
+
+\section{Local-context partitioning}
+
+To rigorously develop this material we formally define a \emph{text}
+to be a pair $(S,m)$, where $S$ is the space of finite-length
+sequences of words from $W$, and $m:S\rightarrow \mathbb{Z}$ is the
+clause multiplicity map, where a clause once again is defined to be
+any sequence of words bounded by punctuation. Then, if we restrict our
+analysis to any record of language, $m(\sigma)$ is the number of times
+$\sigma\in S$ appeared as a clause in the record. With this, for any
+$\tau\in S$ we define the \emph{naive expected count}, $c_\tau$, of
+$\tau$ in the text to be
+$$
+c_\tau
+=
+\sum_{\sigma\in S}
+m(\sigma)
+p_{\sigma}(\tau),
+$$
+where $p_{\sigma}(\tau)=0$ if $\tau$ is not a full subsequence of
+$\sigma$. Then, the \emph{expectation of occurrence} $E:2^S\rightarrow
+\mathbb{Q}$ for any subset $A\subseteq S$ is well-defined by
+$$
+E(A)=\sum_{\tau\in A}c_\tau.
+$$
+The function $E$ is essentially describes the mass of a collection of
+phrases in a text.
+
+Given $\tau\in S$ with $\#\tau=n>0$, we now wish to determine which of
+the $n$ possible local contexts $\tau$ represents. In section II we
+define the first neighborhood of a phrase $\sigma$ to be the
+collection of order $\#\sigma+1$ phrases constructible from
+$\sigma$. Now, for a phrase $\tau$ the local contexts are precisely
+the first neighborhoods that it belongs to. Therefore we take the
+determination of a local context for $\tau$ to be the inference of
+$\tau$'s construction. A reasonable approach, perhaps, assumes
+construction of $\tau$ by $\sigma$ (i.e. assumes the context
+$N_\sigma$) in proportion to $N_\sigma$'s expectation of
+occurrence. Then, upon observing $\tau$ one assumes the context
+$N_\sigma$ with probability
+$$\frac{E(N_\sigma)}{\underset{\tau\in N_\eta}{\sum}E(N_\eta)}.$$
+However, in the main body of this work, we take the simplification
+that $\tau$ belongs to the context $N_\sigma$ with greatest
+expectation of occurrence.
+
+With our simplification, each phrase has a fixed context. So, we
+consider the likelihood of a phrase's appearance given the presence of
+a particular context. We define his quantity, the \emph{local
+likelihood}, for any $\tau$ with context $N_\sigma$ to be
+$$P(\tau\mid N_\sigma)=\frac{E(\tau)}{E(N_\sigma)}.$$
+Local likelihood measurements form the basis of the partitioning
+schemes in this work.
+
+To develop a partitioning scheme we consider cognitive theories
+\cite{Levy01}, which pose that the natural human syntactic parser
+operates with limited resources. Typically the limited resource
+assumed is memory. We may certainly average the local likelihood of
+each clause partition and choose the one with greatest mean likelihood
+(Appendix III). However, we must consider again that a clause of $n$
+words has $2^{n-1}$ distinct partitions. Is it reasonable to expect a
+human mechanism to scan all partitions? Given the memory-resource
+limitation hypothesis, this brute force method seems unnatural, and
+for long clauses totally unreasonable. Hence we expect that ideal
+partitions of human language should be accessible through some
+restriction of the search space.
+
+To simplify the search problem we observe that English (along with
+many other languages) relies heavily on a directional flow. This
+property is exemplified by the `garden path' sentences of the English
+language. Though these statements often lack punctuation and function
+words, we find them instructive to understanding the limits of the
+human lexical parser, most importantly the extent to which English
+commonly reads from left to right. Consider the statement
+\begin{center} 
+  The prime number few.
+\end{center} 
+Since we immediately see the beginning of the phrase `the
+prime number...'', we are forced to think of mathematics and attempt
+to understand what sort of a number `few' is. However, a more
+internally consistent interpretation considers `prime' to be a noun,
+and verbs the word `number' into meaning `existence in a quantity
+of''. Though this confusion is easily remedied through the insertion
+of an implicit noun such as `people' into the statement `the prime
+people number few'', the point is clear.  Given this nuance in the
+English language we then expect that a reasonable mechanism `breaks
+phrases off' from a clause, assessing the local likelihood of each
+phrase from left to right. We refer to this process as \emph{serial
+partitioning}~\ref{fig:textpart.grandma}.
+
+
+\section{Experiment, Results, and Discussion}
+
+Partitioning the Wikipedia.en, NY Times and Lyrics corpora via the
+serial partitioning scheme with probabilistically determined contexts
+(materials and methods discussed in Appendix II), we count the
+occurrence of phrases up to order 10. Plotting the resulting phrase
+distributions, we see that the Zipfian hypothesis is supported
+remarkably well (Figure 1-A). The characteristic `knee' of the classic
+word-separated distribution is greatly diminished and can be
+attributed to the following. Words that appear frequently (see new,
+york, and city in Figure 1-A) and are very likely to appear in
+sequence will agglomerate into higher order units (see new york, york
+city, and new york city in Figure 1-B). This process not only
+diminishes the frequency of the individual words (suppressing the
+knee), but introduces new, lower-
+
+
+\noindent frequency atoms, which fill out the tail. Irrespective of
+the phrase distribution's adherence to Zipf's relationship, we find
+that the most frequently occurring phrases are interpretable, quite
+representative of the source corpora and often idiomatic (Table 1).
+
+Investigation to the Zipfian hypothesis immediately begs the question:
+why a scaling exponent of $-1$? A well-known measure quite relevant to
+this is that of Shannon and others \cite{Kolmogorov01, Shannon01},
+known as information content.  This measure is most easily understood
+as the average quantity of bits (when the logarithm is taken base 2)
+per symbol required to efficiently store or represent a message.
+
+The average representation-information required per symbol in a
+Zipfian language of $N$ atoms with rank-decreasing frequencies
+$\{p_k\}_{k=1}^N$, and scaling exponent $\gamma>1$ is given by the sum
+$$-\sum_{k=1}^{N}p_k\log{p_k}=\frac{\gamma}{M_N(\gamma)}\left[\frac{\log{M_N(\gamma)}}{\gamma M_N(\gamma)}+\sum_{k=1}^{N}\frac{\log{k}}{k^\gamma}\right],$$
+where $M_N(\gamma)$ is the $N$th generalized harmonic number of
+exponent $\gamma$. Note that $M_N(\gamma)$ and the sum are finite in
+the limit as $N\rightarrow\infty$ so long as $\gamma>1$. Hence a
+growing language that maintains the Zipfian relationship may expand
+its vocabulary indefinitely, i.e. the number of meaningful atoms may
+increase without bound while the average representation-information
+per symbol approaches a finite limit.  Furthermore, the value of the
+theoretical, infinite sum, may become arbitrarily large as
+$\gamma\rightarrow1$, meaning that such a language may maintain
+discernible atoms which, on average, may represent any quantity of
+information thinkable. For a system of encoding this seems to be a
+powerful and provocative feature.
+ 
+Regardless of what the information measure represents and what the
+slope of a phrase distribution means, we once again note the value of
+the context-dependent parser in application. Without any necessity for
+parallel corpora, this development provides a novel MWE detection
+technique.  From any serially encoded text, this method extracts the
+likely lexical units, which in turn may be assessed for proper
+translation.
+
+\section{Sub-word partitioning}
+
+As explained in [citation needed] a language posses multiple scales for representing meaning.
+So far in this work, we have partitioned units at the word-sequence scale.
+We can, however, look inside words (i.e. look at words like clauses), and partition letter-sequence units.
+This partitioning can be done analagous to the method for phrases,
+or, since word formation rules are more stringent
+(e.g. pronouncable English units generally contain vowels and are composed of graphemes),
+we can leverage known sub-word structure to obtain more realistic partitions.
+
+Nevertheless,
+the goal remains a partition that carries meaning.
+At the word-seqence scale there is no qantative way to determine if a phrase is meaningful.
+However, at the sub word scale we know nearly all combining forms [cite combining forms list],
+in addition to roots, prefixes, and suffixes.
+So, we present the sub-word partitioning results from two variants of the serial partitioning algorithm.
+in addition to standard algorithm and random partitioning (see Table 1).
+Each of these variations are performed by only taking expected counts from partitions adherent certain restrictions.
+The first restriction requires that all partition components possess a vowel,
+and the second requires that all partition componets possess a vowel or be a grapheme.
+
+\begin{center}
+
+{Coverage of Sub-Words Partitioned}\newline
+
+
+{\fontsize{6.8}{8.16}\selectfont
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline Source & Random & None  & Vowel & Grapheme\\\hline
+NYTimes& 62.42\% (2435) & 72.79\% (100) &68.26\% (226) & 72.16\%(89) \\\hline
+Wikipedia& 63.42\% (3191)& 0 & 0 &0 \\\hline
+\end{tabular}
+}
+\end{center}
+
+\section{Glossory of terms}
+{\footnotesize
+\textbf{Clause:} Any phrase in a corpus that abuts punctuation characters.\newline
+\textbf{Corpus:} A sequential record of language.\newline
+\textbf{First neighborhood:} For a phrase, The collection of all sequences constructible by it though a single insertion.\newline
+\textbf{Full sub-phrase:} Of a phrase, any contiguous sub-phrase of terms.\newline
+\textbf{Lexical unit/atom:} A minimal-length interpretable phrase. \newline
+\textbf{Local likelihood:} The conditional likelihood of a phrase in context.\newline
+\textbf{Maximal Sequential Intersection:} For two phrases, any maximal length sub-phrase common to the pair.\newline
+\textbf{Naive expected count:} Sum of naive partition likelihood for a phrase across a text.\newline
+\textbf{Naive partition likelihood:} The probability that a partition of a clause delineates a full sub-phrase of the clause.\newline
+\textbf{Occurrence expectation:} The sum of naive expected count of the phrases in a collection.\newline
+\textbf{Order of a phrase:} The number of terms in a phrase.\newline
+\textbf{Partition-mean local likelihood:} The harmonic mean of a partition's components' local likelihood.\newline
+\textbf{Partition of a clause:} A collection of full sub-phrases that when composed in sequence produce the clause.\newline
+\textbf{Phrase:} Any sequence of words.\newline
+%%\textbf{Positionally disjoint sub-phrases:} For a phrase, sub-phrases whose terms have differing indices.\newline
+\textbf{Separated corpus:} A distribution of phrases that arises when every clause in a corpus is partitioned.\newline
+\textbf{Sub-phrase:} For a phrase, any other phrase comparable in the partial order of no larger order.\newline
+\textbf{Terms:} The (not possibly non-unique) words composing a phase.\newline
+\textbf{Text:} Representing a corpus, $S$ paired with a map $m$ into the integers describing the multiplicity of occurrence of the clauses in the corpus. \newline
+\textbf{Word:} Character sequences delineated by spaces and the null word, $\varnothing$.
+}
+
+
+
+
+\begin{thebibliography}{1}
+
+\bibitem{Brame01} Brame, \emph{Recursive categorical syntax and morphology I: Semigroups, monoids and categories}, Linguistic Analysis,1984.
+
+\bibitem{Egghe01} Egghe, \emph{On the law of Zipf-Mandelbrot for multi-word phrases}, Journal of the American Society for Information Science and Technology, 1999.
+
+%%\bibitem{Frank01} Frank, Jaeger \emph{Speaking rationally: Uniform information density as an optimal strategy for language production}, Proceedings of the 30th Annual Meeting of the Cognitive Science Society, 2008.
+
+\bibitem{Garcia01} Garcia, Garas and Schweitzer, \emph{Positive words carry less information than negative words}, 2012.
+
+\bibitem{Google01} \emph{All Our N-gram are Belong to You},\\ http://googleresearch.blogspot.com/2006/08/all-our-n-gram-are-belong-to-you.html
+\bibitem{Ha01}Ha, Hanna, Ming and Smith, \emph{Extending Zipf's law to n-grams for large corpora}, Artificial Intelligence Review, 2009.
+
+\bibitem{Kolmogorov01} Kolmogorov, \emph{Three approaches to a quantitative definition of information}, Problems of Information Transmission, 1965.
+
+\bibitem{Lakoff01}Lakoff and Johnson, \emph{Metaphors We Live By}, Univ. of Chicago Press, 1980.
+\bibitem{Lakoff02}Lakoff, \emph{Women, Fire, and Dangerous Things}, University of Chicago Press, 1987.
+
+\bibitem{Levy01} Levy, \emph{Probabilistic Models of Word Order and Syntactic Discontinuity}, Stanford
+University Press, 2005.
+
+%%\bibitem{Mandelbrot01} Mandelbrot, \emph{Information theory and psycholinguistics}, Scientific Psychology: Principles and Approaches, 1965.
+%%\bibitem{Mandelbrot02} Mandelbrot, \emph{A note on a class of skew distribution function. analysis and critique of a paper by H.A. Simon}, Information and Control, 1955.
+%%\bibitem{Mandelbrot03} Mandelbrot, \emph{Final note on a class of skew distribution functions: analysis and critique of a model due to H.A. Simon}, Information and Control, 1961.
+%%\bibitem{Mandelbrot04} Mandelbrot, \emph{Post scriptum to `final note'}, Information and Control, 1961.
+
+%%\bibitem{Miller01} Miller and Chomsky, \emph{Handbook of Mathematical Psychology II}, Wiley, pp. 419-491, 1963.
+
+%%\bibitem{Nicolis} Nicolis and Tsuda, \emph{On the parallel between Zipf's Law and 1/f processes in chaotic systems possessing coexisting attractors: a possible mechanism for language formation in the cerebral cortex}, Progress of Theoretical Physics, 1989.
+
+%%\bibitem{Orlov01} Orlov, \emph{Why, how, and when does the Zipf-Mandelbrot law fail?}, in Statistical Methods in Linguistics, 1977.
+
+\bibitem{Piantadosi01} Piantadosi, Tily and Gibson, \emph{Word lengths are optimized for efficient communication}, PNAS, 2010
+%%\bibitem{Piantadosi02} Piantadosi, Tily and Gibson, \emph{The communicative function of ambiguity in language}, Cognition, 2010.
+%%\bibitem{Piantadosi03} Piantadosi, \emph{Learning and the language of thought}, PhD thesis, MIT, 2011.
+%%\bibitem{Piantadosi04} Piantadosi, Tily and Gibson, \emph{Information content and word length in natural language}, (under review), 2012.
+
+\bibitem{Reilly} Reilly and Kean \emph{Information content and word frequency in natural language: Word length matters}, Proc Natl Acad Sci USA, 2011.
+
+%%\bibitem{Simon01} Simon, \emph{On a class of skew distribution functions}, Biometrika, 1955. 
+%%\bibitem{Simon02} Simon, \emph{Some further notes on a class of skew distribution functions}, Information and Control, 1960.
+%%\bibitem{Simon03} Simon, \emph{Reply to `final note' by Benoit Mandelbrot}, Information and Control, 1961.
+%%\bibitem{Simon04} Simon, \emph{Reply to Dr. Mandelbrot's post scriptum}, Information and Control, 1961.
+
+\bibitem{Sag01} Sag, Baldwin, Bond, Copestake, and Flickinger, \emph{Multiword Expressions: A Pain in the Neck for NLP}, Proc. of the 3rd International Conference on Intelligent Text Processing and Computational Linguistics.
+\bibitem{Shannon01} Shannon, \emph{A Mathematical Theory of Communication}, Bell System Technical Journal, 1948.
+%%\bibitem{Shannon02} Shannon, \emph{Prediction and entropy of printed English}, Bell System Technical Journal, 1951.
+
+%%\bibitem{Yavuz} Yavuz, \emph{Zipf's law and entropy}, IEEE Transactions on Information Theory, 1974.
+
+\bibitem{Zipf01} Zipf, \emph{Relative frequency as a determinant of phonetic change}, Harvard Studies in Classical Philology, 1929.
+\bibitem{Zipf02} Zipf, \emph{the psycho-biologogy of language: an introduction to dynamic philology}, The M.I.T. Press, 1935.
+%%\bibitem{Zipf03} Zipf, \emph{National Unity and Disunity: The Nation As a Bio-Social Organism}, Principia Press, 1941.
+\bibitem{Zipf04} Zipf, \emph{Human Behavior and the Principle of Least Effort}, Addison-Wesley, 1949. 
+
+%%\bibitem{Zornig01} Zornig and Altmann, \emph{The repeat rate of phoneme frequencies and the Zipf-Mandelbrot law}, Glottometrika, 1983.
+
+\end{thebibliography}
+
+
+
+
+
+We further argue that this view of phrases as the meaningful unit of
+language reveals the English language possesses
+optimal information content with 
+the ability to describe an infinite set of things.  Meh.
+
+minimal meaningful phrases rather than individual words,
+
+
+
+
+
+that the frequency of words is inversely proportional
+the remarkable 
+to their rank
+
+
+
+and its origins
+
+Zipf's law is famous, much debate over its origin
+-1 exponent
+ 
+ 
+We show how Zipf's law applies to English for
+meaningful phrases rather than words
+ 
+
+
+
+
+The words of human languages 
+usage frequency
+exhibit  Zipf's law
+The Zipf's law is 
+
+Zipf's law is 
+
+Here, we employ a simple probabilistic algorithm
+that identifies meaningful phrases by context in large-scale
+corpora.
+We use our parsing scheme to extend the work
+of Zipf  to distributions of English phrases.
+We find Zipf's power-law hypothesis holds for phrases
+rather than words, 
+a strong argument for the semantic correlation of our technique.
+We find strong support for our observations 
+with a modified rich-gets-richer 
+mechanism for language evolution.
+
+In doing so we meet Zipf's power-law hypothesis better than
+with English words alone, and use phrase considerations to develop a
+stochastic model akin to that of H. A. Simon \cite{Simon01}.  
+Using
+this stochastic model we identify parameter regimes which produce the
+characteristic "bent knee" Zipf distributions, a strong argument for
+the semantic correlation of our theory.
+
+
+Words are easy.
+
+The description of a language is historically split into two parts:
+grammar and the lexicon.
+While the former consists of rules that
+govern composition, the lexicon is the wealth of words and phrases
+understood through context by interpreters.
+Though grammar provides us
+with a formal system of analysis, in its rigidity it often fails to
+represent the underlying cognitive processes by which the language
+itself likely forms.
+
+
+Given modern perspectives from the cognitive
+linguistics community \cite{Lakoff01,Lakoff02}, it is important to ask
+
+
+how we may represent and identify the interpreted units of the
+lexicon, phrases which cannot be sensibly broken apart 
+(e.g, ``War on Terror'' and ``New York City'')
+
+
+\begin{figure*}[tbp!]
+  \centering
+  \includegraphics[width=1\textwidth, angle=0]{generatedLanguage44_2.pdf}
+  \caption{
+    A - Generated language word distribution. Open circles and dashed
+    line are measured and smoothed from the derived scaling (Appendix IV).
+    B - Generated language phrase distribution.  C - Shannon phrase (red)
+    and word (black) distribution entropies over of time.  D - Grey bars
+    indicate the percent of all units counted that each order possesses,
+    and red bars indicate the percent of all unique units each order
+    possesses.
+  }
+  \label{fig:textpart.generatedlanguagezipf}
+\end{figure*}
+
+

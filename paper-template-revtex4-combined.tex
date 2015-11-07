@@ -1,0 +1,656 @@
+\documentclass[pre,twocolumn,twoside,byrevtex,superscriptaddress,floatfix]{revtex4-1}
+
+\usepackage{currfile}
+\lefthyphenmin=3
+\righthyphenmin=2
+
+\usepackage{graphicx,epsfig,verbatim,enumerate}
+\usepackage{amssymb,amsmath}
+\usepackage{ifthen}
+
+\usepackage{longtable}
+
+\usepackage{mathtools}
+
+\newboolean{twocolswitch}
+
+\newcommand{\avg}[1]{\left\langle#1\right\rangle}
+\newcommand{\tavg}[1]{\langle#1\rangle}
+
+\newcommand{\LavgHa}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\LavgHaN}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\Lavg}{\tavg{L}}
+
+\newcommand{\sindex}[1]{}
+\newcommand{\nindex}[1]{}
+
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\www}[1]{\url{#1}}
+\newcommand{\req}[1]{(\ref{#1})}
+\newcommand{\Req}[1]{Eq.~(\ref{#1})}
+
+% Lettrines
+\usepackage{lettrine}
+
+\newcommand{\yes}{}
+\newcommand{\no}{}
+\newcommand{\tbf}{\textbf}
+\newcommand{\tit}{\textit}
+
+\newcommand{\dee}[1]{\mbox{d}#1}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdiffsq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
+\newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^2}}
+\newcommand{\tdiff}[2]{\mbox{d} #1/\mbox{d} #2}
+\newcommand{\tdiffsq}[2]{\mbox{d}^{2} #1/\mbox{d} {#2}^2}
+\newcommand{\tpdiff}[2]{\partial #1/\partial #2}
+\newcommand{\tpdiffsq}[2]{\partial^2 #1/\partial {#2}^2}
+\newcommand{\postdee}[1]{\,\mbox{d}#1}
+
+\usepackage{color}
+\newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
+
+\newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
+
+% \newcommand{\kstar}{d^{\ast}}
+% \newcommand{\kstari}{k_i^\ast}
+\newcommand{\kstar}{d^\ast}
+\newcommand{\kstari}{d_i^\ast}
+
+\newcommand{\dstar}{d^\ast}
+\newcommand{\dstari}{d_i^\ast}
+
+\newcommand{\phifix}{{\phi^{\ast}}}
+\newcommand{\phifixc}{{\phi_c^{\ast}}}
+\newcommand{\phifixb}{{\phi_b^{\ast}}}
+
+\newcommand{\phiiactive}{\phi_{i,t}}
+
+\newcommand{\phiiup}{{\phi_{i,\rm on}}}
+\newcommand{\phiidown}{{\phi_{i,\rm off}}}
+
+\newcommand{\phiup}{{\phi_{\rm on}}}
+\newcommand{\phidown}{{\phi_{\rm off}}}
+
+\newcommand{\Gfun}{G}
+
+\newcommand{\dstardist}{g}
+\newcommand{\dosedist}{f}
+\newcommand{\dosedistk}{f^{k\star}}
+
+% chaotic contagion
+\newcommand{\edgeinfprob}{\rho}
+\newcommand{\nodeinfprob}{\phi}
+
+\newcommand{\avgdegree}{k_{\rm avg}}
+
+\newcommand{\stateA}{S_{0}}
+\newcommand{\stateB}{S_{1}}
+
+\newcommand{\lcce}{H}
+
+\newcommand{\effectivecount}{f_{q,\textnormal{exp}}}
+\newcommand{\effectivecountq}[1]{f_{#1,\textnormal{exp}}}
+
+\newcommand{\simonrho}{\rho}
+\newcommand{\zipfexponent}{\alpha}
+
+\newcommand{\partitionprob}{q}
+\newcommand{\partitiontype}[1]{$\partitionprob$$=$$#1$}
+
+\newcommand{\onehalf}{\frac{1}{2}}
+\newcommand{\onequarter}{\frac{1}{4}}
+
+\newcommand{\clgamma}{\hat{\zipfexponent}}
+\newcommand{\xmin}{r_{\textnormal{max}}}
+\newcommand{\kstat}{D}
+\newcommand{\clp}{\mbox{$p$-value}}
+\newcommand{\sigamma}{1-\simonrho}
+
+\setboolean{twocolswitch}{true}
+
+\begin{document}
+
+\title{\protect
+Quantitative patterns in drone wars
+}
+
+\author{
+\firstname{Javier}
+\surname{Garcia-Bernardo}
+}
+\email{javier.garcia-bernado@uvm.edu}
+
+\affiliation{Department of Computer Science,
+  The University of Vermont,
+  Burlington, VT 05401.}
+
+\author{
+\firstname{Peter Sheridan}
+\surname{Dodds}
+}
+\email{peter.dodds@uvm.edu}
+
+\affiliation{Department of Mathematics \& Statistics,
+  Vermont Complex Systems Center,
+  Computational Story Lab,
+  \& the Vermont Advanced Computing Core,
+  The University of Vermont,
+  Burlington, VT 05401.}
+
+\author{
+\firstname{Neil F.}
+\surname{Johnson}
+}
+\email{njohnson@physics.miami.edu}
+
+\affiliation{Department of Physics,
+University of Miami
+Coral Gables, FL 33124.
+}
+
+\date{\today}
+
+\begin{abstract}
+  \protect
+  Attacks by drones (i.e., unmanned combat air vehicles) continue to
+generate heated political and ethical debates. Here we examine instead
+the quantitative nature of drone attacks, focusing on how their
+intensity and frequency compares to other forms of human conflict.
+In contrast to the power-law distribution found recently for insurgent
+and terrorist attacks, we find that the severity of attacks is well
+described by a lognormal distribution, indicating that the dynamics
+underlying drone attacks differ from these other forms of human
+conflict.
+Likewise, the pattern in the timing of attacks is consistent with one
+side having almost complete control.
+We show that these novel features can be reproduced and understood
+using a generative mathematical model in which resource allocation to
+the dominant side is regulated through a feedback loop.
+
+ 
+\end{abstract}
+
+\pacs{89.65.-s,89.75.Da,89.75.Fb,89.75.-k}
+
+\maketitle
+
+\section*{Introduction}
+Dating back to physicist L.~F.~Richardson's pioneering
+work nearly 100 years ago~\cite{Richardson194}, the quantitative
+analysis of human conflict has attracted research interest from across
+the social, biological, economic, mathematical and physical
+sciences~\cite{Morgenstern2013,Cederman2003,Clauset2009,Clauset,Bohorquez2009a,Dedeo2011}.
+As in other human activities~\cite{Barabasi2005,Gabaix2003}, power
+laws have been identified in the severity distribution of individual
+attacks in insurgencies and
+terrorism~\cite{Johnson2013b,Clauset2009,Clauset,Bohorquez2009a}, and
+in the temporal trend in
+events~\cite{Johnson2013b,Johnson2011a,Clauset}.  These studies found
+that across a wide range of insurgent wars in which a relatively small
+opponent such as an insurgency (Red Queen~\cite{Johnson2011a}) fights
+a larger one such as a state (Blue King~\cite{Johnson2011a}), the
+probability distribution for the severity $s$---the number of fatalities---of an event (i.e., clash
+or attack) is given by $P(s) \propto s^{-\alpha}$ where $\alpha \sim
+2.5$, while the trend in the timing of attacks is given by $\tau_{n}
+= \tau_1 n^{-b}$\textcolor{red}{,} where $\tau_n$ is the time interval
+between events $n$ and $n+1$, $n=1,2,\dots$ and $b$ is the escalation
+parameter. When $b=0$, the Blue King and Red Queen are evenly matched,
+with both effectively running on the same spot---hence the terminology
+surrounding the Red Queen~\cite{Johnson2011a}. When $b\neq 0$, there
+is an escalation in the frequency of attacks which can be interpreted
+as a relative advantage between the Blue King and the Red
+Queen~\cite{Johnson2011a}. The power-law finding for the distribution
+of event severities is consistent with the Red Queen (i.e., insurgent
+force) evolving dynamically as a self-organizing system composed of
+cells (i.e., clusters) that sporadically either fragment under the
+pressure of the Blue King (e.g., state) or coalesce to create larger
+cells, and taking the severity of attacks as proportional to the sizes
+of the resulting cells~\cite{Bohorquez2009a}.
+
+This paper examines, for the first time, event patterns in the new
+form of human conflict offered by unmanned combat air vehicles
+(drones)~\cite{wars}. We focus on Pakistan and Yemen because of their
+association with drone strike campaigns, using data from the New
+America Foundation (NATSEC) and the South Asia Terrorism Portal (SATP)
+databases. The situation of drone wars differs from the typical
+situation for insurgencies and terrorism in that the attacks are now
+carried out by the Blue King on the Red Queen. Moreover, the
+sophistication of the action-at-a-distance technology means that any
+delay in the Blue King's next attack is likely to have come from a
+constraint within Blue itself (e.g., political opposition) as opposed
+to any direct counter-adaptation by the Red Queen. Indeed, we find
+that the drone attacks do not follow the universal patterns in the
+severity and timing for insurgencies and terrorism. Instead our
+analysis indicates a new regime of human conflict in which the Blue
+King has almost complete control over the conflict. We develop a
+generative model in which the severity and timing of attacks are
+determined solely by the resources of the Blue King, but are regulated
+by a positive feedback loop due to the Blue King's internal
+sociopolitical and economic constraints. We show that this simple
+model reproduces the main features of the original data and hence
+yields novel insight into the nature of drone warfare.
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\textwidth]{drawing-2.pdf}  
+  \caption{
+    \textbf{The severity of drone attacks approximately follows a lognormal
+      distribution.}
+    Complementary Cumulative Distribution Function
+    (CCDF) of the severity of attacks (blue dots and solid line) and
+    best fits (dashed line) to power-law (A, C) and lognormal (B,
+    D) distributions for drone attacks in Pakistan (A, B) and Yemen
+    (C, D). The optimal parameters for each distribution are (A)
+    $\alpha = 4.82$, (B) $\mu = 1.60$, $\sigma = 0.64$, (C)
+    $\alpha = 2.21$ and (D) $\mu = 1.65$, $\sigma = 0.77$.
+    Bottom panels (E, F) show the severity of attack (vertical lines,
+    left axis) and escalation parameter $b$ (right axis) for a
+    moving window of 50 attacks in Pakistan (E) and Yemen (F).
+  }
+  \label{fig:drones.data}
+\end{figure*}
+
+\begin{figure*}[tp!]
+  \centering
+  \includegraphics[width=\textwidth]{drawing-1.pdf}
+  \caption{
+    \textbf{A simple model of drone wars.}
+    (A) The Blue King's
+    resources (funding, units, experience, etc.) influence the
+    frequency and the magnitude of attacks. Resources are
+    degraded continuously, with some being invested to create a
+    positive feedback loop. The civilian population and other
+    variables, summarized as \textit{I}, influence the strength
+    of this positive feedback. The dashed line indicates that
+    the Red Queen (i.e., target group) is only able to affect the
+    Blue King's attacks indirectly. The amount of resources
+    available corresponds to \textit{A}, the advantage of the
+    Blue side.
+    (B) Our simple model has one unstable fixed point at
+    \textit{A} = 0, given that $\alpha \cdot I > \lambda$. (C) A
+    `resistance' is added to the model due to internal Blue King
+    constraints. The model now has a new fixed point at $A =
+    \frac{\alpha I - \lambda}{\beta}$. (D-F) Our model is able
+    to replicate the observed findings. Complementary Cumulative
+    Distribution Function (CCDF) for event severity (blue dots
+    and solid line) and the best fits (dashed line) to power-law
+    (D, $\alpha = 2.7519$) and lognormal (E, $\mu=1.7$,
+    $\sigma=0.83$) distributions for the model. (F) Severity of
+    attack (vertical lines, left axis) and escalation parameter
+    $b$ for a moving window of 50 attacks (right axis) for the
+    model. Note the resemblance to Fig.~\ref{fig:drones.data}.
+  }
+  \label{fig:drones.model}
+\end{figure*}
+
+\section*{Results and Discussion}
+Figs.~\ref{fig:drones.data}A--D show the complementary cumulative distribution function
+(CCDF) of the severity and frequency of drone attacks using the NATSEC
+database. We fit power-law and lognormal 
+distributions (dashed green and solid black lines respectively; see methods)
+for attacks in Pakistan (Figs.~\ref{fig:drones.data}A--B) and 
+Yemen (Figs.~\ref{fig:drones.data}C--D).
+We find
+that the severity of the strikes is approximately described by lognormal
+distributions,
+in contrast to that expected for attacks carried out by terrorist and
+insurgent groups which follow a power-law distribution reflecting
+their underlying cluster sizes~\cite{Johnson}.
+Our observation is most well supported for Pakistan,
+and tentative for Yemen for which we have far less data,
+and where the best fit lognormal 
+is less sympathetic with larger events.
+This finding of lognormality is
+consistent with the notion that a drone has a specific design which
+tends to pre-determine the order of magnitude of its range of
+destruction and likely severity, in sharp contrast to attacks by a
+terrorist or insurgent cluster where the severity of attack can vary
+greatly according to the size of the cluster carrying out that
+attack. For drone attacks, a lognormal distribution will then arise
+naturally from a sum of normal distributions with variable mean and
+standard deviation, which in turn reflects variations away from the
+pre-determined impact due to differences in the terrain and the number
+of people in the target group.
+
+We now turn to
+the timing of attacks in order to gain insight into the temporal
+dynamics of the Blue King-versus-Red Queen activity. Following
+previous work~\cite{Johnson2013b}, we plot the time interval between
+consecutive attacks $\tau_n$ as a function of the cardinal number of
+the attack $n=1,2,3,\dots$. The escalation parameter $b$ is the
+exponent of the power-law fit $\tau_n = \tau_1 n^{-b}$, which will be
+the slope of the best-fit line on a double logarithmic plot. In the
+organizational development literature in which progressive events are
+related to production, this is referred to as a development curve
+while in the psychology literature, where subsequent events correspond
+to completing a certain task, it is referred to as a learning 
+curve~\cite{Johnson2011a}---in this sense, the `production' or `completion'
+of drone attacks has a natural connection to human activity in these
+wider fields.
+
+For both Pakistan and Yemen, we find that the
+parameter $b$ fails to stabilize around 0 
+(Figs.~\ref{fig:drones.data}E--F).
+Instead, the
+drone attacks exhibit an initial large escalation (i.e., large positive
+$b$) which then transitions to a de-escalation (i.e., large negative
+$b$). Given the difficulty for the Red Queen to thwart drone attacks
+directly, Figs.~\ref{fig:drones.data}E--F suggest that one side (Blue King) effectively
+holds complete control for an extended period of time, and that some
+internal constraints then arise within the Blue King entity that
+eventually de-escalate the drone attacks.
+
+Fig.~\ref{fig:drones.model}A shows our
+simple model for drone attacks. In our model, the Blue King possesses
+certain resources, for example experience, units, and funding. These
+resources degrade over time if no investment is made in the Blue
+King's activity, i.e., if the government does not invest in its own
+drone development or information research. We assume that if the
+investment (i.e., funding, time, etc.) is higher than the degradation
+rate $\lambda$, then the available resources increase due to a
+positive feedback loop (Fig.~\ref{fig:drones.model}B). This feedback loop has been proposed
+in models of conventional terrorism~\cite{Clauset2012}, and can be
+affected by external agents, for example public opinion or by the
+perceived number of Red Queen cells remaining that need targeting. The
+resources available at any particular time will affect the timing and
+severity of the next drone attack. For simplicity we take the
+frequency of attacks as directly proportional to the resource level,
+while the severity of the attack depends on the available resources
+and the characteristic of the terrorist cells (see methods). We add
+`resistance' to the model to mimic constraints within the Blue King,
+for example due to political opposition, and hence obtain the logistic
+equation which has a new stable equilibrium at a non-zero value, as
+shown in Fig.~\ref{fig:drones.model}C. 
+
+This simple model is able to replicate the drone strike data
+(Figs.~\ref{fig:drones.model}D--F). The escalation parameter $b$ is proportional to
+$(\alpha\cdot I - {\lambda})$, which means that the Blue King has a
+positive advantage if the investment term is larger than the
+degradation term (Fig.~\ref{fig:drones.model}C). A constant $b>0$, corresponding to the
+frequency of attacks increasing continuously, is achieved if the
+resources increase exponentially---hence this is only sustainable for
+short periods of time. A constant $b<0$, corresponding to the
+frequency of attacks decreasing continuously, is achieved if the
+resources decrease exponentially, i.e., when there is little or no
+investment. Assuming each drone acts individually and the attack
+severity varies slowly with the available resources, which is
+consistent with increases in precision requiring significant amounts
+of development effort (see methods), we are able to recreate the
+lognormal distribution for the severity of attacks.
+
+In summary, our analysis reveals new patterns in the severity and
+timing of attacks in drone wars, which themselves represent a new form
+of action-at-a-distance human conflict. We have purposely stepped
+aside from issues of ethics or technology, choosing instead to focus
+on the event data since they represent a quantitative measure of drone
+war impact. We have shown that a simple model, in which the production of
+drones evolves from a shared pool of resources controlled by a
+feedback loop, is able to recreate the original data and therefore
+explain the overall dynamics of the Blue King's drone campaign.
+Going forward, our model could be also used to 
+explore how wars might 
+unfold when drones are used 
+by two or more sides in conflicts.
+
+\section*{Methods}
+We obtained all data from the NATSEC database:
+\url{http://natsec.newamerica.net/} and crosschecked with the SATP
+database:
+\url{http://www.satp.org/satporgtp/countries/pakistan/}.
+
+We obtained the best fit to power-law distributions following Clauset et
+al.~\cite{Clauset2009}. We fitted lognormal distributions using the
+maximum likelihood estimators. For the learning rate analysis, $\tau_n
+= \tau_1 n^{-b}$, we plotted the number of attack vs. the time between
+attacks on a log-log scale. We accepted every value of $b$ that
+allowed for a correlation greater than 20\%, which allows us to
+measure fast transitions.
+
+We simulated 100 attacks with our
+model. The initial advantage was set to $10^{-3}$. The time to the
+next attack is equal to $A^{-1}$. At every step (attack) the advantage
+of the Blue King changed by the factor 
+$\alpha\cdot I - {\lambda}$.
+For the first 50 attacks 
+$\lambda = \alpha\cdot I = 1.075$; 
+for the last 50 attacks 
+$\lambda = 1.075$ 
+and 
+$\alpha\cdot I = 0$.
+We model the attacks as individual drones strikes; each individual
+attack was drawn from a zero-truncated normal distribution, whose mean
+and standard deviation were set to be equal to the root square of the
+largest known Red group. The area of a self-avoiding random walk in
+two dimensions increases as $A \propto n^{1/2}$, where n is the number
+of individuals in the plane~\cite{Havlin1982}; the magnitude of the
+attacks is fixed, hence the number of casualties scales with
+$n^{1/2}$. The number of known Red groups was set to $(100+10^4\cdot
+A) = [110,500]$ and they were assumed to be power-law distributed with
+$\alpha =2.5$~\cite{Bohorquez2009a,Richardson194}.  
+
+\acknowledgments
+We are grateful for funding from the Vermont Complex
+Systems Center.
+PSD was supported by NSF CAREER Grant No. 0846668.
+
+%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{15}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Richardson}(1948)}]{Richardson194}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~F.}\ \bibnamefont
+  {Richardson}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Journal of the American Statistical Association}\ }\textbf {\bibinfo
+  {volume} {43}},\ \bibinfo {pages} {523} (\bibinfo {year} {1948})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Morgenstern}\ \emph {et~al.}(2013)\citenamefont
+  {Morgenstern}, \citenamefont {Velasquez}, \citenamefont {Manrique},
+  \citenamefont {Hong}, \citenamefont {Johnson},\ and\ \citenamefont
+  {Johnson}}]{Morgenstern2013}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~P.}\ \bibnamefont
+  {Morgenstern}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Velasquez}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Manrique}},
+  \bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont {Hong}}, \bibinfo {author}
+  {\bibfnamefont {N.}~\bibnamefont {Johnson}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {N.}~\bibnamefont {Johnson}},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {American Journal of Physics}\ }\textbf
+  {\bibinfo {volume} {81}},\ \bibinfo {pages} {805} (\bibinfo {year}
+  {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cederman}(2003)}]{Cederman2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.-E.}\ \bibnamefont
+  {Cederman}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {American Political Science Review}\ }\textbf {\bibinfo {volume} {97}},\
+  \bibinfo {pages} {135} (\bibinfo {year} {2003})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Clauset}\ \emph {et~al.}(2009)\citenamefont
+  {Clauset}, \citenamefont {Shalizi},\ and\ \citenamefont
+  {Newman}}]{Clauset2009}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Clauset}}, \bibinfo {author} {\bibfnamefont {C.~R.}\ \bibnamefont
+  {Shalizi}}, \ and\ \bibinfo {author} {\bibfnamefont {M.~E.~J.}\ \bibnamefont
+  {Newman}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {SIAM
+  Review}\ }\textbf {\bibinfo {volume} {51}},\ \bibinfo {pages} {661} (\bibinfo
+  {year} {2009})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Clauset}\ \emph {et~al.}(2007)\citenamefont
+  {Clauset}, \citenamefont {Young},\ and\ \citenamefont {Gleditsch}}]{Clauset}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Clauset}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Young}}, \
+  and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Gleditsch}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Journal of
+  Conflict Resolution}\ }\textbf {\bibinfo {volume} {51}},\ \bibinfo {pages}
+  {58} (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bohorquez}\ \emph {et~al.}(2009)\citenamefont
+  {Bohorquez}, \citenamefont {Gourley}, \citenamefont {Dixon}, \citenamefont
+  {Spagat},\ and\ \citenamefont {Johnson}}]{Bohorquez2009a}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~C.}\ \bibnamefont
+  {Bohorquez}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Gourley}},
+  \bibinfo {author} {\bibfnamefont {A.~R.}\ \bibnamefont {Dixon}}, \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Spagat}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {N.~F.}\ \bibnamefont {Johnson}},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {Nature}\ }\textbf {\bibinfo {volume} {462}},\
+  \bibinfo {pages} {911} (\bibinfo {year} {2009})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dedeo}\ \emph {et~al.}(2011)\citenamefont {Dedeo},
+  \citenamefont {Krakauer},\ and\ \citenamefont {Flack}}]{Dedeo2011}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Dedeo}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Krakauer}}, \
+  and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Flack}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Journal of the
+  Royal Society Interface}\ }\textbf {\bibinfo {volume} {8}},\ \bibinfo {pages}
+  {1260} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Barab\'{a}si}(2005)}]{Barabasi2005}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.-L.}\ \bibnamefont
+  {Barab\'{a}si}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Nature}\ }\textbf {\bibinfo {volume} {435}},\ \bibinfo {pages} {207}
+  (\bibinfo {year} {2005})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gabaix}\ \emph {et~al.}(2003)\citenamefont {Gabaix},
+  \citenamefont {Gopikrishnan}, \citenamefont {Plerou},\ and\ \citenamefont
+  {Stanley}}]{Gabaix2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.}~\bibnamefont
+  {Gabaix}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Gopikrishnan}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Plerou}}, \ and\ \bibinfo {author} {\bibfnamefont {H.~E.}\ \bibnamefont
+  {Stanley}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Nature}\ }\textbf {\bibinfo {volume} {423}},\ \bibinfo {pages} {267}
+  (\bibinfo {year} {2003})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Johnson}\ \emph {et~al.}(2013)\citenamefont
+  {Johnson}, \citenamefont {Medina}, \citenamefont {Zhao}, \citenamefont
+  {Messinger}, \citenamefont {Horgan}, \citenamefont {Gill}, \citenamefont
+  {Bohorquez}, \citenamefont {Mattson}, \citenamefont {Gangi}, \citenamefont
+  {Qi}, \citenamefont {Manrique}, \citenamefont {Velasquez}, \citenamefont
+  {Morgenstern}, \citenamefont {Restrepo}, \citenamefont {Johnson},
+  \citenamefont {Spagat},\ and\ \citenamefont {Zarama}}]{Johnson2013b}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~F.}\ \bibnamefont
+  {Johnson}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Medina}},
+  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Zhao}}, \bibinfo {author}
+  {\bibfnamefont {D.~S.}\ \bibnamefont {Messinger}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Horgan}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Gill}}, \bibinfo {author} {\bibfnamefont {J.~C.}\
+  \bibnamefont {Bohorquez}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont
+  {Mattson}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Gangi}},
+  \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Qi}}, \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Manrique}}, \bibinfo {author}
+  {\bibfnamefont {N.}~\bibnamefont {Velasquez}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Morgenstern}}, \bibinfo {author}
+  {\bibfnamefont {E.}~\bibnamefont {Restrepo}}, \bibinfo {author}
+  {\bibfnamefont {N.}~\bibnamefont {Johnson}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Spagat}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Zarama}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
+  {journal} {Scientific Reports}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo
+  {pages} {3463} (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Johnson}\ \emph {et~al.}(2011)\citenamefont
+  {Johnson}, \citenamefont {Carran}, \citenamefont {Botner}, \citenamefont
+  {Fontaine}, \citenamefont {Laxague}, \citenamefont {Nuetzel}, \citenamefont
+  {Turnley},\ and\ \citenamefont {Tivnan}}]{Johnson2011a}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Johnson}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Carran}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Botner}}, \bibinfo
+  {author} {\bibfnamefont {K.}~\bibnamefont {Fontaine}}, \bibinfo {author}
+  {\bibfnamefont {N.}~\bibnamefont {Laxague}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Nuetzel}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Turnley}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {B.}~\bibnamefont {Tivnan}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
+  {journal} {Science Magazine}\ }\textbf {\bibinfo {volume} {333}},\ \bibinfo
+  {pages} {81} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hall}\ and\ \citenamefont {Coyne}(2013)}]{wars}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~R.}\ \bibnamefont
+  {Hall}}\ and\ \bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont
+  {Coyne}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Defence
+  and Peace Economics}\ }\textbf {\bibinfo {volume} {25}},\ \bibinfo {pages}
+  {445} (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Johnson}\ \emph {et~al.}(2006)\citenamefont
+  {Johnson}, \citenamefont {Spagat}, \citenamefont {Restrepo}, \citenamefont
+  {Becerra}, \citenamefont {Camilo}, \citenamefont {Su\'{a}rez}, \citenamefont
+  {Restrepo},\ and\ \citenamefont {Zarama}}]{Johnson}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~F.}\ \bibnamefont
+  {Johnson}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Spagat}},
+  \bibinfo {author} {\bibfnamefont {J.~A.}\ \bibnamefont {Restrepo}}, \bibinfo
+  {author} {\bibfnamefont {O.}~\bibnamefont {Becerra}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Camilo}}, \bibinfo {author} {\bibfnamefont
+  {N.}~\bibnamefont {Su\'{a}rez}}, \bibinfo {author} {\bibfnamefont {E.~M.}\
+  \bibnamefont {Restrepo}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Zarama}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
+  {journal} {arXiv:physics/0605035}\ } (\bibinfo {year} {2006})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Clauset}\ and\ \citenamefont
+  {Gleditsch}(2012)}]{Clauset2012}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Clauset}}\ and\ \bibinfo {author} {\bibfnamefont {K.~S.}\ \bibnamefont
+  {Gleditsch}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {PloS ONE}\ }\textbf {\bibinfo {volume} {7}},\ \bibinfo {pages} {e48633}
+  (\bibinfo {year} {2012})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Havlin}\ and\ \citenamefont
+  {Ben-Avraham}(1982)}]{Havlin1982}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Havlin}}\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Ben-Avraham}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Physical Review A}\ }\textbf {\bibinfo {volume} {26}},\ \bibinfo {pages}
+  {1728} (\bibinfo {year} {1982})}\BibitemShut {NoStop}%
+\end{thebibliography}%
+
+\clearpage
+
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass[prl,preprint,showpacs,byrevtex,superscriptaddress,endfloats]{revtex4}
+% general settings, packages, macros
+
+\input{\filenamebase.settings}
+
+\setboolean{twocolswitch}{false}
+
+% \bibliographystyle{unsrtabbrv}
+
+%%%%%%%%% author(s), address(es) plus abstract
+
+\begin{document}
+
+\title{
+  \input{\filenamebase.title}
+}
+
+\input{\filenamebase.author}
+
+\date{\today}
+
+\begin{abstract}
+  \input{\filenamebase.abs}  
+\end{abstract}
+
+\input{\filenamebase.pacs}
+
+\maketitle
+
+%%%%%%%%% end of author(s), address(es) plus abstract
+
+\input{\filenamebase.body}
+
+\input{\filenamebase.acknowledgments}
+
+\input{\filenamebase.biblio}
+
+\end{document}

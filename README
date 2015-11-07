@@ -1,0 +1,108 @@
+universal-paper-template
+1997-
+peter sheridan dodds
+-------------------------
+
+Basic set up with some good-form suggestions:
+
+-------------------------
+
+1. 
+
+Name the paper directory with YYYY-MMpaper-file-name structure
+This allows for time sorting and time is the big index.
+After, say, ten years, fronting dates in file names and directories
+will prove very helpful.
+
+For example:
+% mkdir 2013-05many-languages-happiness
+
+~/papers/[category]/
+
+-------------------------
+
+2. 
+
+Deploy the base files via github or unpack the latest .tgz file.
+
+-------------------------
+
+3. 
+
+Use ./bin/rename to change paper-template in 
+to paper-file-name for all paper-template* files:
+
+% ./bin/rename paper-template paper-file-name paper-template*
+
+Good form: use the same name as the directory, without the date prefix.
+
+For example:
+
+% ./bin/rename paper-template many-happy-languages paper-template*
+or
+% ./bin/rename paper-template our-work-of-towering-importance paper-template*
+
+The LaTeX package currfile along with perl scripts
+will take care of all internal naming.
+
+-------------------------
+
+4. 
+
+Directories:
+
+./archive: place for local, occasional peace-of-mind backups/snapshots. 
+
+Use archivify to copy files into a time stamped subdirectory.
+Example:
+./bin/archivify *.tex *.pdf
+
+Use this whenever, especially when overhauling a paper. 
+It is presumed you are automatically backing your entire system in many 
+places, including off-planet.
+
+./bin
+Home to just a few scripts.
+Adding ./bin to the $PATH might increase happiness.
+
+./correspondence
+
+All correspondence with journals here:
+cover letters,  signed licenses, payments, etc.
+
+Cover letter template:
+YYYY-MM-DDjournal-name.tex 
+YYYY-MM-DDjournal-name.body.tex 
+
+reviewers.txt: list of potential reviewers, and reviewers to exclude
+
+./drafts
+
+./figures
+
+./journal-formats
+
+./log
+
+./package
+
+./proofs
+
+Store final proofs and scans of edits here
+
+./submitted
+
+Place for journal pdf's of entire submission.
+
+-------------------------
+
+5. 
+
+Key files:
+
+
+
+template.logline.tex
+
+1 to 3 sentences summarizing the paper.
+Used by some journals, essential for all papers.

@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+
+($sec,$min,$hour,$day,$month,$year) = (localtime)[0,1,2,3,4,5];
+$year = $year + 1900;
+$month = $month+1;
+
+$dir = sprintf("$04%d-%02d-%02d-%02d-%02d-%02d",$year,$month,$day,$hour,$min,$sec);
+
+`mkdir -p archive/$dir`;
+
+`cp -v @ARGV archive/$dir/ 1>&2`;
+
+

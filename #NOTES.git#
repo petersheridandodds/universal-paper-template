@@ -1,0 +1,82 @@
+add to scripts:
+# peter sheridan dodds
+# https://github.com/petersheridandodds
+# MIT License
+
+
+Created the repository on Github first
+
+universal-paper-template
+
+locally:
+
+using:
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+git init
+git add \ 
+LICENSE \
+NOTES.arxiv \
+README \
+archive \
+bin \
+breakup-manuscript-supp.pl \
+correspondence \
+drafts \
+figures \
+journal-formats \
+log \
+make-arxiv-submission \
+make-single-latex-file.pl \
+makelinks.pl \
+makepackage \
+makerevtex4.pl \
+package \
+paper-template-arxiv.tgz \
+paper-template-revtex4-combined.tex \
+paper-template-revtex4-draft.tex \
+paper-template-revtex4.aux \
+paper-template-revtex4.bbl \
+paper-template-revtex4.blg \
+paper-template-revtex4.dvi \
+paper-template-revtex4.log \
+paper-template-revtex4.pdf \
+paper-template-revtex4.ps \
+paper-template-revtex4.settings.tex \
+paper-template-revtex4.tex \
+paper-template.abs.tex \
+paper-template.acknowledgments.tex \
+paper-template.author.tex \
+paper-template.bib \
+paper-template.biblio.tex \
+paper-template.body.tex \
+paper-template.logline.tex \
+paper-template.methods.tex \
+paper-template.nutshell.tex \
+paper-template.outtakes.tex \
+paper-template.pacs.tex \
+paper-template.settings.tex \
+paper-template.supplementary.tex \
+paper-template.title.tex \
+proofs \
+startsupp.txt \
+submitted \
+unsrtabbrv.bst
+
+sudo git commit -m "first deployment"
+git remote add origin https://github.com/petersheridandodds/universal-paper-template.git
+                      
+git remote -v
+
+
+# Push the changes in local repository up to the remote
+# repository specified as the origin
+
+git push origin master
+
+
+
+
+# bring down anything already there
+
+git pull origin master

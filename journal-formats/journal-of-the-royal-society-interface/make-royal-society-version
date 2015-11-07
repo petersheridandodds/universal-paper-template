@@ -1,0 +1,4 @@
+pdflatex drones-royal-society
+bibtex drones-royal-society
+pdflatex drones-royal-society
+pdflatex drones-royal-society

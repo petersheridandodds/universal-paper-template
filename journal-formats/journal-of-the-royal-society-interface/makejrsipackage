@@ -1,0 +1,7 @@
+echo 'creating drones-royal-society-package.tgz...';
+
+cd package;
+tar cvfzph ../drones-royal-society-package.tgz fig[0-9][0-9]*.pdf  drones-royal-society-combined.tex
+
+
+

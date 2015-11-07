@@ -1,0 +1,71 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{Richardson194}
+L.~F. Richardson, {Variation of the frequency of fatal quarrels with
+  magnitude}, Journal of the American Statistical Association 43~(224) (1948)
+  523--546.
+
+\bibitem{Morgenstern2013}
+A.~P. Morgenstern, N.~Velasquez, P.~Manrique, Q.~Hong, N.~Johnson, N.~Johnson,
+  {Resource Letter MPCVW-1: Modeling Political Conflict, Violence, and Wars: A
+  Survey}, American Journal of Physics 81~(11) (2013) 805.
+
+\bibitem{Cederman2003}
+L.-E. Cederman, {Modeling the Size of Wars: From Billiard Balls to Sandpiles},
+  American Political Science Review 97~(01) (2003) 135.
+
+\bibitem{Clauset2009}
+A.~Clauset, C.~R. Shalizi, M.~E.~J. Newman, {Power-law distributions in
+  empirical data}, SIAM Review 51~(4) (2009) 661--703.
+
+\bibitem{Clauset}
+A.~Clauset, M.~Young, K.~Gleditsch, {On the frequency of severe terrorist
+  events}, Journal of Conflict Resolution 51~(1) (2007) 58--88.
+
+\bibitem{Bohorquez2009a}
+J.~C. Bohorquez, S.~Gourley, A.~R. Dixon, M.~Spagat, N.~F. Johnson, Common
+  ecology quantifies human insurgency, Nature 462 (2009) 911--914.
+
+\bibitem{Dedeo2011}
+S.~Dedeo, D.~Krakauer, J.~Flack, {Evidence of strategic periodicities in
+  collective conflict dynamics.}, Journal of the Royal Society Interface 8~(62)
+  (2011) 1260--73.
+
+\bibitem{Barabasi2005}
+A.-L. Barab\'{a}si, {The origin of bursts and heavy tails in human dynamics.},
+  Nature 435~(7039) (2005) 207--11.
+
+\bibitem{Gabaix2003}
+X.~Gabaix, P.~Gopikrishnan, V.~Plerou, H.~E. Stanley, {A theory of power-law
+  distributions in financial market fluctuations.}, Nature 423~(6937) (2003)
+  267--70.
+
+\bibitem{Johnson2013b}
+N.~F. Johnson, P.~Medina, G.~Zhao, D.~S. Messinger, J.~Horgan, P.~Gill, J.~C.
+  Bohorquez, W.~Mattson, D.~Gangi, H.~Qi, P.~Manrique, N.~Velasquez,
+  A.~Morgenstern, E.~Restrepo, N.~Johnson, M.~Spagat, R.~Zarama, {Simple
+  mathematical law benchmarks human confrontations.}, Scientific Reports 3
+  (2013) 3463.
+
+\bibitem{Johnson2011a}
+N.~Johnson, S.~Carran, J.~Botner, K.~Fontaine, N.~Laxague, P.~Nuetzel,
+  J.~Turnley, B.~Tivnan, {Pattern in escalations in insurgent and terrorist
+  activity.}, Science Magazine 333~(6038) (2011) 81--4.
+
+\bibitem{wars}
+A.~R. Hall, C.~J. Coyne, {The political economy of drones}, Defence and Peace
+  Economics 25~(5) (2013) 445--460.
+
+\bibitem{benjamin2013drone}
+M.~Benjamin, Drone warfare: Killing by remote control, Verso Books, 2013.
+
+\bibitem{Clauset2012}
+A.~Clauset, K.~S. Gleditsch, {The developmental dynamics of terrorist
+  organizations.}, PloS ONE 7~(11) (2012) e48633.
+
+\end{thebibliography}

@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: drones-elsarticle.aux
+The style file: elsarticle-num.bst
+Database file #1: drones.bib
+You've used 14 entries,
+            2937 wiz_defined-function locations,
+            775 strings with 7760 characters,
+and the built_in function-call counts, 4172 in all, are:
+= -- 375
+> -- 185
+< -- 0
++ -- 71
+- -- 57
+* -- 334
+:= -- 623
+add.period$ -- 14
+call.type$ -- 14
+change.case$ -- 13
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 108
+empty$ -- 430
+format.name$ -- 67
+if$ -- 1028
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 15
+newline$ -- 50
+num.names$ -- 14
+pop$ -- 73
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 237
+stack$ -- 0
+substring$ -- 252
+swap$ -- 13
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 36
+width$ -- 16
+write$ -- 118

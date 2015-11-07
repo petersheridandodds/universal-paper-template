@@ -1,0 +1,11 @@
+pdflatex drones-elsarticle
+bibtex drones-elsarticle
+pdflatex drones-elsarticle
+pdflatex drones-elsarticle
+
+open -a preview;
+
+make-single-latex-file.pl drones-elsarticle.tex
+makelinks.pl drones-elsarticle-combined.tex
+
+makeelsearticle-package

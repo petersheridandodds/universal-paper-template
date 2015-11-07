@@ -1,0 +1,11 @@
+pdflatex drones-royal-society
+bibtex drones-royal-society
+pdflatex drones-royal-society
+pdflatex drones-royal-society
+
+open -a preview;
+
+make-single-latex-file.pl drones-royal-society.tex
+makelinks.pl drones-royal-society-combined.tex
+
+makejrsipackage
