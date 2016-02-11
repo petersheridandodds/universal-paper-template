@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=latex 2013.5.30)  15 JUL 2014 09:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  10 FEB 2016 19:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**drones-revtex4
-(./drones-revtex4.tex
+**paper-template-revtex4
+(./paper-template-revtex4.tex
 LaTeX2e <2011/06/27>
 Babel <3.9f> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/revtex/revtex4-1.cls
@@ -116,19 +116,19 @@ Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(/sw/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-(/sw/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
-(/sw/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/sw/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 
-(/sw/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -142,7 +142,19 @@ Package: filehook 2011/10/12 v0.5d Hooks for input files
 )
 \c@currfiledepth=\count95
 )
-(./drones-revtex4.settings.tex) (./drones.settings.tex
+(./paper-template-revtex4.settings.tex) (./paper-template.settings.tex
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count96
+))
 (/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -155,11 +167,8 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
-))
+Package graphics Info: Driver file: pdftex.def on input line 91.
+)
 \Gin@req@height=\dimen102
 \Gin@req@width=\dimen103
 )
@@ -213,13 +222,13 @@ Package: amsbsy 1999/11/29 v1.2d
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count96
+\inf@bad=\count97
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count97
-\leftroot@=\count98
+\uproot@=\count98
+\leftroot@=\count99
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count99
-\DOTSCASE@=\count100
+\classnum@=\count100
+\DOTSCASE@=\count101
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
@@ -228,15 +237,15 @@ LaTeX Info: Redefining \cdots on input line 466.
 \big@size=\dimen108
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count101
-\c@MaxMatrixCols=\count102
+\macc@depth=\count102
+\c@MaxMatrixCols=\count103
 \dotsspace@=\muskip11
-\c@parentequation=\count103
-\dspbrk@lvl=\count104
+\c@parentequation=\count104
+\dspbrk@lvl=\count105
 \tag@help=\toks22
-\row@=\count105
-\column@=\count106
-\maxfields@=\count107
+\row@=\count106
+\column@=\count107
+\maxfields@=\count108
 \andhelp@=\toks23
 \eqnshift@=\dimen109
 \alignsep@=\dimen110
@@ -260,16 +269,16 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTright=\skip50
 \LTpre=\skip51
 \LTpost=\skip52
-\LTchunksize=\count108
+\LTchunksize=\count109
 \LTcapwidth=\dimen115
 \LT@head=\box43
 \LT@firsthead=\box44
 \LT@foot=\box45
 \LT@lastfoot=\box46
-\LT@cols=\count109
-\LT@rows=\count110
-\c@LT@tables=\count111
-\c@LT@chunks=\count112
+\LT@cols=\count110
+\LT@rows=\count111
+\c@LT@tables=\count112
+\c@LT@chunks=\count113
 \LT@p@ftn=\toks26
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mathtools.sty
@@ -277,15 +286,15 @@ Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count113
-\calc@Bcount=\count114
+\calc@Acount=\count114
+\calc@Bcount=\count115
 \calc@Adimen=\dimen116
 \calc@Bdimen=\dimen117
 \calc@Askip=\skip53
 \calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count115
+\calc@Ccount=\count116
 \calc@Cskip=\skip55
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mhsetup.sty
@@ -293,7 +302,7 @@ Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count116
+\g_MT_multlinerow_int=\count117
 \l_MT_multwidth_dim=\dimen118
 \origjot=\skip56
 \l_MT_shortvdotswithinadjustabove_dim=\dimen119
@@ -305,13 +314,13 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/lettrine/lettrine.sty
 File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
-\c@DefaultLines=\count117
+\c@DefaultLines=\count118
 \DefaultFindent=\dimen125
 \DefaultNindent=\dimen126
 \DefaultSlope=\dimen127
 \L@lbox=\box47
 \L@tbox=\box48
-\c@L@lines=\count118
+\c@L@lines=\count119
 \L@Pindent=\dimen128
 \L@Findent=\dimen129
 \L@Nindent=\dimen130
@@ -323,18 +332,7 @@ File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
 \LettrineWidth=\dimen136
 
 Loading lettrine.cfg
-(/usr/local/texlive/2013/texmf-dist/tex/latex/lettrine/lettrine.cfg))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package color Info: Driver file: dvips.def on input line 130.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/dvipsnam.def
-File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
-)))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/lettrine/lettrine.cfg)))
 Class revtex4-1 Info: Patching LaTeX tabular. on input line 23.
 Class revtex4-1 Info: Patching longtable package on input line 23.
 Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 23.
@@ -343,8 +341,8 @@ Class revtex4-1 Info: cite was not loaded (OK!) on input line 23.
 Class revtex4-1 Info: mcite was not loaded (OK!) on input line 23.
 Class revtex4-1 Info: multicol was not loaded (OK!) on input line 23.
 
-(./drones-revtex4.aux)
-\openout1 = `drones-revtex4.aux'.
+(./paper-template-revtex4.aux)
+\openout1 = `paper-template-revtex4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
@@ -358,53 +356,107 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
-\openout3 = `drones-revtex4Notes.bib'.
 
- (./drones.author.tex) (./drones.abs.tex)
-(./drones.pacs.tex) (./drones.title.tex)
-LaTeX Font Info:    Try loading font information for U+msa on input line 40.
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count120
+\scratchdimen=\dimen137
+\scratchbox=\box49
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen138
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks28
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\openout3 = `paper-template-revtex4Notes.bib'.
+
+
+(./paper-template.author.tex) (./paper-template.abs.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 1.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 40.
+LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+))
+(./paper-template.pacs.tex) (./paper-template.title.tex)
 
 Class revtex4-1 Warning: If you want your PACS to appear in your output, use do
 cument class option showpacs.
 
-(./drones.body.tex
-File: drawing-2.ps Graphic file (type eps)
- <drawing-2.ps>
-File: drawing-1.ps Graphic file (type eps)
- <drawing-1.ps> [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 220--224
-[]\OT1/cmr/m/n/10 We obtained all data from the NAT-SEC
- []
+(./paper-template.body.tex <null.pdf, id=1, 254.9525pt x 254.9525pt>
+File: null.pdf Graphic file (type pdf)
 
+<use null.pdf>
+Package pdftex.def Info: null.pdf used on input line 8.
+(pdftex.def)             Requested size: 246.0pt x 246.01204pt.
+) (./paper-template.acknowledgments.tex)
+(./paper-template.biblio.tex (./paper-template-revtex4.bbl
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--224
-\OT1/cmr/m/n/10 database: $\OT1/cmtt/m/n/10 http : / / natsec . newamerica . ne
-t/$ \OT1/cmr/m/n/10 and
- []
+Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 220--224
-\OT1/cmr/m/n/10 cross-checked with the SATP database: $\OT1/cmtt/m/n/10 http :
- []
-
-[3]) (./drones.acknowledgments.tex) (./drones.biblio.tex (./drones-revtex4.bbl)
-) [4] (./drones-revtex4.aux) ) 
+)) [1{/Users/dodds/Library/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdfte
+x.map} <./figures/local/null.pdf>] (./paper-template-revtex4.aux) ) 
 Here is how much of TeX's memory you used:
- 5048 strings out of 493316
- 69284 string characters out of 6137930
- 150885 words of memory out of 5000000
- 8387 multiletter control sequences out of 15000+600000
- 11410 words of font info for 45 fonts, out of 8000000 for 9000
+ 5473 strings out of 493315
+ 75881 string characters out of 6137904
+ 150566 words of memory out of 5000000
+ 8792 multiletter control sequences out of 15000+600000
+ 12489 words of font info for 49 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,33p,1500b,303s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,8n,33p,314b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/t
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
+live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/201
+3/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2013/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2013/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on paper-template-revtex4.pdf (1 page, 110124 bytes).
+PDF statistics:
+ 55 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on drones-revtex4.dvi (4 pages, 25104 bytes).

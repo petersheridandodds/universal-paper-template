@@ -1,0 +1,37 @@
+add to scripts:
+# peter sheridan dodds
+# https://github.com/petersheridandodds
+# MIT License
+
+
+Created the repository on Github first
+
+universal-paper-template
+
+locally:
+
+using:
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+git init
+
+git add .
+
+git commit -m "first deployment"
+
+git remote add origin https://github.com/petersheridandodds/universal-paper-template.git
+                      
+git remote -v
+
+
+# Push the changes in local repository up to the remote
+# repository specified as the origin
+
+git push origin master
+
+
+
+
+# bring down anything already there
+
+git pull origin master
