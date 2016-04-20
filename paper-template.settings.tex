@@ -1,6 +1,13 @@
 \lefthyphenmin=3
 \righthyphenmin=2
 
+%% helpful for complicated papers
+%% in finding out which figures, etc. are not being referenced
+
+%% \usepackage{refcheck}
+%% also helpful, highlighting the value of adding taxonomy to labels:
+%% grep -A 1 refcheck paper-template-revtex4.log | grep -A 1 fig:
+
 %% build papers out of todo lists
 \usepackage{color}
 \newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
@@ -45,16 +52,16 @@
 \newcommand{\tit}{\textit}
 
 %% differential equations and integrals
-\newcommand{\dee}[1]{\mbox{d}#1}
+\newcommand{\dee}[1]{\textnormal{d}#1}
 \newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\pdiffsq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
 \newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
 \newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^2}}
-\newcommand{\tdiff}[2]{\mbox{d} #1/\mbox{d} #2}
-\newcommand{\tdiffsq}[2]{\mbox{d}^{2} #1/\mbox{d} {#2}^2}
+\newcommand{\tdiff}[2]{\textnormal{d} #1/\textnormal{d} #2}
+\newcommand{\tdiffsq}[2]{\textnormal{d}^{2} #1/\textnormal{d} {#2}^2}
 \newcommand{\tpdiff}[2]{\partial #1/\partial #2}
 \newcommand{\tpdiffsq}[2]{\partial^2 #1/\partial {#2}^2}
-\newcommand{\postdee}[1]{\,\mbox{d}#1}
+\newcommand{\postdee}[1]{\,\textnormal{d}#1}
 
 
 \newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
@@ -116,5 +123,7 @@
 \newcommand{\clgamma}{\hat{\zipfexponent}}
 \newcommand{\xmin}{r_{\textnormal{max}}}
 \newcommand{\kstat}{D}
-\newcommand{\clp}{\mbox{$p$-value}}
+\newcommand{\clp}{\textnormal{$p$-value}}
 \newcommand{\sigamma}{1-\simonrho}
+
+
