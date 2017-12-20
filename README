@@ -45,6 +45,18 @@ or
 The LaTeX package currfile along with perl scripts
 will take care of all internal naming.
 
+3.1
+
+Adjust small settings file to contain base name:
+% make-name-match-settingsfile.pl
+
+Run this any time the base name is renamed (per 3.)
+
+-------------------------
+
+Should now be able to compile:
+% makerevtex4.pl -quick
+
 -------------------------
 
 4. 
