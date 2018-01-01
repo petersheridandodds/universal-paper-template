@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+undef $/;
+    $counts=0;
+foreach $file (@ARGV) {
+    open (FILE, "$file") or die "can't open $file: $!\n";
+
+    $text = <FILE>;
+    while ($text =~ m/\\todo{/g) {
+	$counts++;
+    }
+    close FILE;
+}
+print "$counts";
