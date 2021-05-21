@@ -1,0 +1,72 @@
+%% PNAStwoS.tex
+%% Sample file to use for PNAS articles prepared in LaTeX
+%% For two column PNAS articles
+%% Version1: Apr 15, 2008
+%% Version2: Oct 04, 2013
+
+%% BASIC CLASS FILE
+\documentclass{pnastwo}
+
+%% ADDITIONAL OPTIONAL STYLE FILES Font specification
+
+%% \usepackage{pnastwoF}
+
+%% OPTIONAL MACRO DEFINITIONS
+\input{pnastwo-fixes}
+\input{pnas-many-languages-happiness.settings-modified}
+\newcommand{\revtexonly}[1]{}
+\newcommand{\pnasonly}[1]{#1}
+
+%%%%%%%%%%%%
+%% For PNAS Only:
+\url{www.pnas.org/cgi/doi/10.1073/pnas.0709640104}
+\copyrightyear{2008}
+\issuedate{Issue Date}
+\volume{Volume}
+\issuenumber{Issue Number}
+%\setcounter{page}{2687} %Set page number here if desired
+%%%%%%%%%%%%
+
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{\protect\input{pnas-many-languages-happiness.title}}
+
+\author{\protect\input{pnas-many-languages-happiness.authors-formatted}}
+
+\contributor{Submitted to Proceedings of the National Academy of Sciences
+of the United States of America}
+
+%%%Newly updated.
+%%% If significance statement need, then can use the below command otherwise just delete it.
+\significancetext{\input{pnas-many-languages-happiness.significance-statement}}
+
+\maketitle
+
+\begin{article}
+\begin{abstract}
+  \protect\input{pnas-many-languages-happiness.abs}
+\end{abstract}
+
+\keywords{language | social psychology | happiness | positivity}
+
+%% \abbreviations{}
+
+%% Use \dropcap{} for first letter
+
+\input{pnas-many-languages-happiness.body}
+
+%% Bibliography
+\input{pnas-many-languages-happiness.biblio}
+\bibliographystyle{unsrt}
+
+\end{article}
+
+%% main article's figures and tables
+
+\input{pnas-many-languages-happiness-figures}
+
+\input{pnas-many-languages-happiness-tables}
+
+\end{document}

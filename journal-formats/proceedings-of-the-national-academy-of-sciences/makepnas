@@ -1,0 +1,16 @@
+makerevtex4.pl 
+
+./breakup-manuscript-supp.pl many-languages-happiness-revtex4.pdf
+
+make-pnas-pieces.pl many-languages-happiness-revtex4.tex
+
+pdflatex pnas-many-languages-happiness
+bibtex pnas-many-languages-happiness
+pdflatex pnas-many-languages-happiness
+pdflatex pnas-many-languages-happiness
+
+make-single-latex-file.pl pnas-many-languages-happiness.tex
+
+makelinks.pl pnas-many-languages-happiness-combined.tex
+
+makepnaspackage

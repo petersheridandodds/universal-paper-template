@@ -1,5 +1,11 @@
 #!/usr/bin/perl
 
+# set up name in settings file
+`make-name-match-settingsfile.pl`;
+
+# localize figures and inputs (for better sharing)
+`./localizify.pl`;
+    
 foreach $switch (@ARGV) {
     if (($switch eq "-quick") or ($switch eq "-q"))
     {

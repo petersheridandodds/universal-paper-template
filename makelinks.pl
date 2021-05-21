@@ -59,8 +59,7 @@ foreach $line (<FILE>)
 close FILE;
 close OUTFILE;
 
-foreach $i (0..$#figures)
-{
+foreach $i (0..$#figures) {
     $figure = $figures[$i];
     $tmp = `find . -follow -name $figure -print 2>/dev/null`;
     @tmp = split("\n",$tmp);
@@ -69,12 +68,9 @@ foreach $i (0..$#figures)
 }
 
 $i=1;
-foreach $fullfigure (@fullfigures)
-{
+foreach $fullfigure (@fullfigures) {
     ($figname = $fullfigure) =~ s/.*\///;
-    if ($i<10) {$fignum = "00$i";} 
-    elsif ($i<100) {$fignum = "0$i";}
-    else {$fignum = $i;}
+    $fignum = sprintf("%03d",$i);
     $prefix = "fig".$fignum."_";
     `cp $fullfigure package/$prefix$figname`;
     `ln -s ../$fullfigure package/.`;

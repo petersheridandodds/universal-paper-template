@@ -1,11 +1,38 @@
-\documentclass[pre,twocolumn,twoside,byrevtex,superscriptaddress,floatfix]{revtex4-1}
+\documentclass[
+  pre,
+  twocolumn,
+  twoside,
+  byrevtex,
+  superscriptaddress,
+  floatfix,
+  longbibliography,
+]{revtex4-1}
 
-%% \documentclass[pre,twocolumn,twoside,byrevtex,superscriptaddress,showpacs,floatfix]{revtex4-1}
+%% \documentclass[pre,
+%%   twocolumn,
+%%   twoside,
+%%   byrevtex,
+%%   superscriptaddress,
+%%   showpacs,
+%%   floatfix,
+%% ]{revtex4-1}
 
+%% \documentclass[aps,
+%%   twocolumn,
+%% ]{revtex4-1}
 
-%%\documentclass[aps,twocolumn]{revtex4}
-%%\documentclass[aps,preprint]{revtex4}
-%%\documentclass[aps,twocolumn,draft]{revtex4}
+%% \documentclass[aps,
+%%   preprint,
+%% ]{revtex4-1}
+
+%% \documentclass[aps,
+%%   twocolumn,
+%%   draft,
+%% ]{revtex4-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general settings, packages, macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% general settings, packages, macros
 
@@ -17,6 +44,14 @@
 \setboolean{twocolswitch}{true}
 
 %% \bibliographystyle{unsrtabbrv}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\suppmaterial}{Anciliary files}
+\newcommand{\onlineappendices}{Online Appendices (\href{http://compstorylab.org/trumpstoryturbulence/}{compstorylab.org/trumpstoryturbulence/})}
+\newcommand{\onlineappendicesplain}{Online Appendices}
+%% \newcommand{\suppmaterial}{Supplementary Material}
+%% \newcommand{\suppmaterial}{Appendices}
+\newcommand{\arxivonly}[1]{#1}
 
 %%%%%% author(s), address(es) plus abstract
 
@@ -50,11 +85,32 @@
 \acknowledgments
 \input{\filenamebase.acknowledgments}
 
+%% \bibliography{\filenamebase}
 \input{\filenamebase.biblio}
 
 \clearpage
 
+%% %% appendix
+%%
+%% %% optional: switch to single column
+%% \onecolumngrid
+%% 
+%% \appendix
+%% \section{Auxiliary organ details}
+%% 
+%% \setcounter{page}{1}
+%% \renewcommand{\thepage}{A\arabic{page}}
+%% \renewcommand{\thefigure}{A\arabic{figure}}
+%% \renewcommand{\thetable}{A\arabic{table}}
+%% \setcounter{figure}{0}
+%% \setcounter{table}{0}
+%% 
+%% \input{\filenamebase.appendix}
+
 %% %% supplementary
+%% 
+%% %% %% optional: switch to single column
+%% \onecolumngrid
 %% 
 %% %% following records the starting page number of the supplementary
 %% %% section in a file called startsupp.txt
@@ -66,10 +122,15 @@
 %% 
 %% \setcounter{page}{1}
 %% \renewcommand{\thepage}{S\arabic{page}}
+%% 
 %% \renewcommand{\thefigure}{S\arabic{figure}}
-%% \renewcommand{\thetable}{S\arabic{table}}
 %% \setcounter{figure}{0}
+%% 
+%% \renewcommand{\thetable}{S\arabic{table}}
 %% \setcounter{table}{0}
+%% 
+%% \renewcommand{\thesection}{S\arabic{section}}
+%% \setcounter{section{0}
 %% 
 %% \input{\filenamebase.supplementary}
 

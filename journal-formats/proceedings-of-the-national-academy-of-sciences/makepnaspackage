@@ -1,0 +1,28 @@
+echo 'creating pnas-many-languages-happiness-package.tgz...';
+
+\cp pnas-many-languages-happiness.pdf package/pnas-many-languages-happiness-manuscript.pdf
+\cp many-languages-happiness-revtex4-supplementary.pdf package/pnas-many-languages-happiness-supplementary.pdf
+
+cd package;
+
+ln -s ../pnastwo.cls .
+ln -s ../cover-images .
+ln -s ../correspondence/2014-09-16pnas-response.txt pnas-response.txt .
+ln -s ../data/data.zip many-languages-happiness-data.zip
+ln -s ../data/data/wordscores.csv 
+
+echo 'Optimizing supplementary ...';
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=pnas-many-languages-happiness-supplementary-optimized.pdf pnas-many-languages-happiness-supplementary.pdf
+
+tar cvfzph ../pnas-many-languages-happiness-package.tgz fig00[1-4]*.pdf pnas-many-languages-happiness-combined.tex pnas-many-languages-happiness-manuscript.pdf cover-images/pnas-cover*pdf pnastwo.cls pnas-response.txt pnas-many-languages-happiness-supplementary-optimized.pdf wordscores.csv
+
+# optimization
+# http://blog.rot13.org/2011/05/optimize-pdf-file-size-using-ghostscript.html
+
+# tar cvfzph ../pnas-many-languages-happiness-package-figs001-009.tgz fig00[1-9]_*.pdf
+# tar cvfzph ../pnas-many-languages-happiness-package-figs010-019.tgz fig01[0-9]_*.pdf
+# tar cvfzph ../pnas-many-languages-happiness-package-figs020-029.tgz fig02[0-9]_*.pdf
+# tar cvfzph ../pnas-many-languages-happiness-package-figs030-039.tgz fig03[0-9]_*.pdf
+# tar cvfzph ../pnas-many-languages-happiness-package-figs040-049.tgz fig04[0-9]_*.pdf
+# tar cvfzph ../pnas-many-languages-happiness-package-figs050-054.tgz fig05[0-9]_*.pdf

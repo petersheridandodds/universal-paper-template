@@ -1,6 +1,8 @@
 \lefthyphenmin=3
 \righthyphenmin=2
 
+\usepackage[table]{xcolor}
+
 %% helpful for complicated papers
 %% in finding out which figures, etc. are not being referenced
 
@@ -8,9 +10,102 @@
 %% also helpful, highlighting the value of adding taxonomy to labels:
 %% grep -A 1 refcheck paper-template-revtex4.log | grep -A 1 fig:
 
-%% build papers out of todo lists
-\usepackage{color}
-\newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
+%% links
+\usepackage{url}
+%% url style
+\urlstyle{same}
+
+%% allow hyphenation for urls with long many-hyphenated strings
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\usepackage{hyperref}
+%% remove default typewriter nastiness for urls
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  allcolors=todoblue,
+  urlcolor=todoblue,
+  citecolor=todoblue,
+  pdfborder={0 0 0},
+  breaklinks=true,
+}
+
+%% exciting emphasis action
+\usepackage{ulem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% color table with fix for revtex4
+%%
+%% see
+%% https://tex.stackexchange.com/questions/102665/revtex4-1-and-colortbl-doesnt-fill-cells
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{colortbl}
+
+\makeatletter
+
+\def\CT@@do@color{%
+  \global\let\CT@do@color\relax
+  \@tempdima\wd\z@
+  \advance\@tempdima\@tempdimb
+  \advance\@tempdima\@tempdimc
+  \advance\@tempdimb\tabcolsep
+  \advance\@tempdimc\tabcolsep
+  \advance\@tempdima2\tabcolsep
+  \kern-\@tempdimb
+  \leaders\vrule
+  %^^A                     \@height\p@\@depth\p@
+  \hskip\@tempdima\@plus  1fill
+  \kern-\@tempdimc
+  \hskip-\wd\z@ \@plus -1fill }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% colors
+\usepackage{xcolor}
+\newcommand{\tc}[2]{\textcolor{#1}{#2}}
+\newcommand{\tcn}[2]{\color[named]{#1}{#2}}
+\definecolor{olivegreen}{rgb}{0.33333,.41961,0.18431}
+\definecolor{forestgreen}{rgb}{0.13333,.5451,0.13333}
+\definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
+\definecolor{verylightgrey}{rgb}{0.90,0.90,0.90}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+
+% change to charcoal #36454F RGB={54,69,79}
+% cinerous #98817B RGB={152,129,123}
+% feldgrau #4D5D53 RGB={77,93,83}
+% glaucous #6082B6 RGB={96,130,182}
+% arsenic #3B444B RGB={59,68,75}
+
+% header 51, 54, 126
+\definecolor{headerblue}{HTML}{33367E}
+\definecolor{unitednationsblue}{HTML}{4D88FF}
+
+\definecolor{charcoal}{HTML}{36454F}
+\definecolor{cinerous}{HTML}{98817B}
+\definecolor{feldgrau}{HTML}{4D5D53}
+\definecolor{glaucous}{HTML}{6082B6}
+\definecolor{arsenic}{HTML}{3B444B}
+\definecolor{xanadu}{HTML}{738678}
+
+\definecolor{firebrick}{HTML}{B22222}
+\definecolor{orangered}{HTML}{FF4500}
+\definecolor{tomato}{HTML}{FF6347}
+
+\definecolor{purpletaupe}{HTML}{3B444B}
+% arsenic #3B444B RGB={59,68,75}
+%% \definecolor{alertblue}{HTML}{3B444B}
+
+
+%% build papers out of todo lists and first lines of paragraphs (think Twitter threads)
+\definecolor{todoblue}{RGB}{0, 91, 187}
+\newcommand{\todo}[1]{\noindent\textcolor{todoblue}{{$\Box$ #1}}}
+\newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
+
 
 \usepackage{graphicx,epsfig,verbatim,enumerate}
 \usepackage{amssymb,amsmath}
@@ -29,6 +124,13 @@
 %%  diagrams={>=space}}
 
 \newboolean{twocolswitch}
+
+%% side caption
+\usepackage{floatrow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% notation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\avg}[1]{\left\langle#1\right\rangle}
 \newcommand{\tavg}[1]{\langle#1\rangle}
