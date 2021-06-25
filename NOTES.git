@@ -19,7 +19,7 @@ git add .
 
 git commit -m "first deployment"
 
-git remote add origin https://github.com/petersheridandodds/universal-paper-template.git
+git remote add origin https://github.com/petersheridandodds/universal-paper-template-overleaf.git
                       
 git remote -v
 
@@ -30,8 +30,10 @@ git remote -v
 git push origin master
 
 
-
-
 # bring down anything already there
 
 git pull origin master
+
+
+# deal with permissions issue:
+https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes

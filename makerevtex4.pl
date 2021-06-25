@@ -5,16 +5,20 @@
 
 # localize figures and inputs (for better sharing)
 `./localizify.pl`;
-    
-foreach $switch (@ARGV) {
-    if (($switch eq "-quick") or ($switch eq "-q"))
+
+foreach $argument (@ARGV) {
+    if (($argument eq "-quick") or ($argument eq "-q"))
     {
 	$quickswitch = 1;
+    } elsif ($argument =~ m/\.body\.tex$/) {
+	@bodies = (@bodies, $argument);
     }
 }
 
-$bodylist = `ls *.body.tex`;
-@bodies = split(/\s+/,$bodylist);
+if ($#bodies eq -1) {
+    $bodylist = `ls *.body.tex`;
+    @bodies = split(/\s+/,$bodylist);
+}
 
 ($sec,$min,$hour,$numday,$month,$year,$wday,$yday,$isdst) = localtime(time);
 $year += 1900;
@@ -22,7 +26,16 @@ $timestamp = "$year $month $numday $hour $min $sec";
 
 foreach $body (@bodies) {
     ($filename = $body) =~ s/\.body\.tex$//;
+    ($supplementaryfilename = $body) =~ s/\.body\.tex$/\.supplementary\.tex/;
+    ($appendiexfilename = $body) =~ s/\.body\.tex$/\.appendix\.tex/;
     if (-e "$filename-revtex4.tex") {
+
+	# make local bibliography
+	# will need to be adjusted for more elaborate inputs
+	$texfiles = join(" ",<$filename.*.tex>);
+	$command = "make-local-bibfile.pl $filename.bib $texfiles";
+        system($command);
+
 	($logfilename = "log/progress-$body") =~ s/\.body\.tex$/-log/;
 	print "processing $filename...\n";
 
@@ -106,4 +119,5 @@ foreach $body (@bodies) {
 	print "Number of missing citations = $citenum\n";
 
     }
+
 }

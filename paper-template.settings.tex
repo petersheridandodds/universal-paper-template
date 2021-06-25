@@ -1,7 +1,8 @@
 \lefthyphenmin=3
 \righthyphenmin=2
 
-\usepackage[table]{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 %% helpful for complicated papers
 %% in finding out which figures, etc. are not being referenced
@@ -9,6 +10,7 @@
 %% \usepackage{refcheck}
 %% also helpful, highlighting the value of adding taxonomy to labels:
 %% grep -A 1 refcheck paper-template-revtex4.log | grep -A 1 fig:
+
 
 %% links
 \usepackage{url}
@@ -22,8 +24,6 @@
 \makeatother
 
 \usepackage{hyperref}
-%% remove default typewriter nastiness for urls
-\urlstyle{same}
 \hypersetup{
   colorlinks=true,
   allcolors=todoblue,
@@ -73,6 +73,7 @@
 \definecolor{forestgreen}{rgb}{0.13333,.5451,0.13333}
 \definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
 \definecolor{verylightgrey}{rgb}{0.90,0.90,0.90}
+\definecolor{veryverylightgrey}{rgb}{0.95,0.95,0.95}
 \definecolor{grey}{rgb}{0.5,0.5,0.5}
 
 % change to charcoal #36454F RGB={54,69,79}
@@ -101,14 +102,18 @@
 %% \definecolor{alertblue}{HTML}{3B444B}
 
 
+%% exciting emphasis action
+\usepackage{ulem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% build papers out of todo lists and first lines of paragraphs (think Twitter threads)
+
 \definecolor{todoblue}{RGB}{0, 91, 187}
 \newcommand{\todo}[1]{\noindent\textcolor{todoblue}{{$\Box$ #1}}}
 \newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
 
-
 \usepackage{graphicx,epsfig,verbatim,enumerate}
-\usepackage{amssymb,amsmath}
+
 \usepackage{ifthen}
 
 \usepackage{longtable}
@@ -124,13 +129,6 @@
 %%  diagrams={>=space}}
 
 \newboolean{twocolswitch}
-
-%% side caption
-\usepackage{floatrow}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% notation
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\avg}[1]{\left\langle#1\right\rangle}
 \newcommand{\tavg}[1]{\langle#1\rangle}

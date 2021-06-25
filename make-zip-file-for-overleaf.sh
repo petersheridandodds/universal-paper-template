@@ -4,5 +4,7 @@ zip \
     --exclude=*.zip \
     overleaf.zip \
     * \
+    correspondence/* \
+    correspondence/figures/* \
     figures/localized/* \
     inputs/localized/*

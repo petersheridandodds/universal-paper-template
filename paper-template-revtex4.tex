@@ -6,7 +6,7 @@
   superscriptaddress,
   floatfix,
   longbibliography,
-]{revtex4-1}
+]{revtex4-2}
 
 %% \documentclass[pre,
 %%   twocolumn,
@@ -34,10 +34,8 @@
 %% general settings, packages, macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% general settings, packages, macros
-
 %% load in root name
-\usepackage{currfile}
+\usepackage[realmainfile]{currfile}
 \input{\currfilebase.settings}
 \input{\filenamebase.settings}
 
@@ -58,7 +56,7 @@
 \begin{document}
 
 \title{\protect
-\input{\filenamebase.title}
+  \input{\filenamebase.title}
 }
 
 \input{\filenamebase.author}
@@ -85,8 +83,8 @@
 \acknowledgments
 \input{\filenamebase.acknowledgments}
 
-%% \bibliography{\filenamebase}
-\input{\filenamebase.biblio}
+\bibliography{\filenamebase}
+%% \input{\filenamebase.biblio}
 
 \clearpage
 
@@ -130,7 +128,7 @@
 %% \setcounter{table}{0}
 %% 
 %% \renewcommand{\thesection}{S\arabic{section}}
-%% \setcounter{section{0}
+%% \setcounter{section}{0}
 %% 
 %% \input{\filenamebase.supplementary}
 

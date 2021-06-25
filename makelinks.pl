@@ -43,13 +43,18 @@ foreach $line (<FILE>)
 {
     unless ($line =~ m/\s*%/) {
 	if ($line =~ m/\\includegraphics\[.*?\]\{(.*?)\}/) {
-	    push @figures, $1;
 
-	    if ($i<10) {$fignum = "00$i";} 
-	    elsif ($i<100) {$fignum = "0$i";}
-	    else {$fignum = $i;}
+	    $figurename = $1;
+	    $figurename =~ s/^.*\///;
+	    # will fail for png, jpg
+	    unless ($figurename =~ m/\.pdf$/) {
+		$figurename =~ s/$/\.pdf/;
+	    }
+	    push @figures, $figurename;
+
+	    $fignum = sprintf("%03d",$i);
 	    $prefix = "fig".$fignum."_";
-	    $line =~ s/(\\includegraphics.*?)\{(.*?)\}/$1\{$prefix$2\}/;
+	    $line =~ s/(\\includegraphics.*?)\{(.*?)\}/$1\{$prefix$figurename\}/;
 	    $i = $i + 1;
 	}
     }

@@ -37,10 +37,7 @@ open (OUTFILE,">$outfile") or die "can't open $outfile: $!\n";
 undef $tex;
 foreach $line (<FILE>)
 {
-    # Clean out comments
-    # Note: 
     $line =~ s/%%.*$//;
-    
     if ($line =~ m/\\currfile/) {
 	$line = "";
     }
@@ -53,11 +50,10 @@ foreach $line (<FILE>)
 #	print "$1\n";
 
 	$inputfile = $1;
-	unless ($inputfile =~ m/\.tex/) {
+	unless ($inputfile =~ m/\.tex$/) {
 	    $inputfile = $inputfile.".tex";
 	}
 
-	
 	open (INPUT,"$inputfile") or die "can't open $inputfile: $!\n";
 	undef $/;
 	$input = <INPUT>;
@@ -67,8 +63,8 @@ foreach $line (<FILE>)
 	# special treatment for $realbasefile.title.tex
 	if ($line =~ m/\.title/) {
 	    $input =~ s/%.*?$//msg;
-	    $input =~ s/^\s*?//;
-	    $input =~ s/\s*?$//;
+	    $input =~ s/^\s*//;
+	    $input =~ s/\s*$//;
 	    chomp($input);
 	}
 
@@ -76,12 +72,13 @@ foreach $line (<FILE>)
 
 # one extra layer
 	while ($line =~ m/\\input\{(.*?)\}/) {
-#	    print "$1\n";
+	    #	    print "$1\n";
+
 	    $inputfile = $1;
-	    unless ($inputfile =~ m/\.tex/) {
+	    unless ($inputfile =~ m/\.tex$/) {
 		$inputfile = $inputfile.".tex";
 	    }
-	    
+
 	    $inputfile =~ s/\\filenamebase/$realbasefile/;
 	    open (INPUT,"$inputfile") or die "can't open $inputfile: $!\n";
 	    undef $/;
@@ -91,6 +88,7 @@ foreach $line (<FILE>)
 	    $line =~ s/\\input\{(.*?)\}/$input/;
 	}
     }
+    
     $tex = $tex."$line";
 }
 

@@ -21,6 +21,13 @@ $bibfile = "$ENV{HOME}/papers/biblio/everything.bib";
 
 $outfile = @ARGV[0];
 
+if ($outfile !~ m/\.bib$/) {
+    print "Oops: $outfile is not a .bib file ...
+Exploding.
+";
+    exit;
+}
+
 @files = @ARGV[1..$#ARGV];
 
 ## make a hash for bib entries
