@@ -35,9 +35,11 @@ open (FILE,"$file") or die "can't open $file: $!\n";
 open (OUTFILE,">$outfile") or die "can't open $outfile: $!\n";
 
 undef $tex;
-foreach $line (<FILE>)
-{
+foreach $line (<FILE>) {
+    # Clean out comments
+    # Note: 
     $line =~ s/%%.*$//;
+    
     if ($line =~ m/\\currfile/) {
 	$line = "";
     }
@@ -47,14 +49,23 @@ foreach $line (<FILE>)
     if ($line =~ m/\\input/)
     {
 	$line =~ m/\\input\{(.*?)\}/;
-#	print "$1\n";
+	## print "$1\n";
 
 	$inputfile = $1;
-	unless ($inputfile =~ m/\.tex$/) {
+	unless ($inputfile =~ m/\.tex$/ or $inputfile =~ m/\.txt$/) { # could be txt or tex
 	    $inputfile = $inputfile.".tex";
 	}
 
-	open (INPUT,"$inputfile") or die "can't open $inputfile: $!\n";
+	if (-e "$inputfile") {
+	    $inputfile_fullpath = $inputfile;
+	    ## print "beeply $inputfile_fullpath\n";
+	} else { # otherwise go find it:
+	    $tmp = `find . -follow -name $inputfile -print 2>/dev/null`;
+	    @tmp = split("\n",$tmp);
+	    $inputfile_fullpath = $tmp[0];
+	}
+	
+	open (INPUT,"$inputfile_fullpath") or die "can't open $inputfile_fullpath: $!\n";
 	undef $/;
 	$input = <INPUT>;
 	$/ = "\n";
@@ -63,32 +74,40 @@ foreach $line (<FILE>)
 	# special treatment for $realbasefile.title.tex
 	if ($line =~ m/\.title/) {
 	    $input =~ s/%.*?$//msg;
-	    $input =~ s/^\s*//;
-	    $input =~ s/\s*$//;
+	    $input =~ s/^\s*?//;
+	    $input =~ s/\s*?$//;
 	    chomp($input);
 	}
 
 	$line =~ s/\\input\{(.*?)\}/$input/;
 
-# one extra layer
+	# one extra layer, process all input commands present
 	while ($line =~ m/\\input\{(.*?)\}/) {
-	    #	    print "$1\n";
-
+	    #  print "$1\n";
 	    $inputfile = $1;
-	    unless ($inputfile =~ m/\.tex$/) {
+	    unless ($inputfile =~ m/\.[a-z][a-z][a-z]$/) { # could end in any three lettered suffix
 		$inputfile = $inputfile.".tex";
 	    }
 
-	    $inputfile =~ s/\\filenamebase/$realbasefile/;
-	    open (INPUT,"$inputfile") or die "can't open $inputfile: $!\n";
+	    if (-e "$inputfile") {
+		$inputfile_fullpath = $inputfile;
+		## print "beeply $inputfile_fullpath\n";
+	    } else { # otherwise go find it:
+		$tmp = `find . -follow -name $inputfile -print 2>/dev/null`;
+		@tmp = split("\n",$tmp);
+		$inputfile_fullpath = $tmp[0];
+	    }
+	    
+	    ## print "beep $inputfile beep $inputfile_fullpath\n";
+	    open (INPUT,"$inputfile_fullpath") or die "can't open $inputfile_fullpath: $!\n";
 	    undef $/;
 	    $input = <INPUT>;
 	    $/ = "\n";
 	    close INPUT;
 	    $line =~ s/\\input\{(.*?)\}/$input/;
+
 	}
     }
-    
     $tex = $tex."$line";
 }
 
