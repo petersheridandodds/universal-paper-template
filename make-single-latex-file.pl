@@ -37,7 +37,11 @@ open (OUTFILE,">$outfile") or die "can't open $outfile: $!\n";
 undef $tex;
 foreach $line (<FILE>) {
     # Clean out comments
-    # Note: 
+    # For full comments, will remove entire lines, otherwise to end of line
+    if ($line =~ m/^\s*%%.*$/) {
+	$line = "";
+    }
+    
     $line =~ s/%%.*$//;
     
     if ($line =~ m/\\currfile/) {
