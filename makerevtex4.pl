@@ -36,6 +36,14 @@ foreach $body (@bodies) {
 	$command = "make-local-bibfile.pl $filename.bib $texfiles";
         system($command);
 
+	# make single line versions of title, abstract, logline
+	$command = "./singlelineify.pl $filename.title.tex\n";
+        system($command);
+	$command = "./singlelineify.pl $filename.abs.tex\n";
+        system($command);
+	$command = "./singlelineify.pl $filename.logline.tex\n";
+        system($command);
+
 	($logfilename = "log/progress-$body") =~ s/\.body\.tex$/-log/;
 	print "processing $filename...\n";
 
