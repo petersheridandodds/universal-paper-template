@@ -23,18 +23,24 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
+\usepackage{colortbl}
+
+\definecolor{goodblue}{RGB}{0, 91, 187}
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
-  allcolors=todoblue,
-  urlcolor=todoblue,
-  citecolor=todoblue,
+  allcolors=goodblue,
+  urlcolor=goodblue,
+  citecolor=goodblue,
   pdfborder={0 0 0},
   breaklinks=true,
 }
 
 %% exciting emphasis action
-\usepackage{ulem}
+%% https://tex.stackexchange.com/questions/218418/book-title-in-revtex-bibliography
+%% plain ulem breaks bibliography:
+%% fix:
+\usepackage[normalem]{ulem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% color table with fix for revtex4
@@ -43,7 +49,6 @@
 %% https://tex.stackexchange.com/questions/102665/revtex4-1-and-colortbl-doesnt-fill-cells
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{colortbl}
 
 \makeatletter
 
@@ -102,14 +107,11 @@
 %% \definecolor{alertblue}{HTML}{3B444B}
 
 
-%% exciting emphasis action
-\usepackage{ulem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% build papers out of todo lists and first lines of paragraphs (think Twitter threads)
 
-\definecolor{todoblue}{RGB}{0, 91, 187}
-\newcommand{\todo}[1]{\noindent\textcolor{todoblue}{{$\Box$ #1}}}
+\newcommand{\todo}[1]{\noindent\textcolor{goodblue}{{$\Box$ #1}}}
 \newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
 
 \usepackage{graphicx,epsfig,verbatim,enumerate}

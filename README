@@ -79,6 +79,16 @@ reviewers.txt: list of potential reviewers, and reviewers to exclude
 ./drafts
 
 ./figures
+./figures/local
+./figures/localized
+
+- procedure for figures:
+  add directory figures/localized/
+  before figures in includegraphics
+  commands forces search and localize
+- keep figures directory clean with
+  only directories and symbolic links to directories elsewhere
+
 
 ./journal-formats
 

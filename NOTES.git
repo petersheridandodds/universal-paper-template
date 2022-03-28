@@ -27,12 +27,12 @@ git remote -v
 # Push the changes in local repository up to the remote
 # repository specified as the origin
 
-git push origin master
+git push origin main
 
 
 # bring down anything already there
 
-git pull origin master
+git pull origin main
 
 
 # deal with permissions issue:

@@ -60,8 +60,12 @@ foreach $i (0..$#figures) {
     $fullfigures[$i] = $filenames[0];
     chomp($fullfigures[$i]);
 
-#    print "$fullfigures[$i]\n $localfiguresdir/$figure\n";
-    `cp $fullfigures[$i] $localfiguresdir/$figure`;
+    ##   print "cp $fullfigures[$i] $localfiguresdir/$figure;\n";
+    if (-e "$fullfigures[$i]") {
+	`cp $fullfigures[$i] $localfiguresdir/$figure`;
+    } else {
+	print "Did not find:\n$figures[$i]\n";
+    }
 }
 
 ##############################
@@ -88,8 +92,12 @@ foreach $i (0..$#inputfiles) {
     $inputfilenames = `find figures -follow -name $inputfile -print 2>/dev/null`;
     @inputfilenames = split("\n",$inputfilenames);
 
-#    print "$inputfilenames[0] $localinputsdir/\n";
-    `cp $inputfilenames[0] $localinputsdir/`;
+    ##    print "cp $inputfilenames[0] $localinputsdir/\n";
+    if (-e "$inputfilenames[0]") {
+	`cp $inputfilenames[0] $localinputsdir/`;
+    } else {
+	print "Did not find\n:$inputfiles[$i]\n";
+    }
     
 }
 
