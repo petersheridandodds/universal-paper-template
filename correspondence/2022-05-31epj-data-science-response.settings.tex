@@ -1,0 +1,122 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\suppmaterial}{Anciliary files}
+\newcommand{\onlineappendices}{Online Appendices (\href{http://compstorylab.org/trumpstoryturbulence/}{compstorylab.org/trumpstoryturbulence/})}
+\newcommand{\onlineappendicesplain}{Online Appendices}
+%% \newcommand{\suppmaterial}{Supplementary Material}
+%% \newcommand{\suppmaterial}{Appendices}
+\newcommand{\arxivonly}[1]{#1}
+
+
+%% allow hyphenation for urls with long many-hyphenated strings
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+%% remove default typewriter nastiness for urls
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  allcolors=todoblue,
+  urlcolor=todoblue,
+  citecolor=todoblue,
+  pdfborder={0 0 0},
+  breaklinks=true,
+}
+
+\usepackage{amssymb,amsmath}
+\usepackage{color}
+\definecolor{todoblue}{RGB}{0, 91, 187}
+\newcommand{\todo}[1]{\noindent\textcolor{todoblue}{{$\Box$ #1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1.0in]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PassOptionsToPackage{svgnames,table}{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{amsthm,amsmath}
+\usepackage[normalem]{ulem}
+\usepackage[makeroom]{cancel}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+
+\usepackage{graphics}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{color}
+
+\definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{RGB}{50, 90, 187}
+\definecolor{darkgrey}{rgb}{0.3,0.3,0.3}
+
+\tikzstyle{mybox} = [draw=darkgrey, fill=grey!10, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[fill=lightblue!70, text=white]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% structures for general (e.g., editor) and reviewer comments
+%%
+%% reply is in normal format below each comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{reviewer}
+\newcounter{comment}
+
+\newcommand{\reviewerheader}[1]{
+  \subsection*{Response to Reviewer \##1:}
+  \renewcommand*{\thereviewer}{#1}
+  \setcounter{comment}{1}
+}
+
+\newcommand{\generalcomment}[2]{
+\bigskip
+\begin{tikzpicture}
+  \node [mybox] (box){%%
+    \begin{minipage}{0.95\textwidth}
+      #2 %% comment
+    \end{minipage}
+  };
+  %% #1 = any heading
+  \node[fancytitle, right=8pt] at (box.north west) {#1}; 
+\end{tikzpicture}%
+
+}
+
+
+\newcommand{\reviewercomment}[1]{
+  \bigskip
+  \begin{tikzpicture}
+    \node [mybox] (box){%
+      \begin{minipage}{0.95\textwidth}
+        #1 %% comment
+      \end{minipage}
+    };
+    %% use counters
+    \node[fancytitle, right=8pt] at (box.north west) {Comment \thecomment\ by Reviewer \thereviewer};
+  \end{tikzpicture}%
+
+  \addtocounter{comment}{1}
+}
+
+%% \newcommand{\reply}[1]{\vspace{5mm}#1}
+
+

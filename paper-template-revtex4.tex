@@ -8,6 +8,7 @@
   longbibliography,
 ]{revtex4-2}
 
+
 %% \documentclass[pre,
 %%   twocolumn,
 %%   twoside,
@@ -53,7 +54,24 @@
 
 %%%%%% author(s), address(es) plus abstract
 
+%% for refinements (loaded after xcolor)
+%% \usepackage{showframe}
+
 \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paragraph skip and ragged right
+%%
+%% similar to format used in the book "Several short sentences about writing"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://tex.stackexchange.com/questions/246526/adding-blank-line-between-and-indenting-first-line-of-all-paragraphs
+%% appears after begin document for revtex because:
+%% https://tex.stackexchange.com/questions/585414/parskip-doesnt-work
+\setlength{\parskip}{1\baselineskip plus .1\baselineskip  minus .1\baselineskip}
+
+%% for better reading
+\raggedright
 
 \title{\protect
   \input{\filenamebase.title}
@@ -76,12 +94,18 @@
 
 \input{\filenamebase.body}
 
-%% \section{Methods}
+%% Methods:
 %% 
 %% \input{\filenamebase.methods}
 
 \acknowledgments
 \input{\filenamebase.acknowledgments}
+
+%% changelog
+%% for updates to the *Xivs
+%% \section*{Changelog}
+%% \input{\filenamebase.changelog}
+
 
 \bibliography{\filenamebase.bib}
 

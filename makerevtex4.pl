@@ -109,7 +109,7 @@ foreach $body (@bodies) {
 	
 	undef $/;
 	$log = <TEXLOGFILE>;
-	$log =~ m/Output written on (.*\)\.)$/ms;
+	$log =~ m/Output written on (.*\)[\.]*)$/ms;
 	($line = $1) =~ s/\n//g;
 ##    print "$line\n";
 	$line =~ m/\((\d+) (pag.*?), (\d+) bytes\)/;
@@ -138,11 +138,11 @@ foreach $body (@bodies) {
 	    open (LOGFILE, ">>$logfilename") or die "Can't open $logfilename: $!\n";
 	    print LOGFILE "$timestamp $numtodos $numpages $numbytes $numlines $numwords $numchars\n";
 	    close LOGFILE;
-	    print "Data logged\n";
+	    print "\nData logged\n";
 	}
 	else
 	{
-	    print "No data logged\n";
+	    print "\n\nWarning! No data logged!\n\n";
 	}
 	
 	$citenum = `grep \"Warning--I didn\'t find a database entry for\" $filename-revtex4.blg | wc -l`;

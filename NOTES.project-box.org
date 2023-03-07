@@ -1,0 +1,36 @@
+Good. Enough.
+
+Good.
+
+Enough.
+
+Focus on process only.
+
+* Things to write about/perform/do [0/2]
+- [ ]
+- [ ]
+- [ ]
+
+* Data/figure sharing [0/1]
+- [ ] 
+- [ ]
+- [ ]
+
+
+* Response to Reviews (_Journal Name_) [2/4]
+- [ ] Atomize comments
+- [ ] Create reply template
+  (will give structure to review comments checklist below)
+- [ ] Work through all comments
+
+* Reviewer comments: [0/11]
+- [ ] Comment 1 by Reviewer 1
+- [ ] Comment 2 by Reviewer 1
+- [ ] Comment 3 by Reviewer 1
+- [ ] Comment 1 by Reviewer 2
+- [ ] Comment 2 by Reviewer 2
+- [ ] Comment 3 by Reviewer 2
+- [ ] Comment 1 by Reviewer 3
+- [ ] Comment 2 by Reviewer 3
+- [ ] Comment 3 by Reviewer 3
+

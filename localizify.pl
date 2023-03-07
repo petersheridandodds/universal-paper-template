@@ -96,7 +96,7 @@ foreach $i (0..$#inputfiles) {
     if (-e "$inputfilenames[0]") {
 	`cp $inputfilenames[0] $localinputsdir/`;
     } else {
-	print "Did not find\n:$inputfiles[$i]\n";
+	print "Did not find:\n$inputfiles[$i]\n";
     }
     
 }

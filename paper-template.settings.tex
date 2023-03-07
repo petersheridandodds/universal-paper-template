@@ -1,6 +1,8 @@
 \lefthyphenmin=3
 \righthyphenmin=2
 
+
+
 \usepackage{amssymb}
 \usepackage{amsmath}
 
@@ -107,12 +109,37 @@
 %% \definecolor{alertblue}{HTML}{3B444B}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% build papers out of todo lists and first lines of paragraphs (think Twitter threads)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% build papers out of todo lists and first lines of paragraphs
+%% (think Twitter threads or code documentation)
+%%
+%% also:
+%% https://english.stackexchange.com/questions/479547/word-for-using-extra-line-breaks-to-improve-readability
+%%
+%% and use newlines as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\todo}[1]{\noindent\textcolor{goodblue}{{$\Box$ #1}}}
 \newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
+
+%% paragraphs:
+
+%% adjusted from https://tex.stackexchange.com/questions/469864/change-font-for-the-paragraph-command
+%% normal or maybe bold text for first line
+\usepackage{titlesec}
+%% \titleformat*{\paragraph}{\mdseries}
+\titleformat*{\paragraph}{\bfseries}
+
+%% new lines:
+
+%% https://english.stackexchange.com/questions/479547/word-for-using-extra-line-breaks-to-improve-readability
+%% new sense-line
+%% switch off for stupid journals
+\newcommand{\newphrase}{\newline}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{graphicx,epsfig,verbatim,enumerate}
 
@@ -131,6 +158,27 @@
 %%  diagrams={>=space}}
 
 \newboolean{twocolswitch}
+
+\usepackage{array}
+
+% ragged right in arrays
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS = \PreserveBackslash
+
+%% blackboard font efforts; not good enough
+%% would need to go before amssym
+%% 
+%% blackboard font for matrices
+%% https://tex.stackexchange.com/questions/3473/blackboard-bold-variants-for-greek-letters
+%% \usepackage[bbgreekl]{mathbbol}
+
+%% "hollow" letters
+%% https://tex.stackexchange.com/questions/360226/how-to-produce-hollow-greek-letters-in-math-mode
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% notation (accumulated)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\avg}[1]{\left\langle#1\right\rangle}
 \newcommand{\tavg}[1]{\langle#1\rangle}
@@ -156,19 +204,205 @@
 %% differential equations and integrals
 \newcommand{\dee}[1]{\textnormal{d}#1}
 \newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\pdiffsq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\pdiffsq}[2]{\frac{\partial^{2} #1}{{\partial #2}^{2}}}
 \newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
-\newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^2}}
+\newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^{2}}}
 \newcommand{\tdiff}[2]{\textnormal{d} #1/\textnormal{d} #2}
-\newcommand{\tdiffsq}[2]{\textnormal{d}^{2} #1/\textnormal{d} {#2}^2}
+\newcommand{\tdiffsq}[2]{\textnormal{d}^{2} #1/\textnormal{d} {#2}^{2}}
 \newcommand{\tpdiff}[2]{\partial #1/\partial #2}
-\newcommand{\tpdiffsq}[2]{\partial^2 #1/\partial {#2}^2}
+\newcommand{\tpdiffsq}[2]{\partial^{2} #1/\partial {#2}^{2}}
 \newcommand{\postdee}[1]{\,\textnormal{d}#1}
 
 
 \newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
 
+%%%%%%%%%%%%%%%%%%   
+%% matrices
+%%%%%%%%%%%%%%%%%%   
+
+\newcommand{\colvec}[1]{
+  \left[
+    \begin{array}{c}
+      #1
+    \end{array}
+  \right]
+}
+
+\newcommand{\rowop}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} \\
+      \mbox{= #1 -} \\ 
+      \mbox{#2 #3} \\
+    \end{array}
+  }
+}
+
+\newcommand{\rowoptwobytwo}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} 
+      \mbox{= #1 -}
+      \mbox{#2 #3} \\
+    \end{array}
+  }
+}
+
+\newcommand{\rowopeq}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \left\lgroup
+        \mbox{\tiny
+          \begin{tabular}{c}
+            #1' =  \\
+            #1 - #2 #3 \\
+          \end{tabular}
+        }
+      \right\rgroup
+    \end{array}
+  }
+}
+
+\newcommand{\rowswapeq}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\large =} \\
+      \left\lgroup
+        \mbox{\tiny
+          #1 $\leftrightarrow$ #2
+        }
+      \right\rgroup
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivthreebythree}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+      \mbox{row 3'} = \mbox{row 3/(#3)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdiv}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} = \mbox{#1/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivtwobytwo}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivtwobytwoeq}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivthreebythreeeqR}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{R1'} = \mbox{R1/(#1)}\\
+      \mbox{R2'} = \mbox{R2/(#2)}\\
+      \mbox{R3'} = \mbox{R3/(#3)}\\
+    \end{array}
+  }
+}
+
+
+\newcommand{\rowdivtwobytwoeqR}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{R1'} = \mbox{R1/(#1)}\\
+      \mbox{R2'} = \mbox{R2/(#2)}\\
+    \end{array}
+  }
+}
+
+
+\newcommand{\rowonediv}[1]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/#1}\\
+    \end{array}
+  }
+}
+
+\newcommand{\mymatrix}[2]{
+  \left[
+    \begin{array}{#1}
+      #2
+    \end{array}
+  \right]
+}
+
+%% \newcommand{\matrix}[1]{\mathbf{#1}}
+%% \newcommand{\textmatrix}[1]{#1}
+%% \renewcommand{\m}[1]{\mathbf{#1}}
+%% \newcommand{\m}[1]{\mathbf{#1}}
+
+\newcommand{\textmatrix}[1]{\mathbf{#1}}
+
+\newcommand{\Axb}{\mathbf{A}\vec{x}=\vec{b}}
+\newcommand{\Axzero}{\mathbf{A}\vec{x}=\vec{0}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\AT}{\mathbf{A}^{\rm T}}
+\newcommand{\CA}{C(\mathbf{A})}
+\newcommand{\NA}{N(\mathbf{A})}
+\newcommand{\CAT}{C(\mathbf{A}^{\rm T})}
+\newcommand{\NAT}{N(\mathbf{A}^{\rm T})}
+
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\R}{\mathbf{R}}
+
+\newcommand{\augAb}{[\A \, | \, \vec{b} \, ]}
+
+\newcommand{\rref}[1]{\R_{#1}}
+
+\newcommand{\lmat}{\left[
+    \begin{array}
+    }
+    \newcommand{\rmat}{\end{array}
+  \right]
+}
+
+%%%%%%%%%%%%%%%%
 %% contagion
+%%%%%%%%%%%%%%%%
 
 % \newcommand{\kstar}{d^{\ast}}
 % \newcommand{\kstari}{k_i^\ast}

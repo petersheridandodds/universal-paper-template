@@ -1,0 +1,6 @@
+Suggested structure: Simple itemized list with headings of Date and Time (C-u C-c .)
+
+Ventilate as needed.
+
+* <2022-08-08 Mon 22:52> 
+
