@@ -4,7 +4,7 @@
 $year = $year + 1900;
 $month = $month+1;
 
-$dir = sprintf("$%04d-%02d-%02d-%02d-%02d-%02d",$year,$month,$day,$hour,$min,$sec);
+$dir = sprintf("%04d-%02d-%02d-%02d-%02d-%02d",$year,$month,$day,$hour,$min,$sec);
 
 `mkdir -p archive/$dir`;
 
