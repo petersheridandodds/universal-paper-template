@@ -1,0 +1,428 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paragraph skip and ragged right
+%%
+%% similar form as used in the book "Several short sentences about writing"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://tex.stackexchange.com/questions/246526/adding-blank-line-between-and-indenting-first-line-of-all-paragraphs
+%% appears after begin document for revtex because:
+%% https://tex.stackexchange.com/questions/585414/parskip-doesnt-work
+\setlength{\parskip}{1\baselineskip plus .1\baselineskip  minus .1\baselineskip}
+
+%% for better reading
+\raggedright
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% make links look and work better
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% allow hyphenation for urls with long many-hyphenated strings
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+%% remove default typewriter nastiness for urls
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  allcolors=todoblue,
+  urlcolor=todoblue,
+  citecolor=todoblue,
+  pdfborder={0 0 0},
+  breaklinks=true,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=1.0in]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\usepackage{wrapfig}
+%% \setlength{\intextsep}{2pt}%
+%% \setlength{\columnsep}{2pt}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage[normalem]{ulem}
+\usepackage[makeroom]{cancel}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+
+\usepackage{graphics}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{color}
+\definecolor{todoblue}{RGB}{0, 91, 187}
+
+\newcommand{\todo}[1]{\noindent\textcolor{todoblue}{{$\Box$ #1}}}
+\newcommand{\done}[1]{}
+
+\PassOptionsToPackage{svgnames,table}{xcolor}
+
+\definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{RGB}{50, 90, 187}
+\definecolor{darkgrey}{rgb}{0.3,0.3,0.3}
+\definecolor{borderred}{RGB}{198 43 103}
+\definecolor{palered}{RGB}{255 204 204}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% structures for general (e.g., editor) and reviewer comments
+%%
+%% reply is in normal format below each comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{reviewer}
+\newcounter{comment}
+
+\tikzstyle{mybox} = [draw=lightblue!70, fill=lightblue!7, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+
+\tikzstyle{reviewertitle} =[fill=lightblue!70, text=white]
+\tikzstyle{editortitle} =[draw=borderred, fill=borderred, text=white]
+
+%% for quote environments
+%% https://tex.stackexchange.com/questions/63752/colored-frame-for-the-framed-environment
+\newcommand\Loadedframemethod{default}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+%% https://ctan.org/tex-archive/macros/latex/contrib/mdframed
+%% below is developed from mdframed-example-default.tex
+
+%% set up per mdframed example
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% editor's comment
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{editorcomment}[1][]{%
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[editortitle, anchor=east,rectangle]
+        {\strut #1};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[editortitle,anchor=east,rectangle]
+        {\strut #1};}}%
+   }%
+   \mdfsetup{innertopmargin=10pt,linecolor=borderred,%
+             linewidth=2pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=palered]\relax%
+   }{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% use at start of each reviewer's section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\reviewerheader}[1]{
+  \clearpage
+  \subsection*{Response to Reviewer \##1:}
+  \renewcommand*{\thereviewer}{#1}
+  \setcounter{comment}{0}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% reviewer's comment
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{reviewercomment}[1][]{%
+  \addtocounter{comment}{1}
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[reviewertitle, anchor=east,rectangle]
+        {\strut Comment \thecomment\ by Reviewer \thereviewer:};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[reviewertitle,anchor=east,rectangle]
+        {\strut Comment \thecomment\ by Reviewer \thereviewer:};}}%
+   }%
+   \mdfsetup{innertopmargin=10pt,linecolor=lightblue!70,%
+             linewidth=2pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=lightblue!7]\relax%
+   }{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% structure for excerpts from the edited paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{environ}
+
+\NewEnviron{excerpt}{
+  \begin{mdframed}[backgroundcolor=black!5]
+    \begin{quote}
+      \medskip
+      \BODY
+      \medskip
+    \end{quote}
+  \end{mdframed}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% settings from the paper, as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Rankings, Zipf's law, Simon's model
+%% 
+%% Moving away from using "Zipf ranking" to "size ranking" or simply "ranking"
+%% Simon's rho -> Innovation probability
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\innovationprobability}{\rho}
+\newcommand{\sizerank}{r}
+\newcommand{\zipfslawexponent}{\zeta}
+\newcommand{\frequency}{f}
+\newcommand{\probsymbol}{p}
+\newcommand{\sizerankmax}{\sizerank_{\textnormal{max}}}
+
+%% for types
+\newcommand{\sizeranktype}[1]{\sizerank_{\textnormal{#1}}}
+\newcommand{\sizeranktypesystem}[2]{\sizerank_{\textnormal{#1},#2}}
+\newcommand{\sizeranktypesystema}[1]{\sizerank_{\textnormal{#1},\indexaraw}}
+\newcommand{\sizeranktypesystemb}[1]{\sizerank_{\textnormal{#1},\indexbraw}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% allotaxonometry
+%% 
+%% general 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sizesymbol}{s}
+\newcommand{\numbersymbol}{N}
+\newcommand{\countsymbol}{k}
+\newcommand{\bigprobsymbol}{P}
+\newcommand{\bigrank}{R}
+
+\newcommand{\indexaraw}{1}
+\newcommand{\indexbraw}{2}
+
+\newcommand{\indexa}{(\indexaraw)}
+\newcommand{\indexb}{(\indexbraw)}
+\newcommand{\indexavg}{(\indexaraw\cdot\indexbraw)}
+
+\newcommand{\indexref}{\textnormal{(ref)}}
+
+\newcommand{\indexanyraw}{i}
+\newcommand{\indexany}{(\indexanyraw)}
+
+\newcommand{\measuresymbol}{\phi}
+\newcommand{\bigmeasuresymbol}{\Phi}
+
+
+\newcommand{\systemsymbol}{\Omega}
+\newcommand{\elementsymbol}{\tau}
+
+\newcommand{\elementsetsymbol}{\mathcal{T}}
+\newcommand{\elementsetsymbola}{\mathcal{T}^{\indexa}}
+\newcommand{\elementsetsymbolb}{\mathcal{T}^{\indexb}}
+\newcommand{\elementsetsymbolany}{\mathcal{T}^{\indexany}}
+
+\newcommand{\systema}{\systemsymbol^{\indexa}}
+\newcommand{\systemb}{\systemsymbol^{\indexb}}
+\newcommand{\systemavg}{\systemsymbol^{\indexavg}}
+\newcommand{\systemref}{\systemsymbol^{\indexref}}
+\newcommand{\systemany}{\systemsymbol^{\indexany}}
+
+
+\newcommand{\Ntypesa}{\numbersymbol_{\indexaraw}}
+\newcommand{\Ntypesb}{\numbersymbol_{\indexbraw}}
+%% \newcommand{\Ntypesa}{\numbersymbol_{\systema}}
+%% \newcommand{\Ntypesb}{\numbersymbol_{\systemb}}
+
+%% \newcommand{\Ncomponentsa}{\numbersymbol_{}}
+%% \newcommand{\Ncomponentsb}{\numbersymbol_{}}
+%% {\countsymbol_{\systema}}
+%% {\countsymbol_{\systemb}}
+
+\newcommand{\sizea}{\sizesymbol^{\indexa}}
+\newcommand{\sizeb}{\sizesymbol^{\indexb}}
+\newcommand{\sizeany}{\sizesymbol^{\indexany}}
+
+\newcommand{\texta}{\textsymbol^{\indexa}}
+\newcommand{\textb}{\textsymbol^{\indexb}}
+\newcommand{\textany}{\textsymbol^{\indexany}}
+
+\newcommand{\numbera}{\numbersymbol^{\indexa}}
+\newcommand{\numberb}{\numbersymbol^{\indexb}}
+\newcommand{\numberany}{\numbersymbol^{\indexany}}
+
+\newcommand{\proba}{\probsymbol^{\indexa}}
+\newcommand{\probb}{\probsymbol^{\indexb}}
+\newcommand{\probavg}{\probsymbol^{\indexavg}}
+\newcommand{\probany}{\probsymbol^{\indexany}}
+
+\newcommand{\probmixedab}{\probsymbol^{(\indexaraw,\indexbraw)}}
+
+\newcommand{\measurea}{\measuresymbol^{\indexa}}
+\newcommand{\measureb}{\measuresymbol^{\indexb}}
+\newcommand{\measureavg}{\measuresymbol^{\indexavg}}
+\newcommand{\measureany}{\measuresymbol^{\indexany}}
+\newcommand{\measureref}{\bigmeasuresymbol_{\systemref}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% entropy, divergences
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\diffsummand}{\delta\bigmeasuresymbol_{\elementsymbol}(\systemb,\systema)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% rank turbulence divergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\rtd}[1]{D^{\textnormal{R}}_{#1}}
+\newcommand{\rtdelement}[1]{\delta D^{\textnormal{R}}_{#1,\elementsymbol}}
+
+\newcommand{\rtdhalf}{\rtd{\sfrac{1}{2}}}
+\newcommand{\rtdhalfelement}{\rtdelement{\sfrac{1}{2}}}
+
+\newcommand{\rtdalpha}{\rtd{\alpha}}
+\newcommand{\rtdalphaelement}{\rtdelement{\alpha}}
+
+%% alpha as a variable
+\newcommand{\rtdalphavar}[1]{\rtd{#1}}
+\newcommand{\rtdalphavarelement}[1]{\rtdelement{#1}}
+
+%% \newcommand{\rtdnorm}{C_{\textnormal{\bigrank}}}
+%% \newcommand{\rtdnorm}{\mathcal{N}_{\textnormal{\bigrank}}}
+%% \newcommand{\rtdnorm}{\mathcal{N}_{\bigrank_{\indexaraw,\indexbraw;\alpha}}}
+\newcommand{\rtdnorm}{\mathcal{N}_{\indexaraw,\indexbraw;\alpha}}
+\newcommand{\invrtdnorm}{\frac{1}{\rtdnorm}}
+
+\newcommand{\rtdnormalpha}[1]{\mathcal{N}_{\indexaraw,\indexbraw;#1}}
+\newcommand{\invrtdnormalpha}[1]{\frac{1}{\rtdnormalpha{#1}}}
+
+\newcommand{\rtdalphasystems}[2]{\rtdalpha(#1\,\|\,#2)}
+\newcommand{\rtdalphasystemsOmega}{\rtdalphasystems{\systemsymbol_{\indexaraw}}{\systemsymbol_{\indexbraw}}}
+\newcommand{\rtdalphasystemsRank}{\rtdalphasystems{\bigrank_{\indexaraw}}{\bigrank_{\indexbraw}}}
+\newcommand{\rtdalphasystemsRankRand}{\rtdalphasystems{\bigrank_{\indexaraw}}{\bigrank_{\indexbraw}}}
+
+\newcommand{\rtdalphavarsystems}[3]{\rtdalphavar{#1}(#2\,\|\,#3)}
+\newcommand{\rtdalphavarsystemsOmega}[1]{\rtdalphavarsystems{#1}{\systemsymbol_{\indexaraw}}{\systemsymbol_{\indexbraw}}}
+\newcommand{\rtdalphavarsystemsRank}[1]{\rtdalphavarsystems{#1}{\bigrank_{\indexaraw}}{\bigrank_{\indexbraw}}}
+
+\newcommand{\rtdalphavarsystemsRankRand}[1]{\rtdalphavarsystems{#1;\,\textnormal{rand}}
+   {\bigrank_{\indexaraw}}
+   {\bigrank_{\indexbraw}}}
+
+%% \newcommand{\rtdalphavarsystemsRankRand}[1]{D^{\textnormal{R,rand}}_{#1}
+%%  (\bigrank_{\indexaraw}\,\|\,\bigrank_{\indexbraw})}
+
+%% merged systems, ordering of contributions for rank probability
+\newcommand{\bigrankordering}{\bigrank_{\indexaraw,\indexbraw;\alpha}}
+\newcommand{\bigrankorderingalpha}[1]{\bigrank_{\indexaraw,\indexbraw;#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% probability turbulence divergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\probdiv}[1]{D^{\textnormal{P}}_{#1}}
+\newcommand{\probdivelement}[1]{D^{\textnormal{P}}_{#1,\elementsymbol}}
+
+\newcommand{\probdivhalf}{\probdiv{\sfrac{1}{2}}}
+\newcommand{\probdivhalfelement}{\probdivelement{\sfrac{1}{2}}}
+
+\newcommand{\probdivalpha}{\probdiv{\alpha}}
+\newcommand{\probdivalphaelement}{\probdivelement{\alpha}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% generalized entropy divergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\gendiv}[1]{D^{\textnormal{AS2}}_{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% jensen-shannon divergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\jsd}{D^{\textnormal{JS}}}
+\newcommand{\kld}{D^{\textnormal{KL}}}
+
+\newcommand{\jsdelement}{D^{\textnormal{JS},\elementsymbol}}
+\newcommand{\kldelement}{D^{\textnormal{KL},\elementsymbol}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% universal categorical data shifts
+%% texts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\textsymbol}{T}
+
+\newcommand{\logtwo}{\textnormal{log}_2}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% flipbook references
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\flipbooktwitter}{S1}
+\newcommand{\flipbooktwitterRT}{S2}
+\newcommand{\flipbooktwittertimediff}{S3}
+
+\newcommand{\flipbooktrees}{S4}
+
+\newcommand{\flipbookgirlsyears}{S5}
+\newcommand{\flipbookboysyears}{S6}
+\newcommand{\flipbookgirlsalphas}{S7}
+\newcommand{\flipbookboysalphas}{S8}
+
+\newcommand{\flipbookmarketcapsyears}{S9}
+
+\newcommand{\flipbooktwittertrunc}{S10}
+\newcommand{\flipbooktreestrunc}{S11}
+\newcommand{\flipbookgirlnamestrunc}{S12}
+\newcommand{\flipbookboynamestrunc}{S13}
+\newcommand{\flipbookcompaniestrunc}{S14}
+
+\newcommand{\flipbooknba}{S15}
+
+\newcommand{\flipbookgoogleonegrams}{S16}
+\newcommand{\flipbookgooglebigrams}{S17}
+\newcommand{\flipbookgoogletrigrams}{S18}
+
+\newcommand{\flipbookharrypotter}{S19}
+\newcommand{\flipbookharrypotternocaps}{S20}
+
+\newcommand{\flipbookdeathcauses}{S21}
+
+\newcommand{\flipbookjobnames}{S22}
