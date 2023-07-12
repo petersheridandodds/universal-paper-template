@@ -2,7 +2,6 @@
 \righthyphenmin=2
 
 
-
 \usepackage{amssymb}
 \usepackage{amsmath}
 
@@ -44,6 +43,23 @@
 %% fix:
 \usepackage[normalem]{ulem}
 
+%% minus sign
+%% \textminus
+%% https://tex.stackexchange.com/questions/79141/is-there-a-designated-symbol-for-the-negative-sign-in-say-16
+\usepackage{textcomp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% for figure adjustment
+%% https://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage[export]{adjustbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% color table with fix for revtex4
 %%
@@ -73,7 +89,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% colors
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
+
 \newcommand{\tc}[2]{\textcolor{#1}{#2}}
 \newcommand{\tcn}[2]{\color[named]{#1}{#2}}
 \definecolor{olivegreen}{rgb}{0.33333,.41961,0.18431}
@@ -120,9 +137,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\todo}[1]{\noindent\textcolor{goodblue}{{$\Box$ #1}}}
+\newcommand{\done}[1]{}
 \newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% paragraphs:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% adjusted from https://tex.stackexchange.com/questions/469864/change-font-for-the-paragraph-command
 %% normal or maybe bold text for first line
@@ -130,18 +150,39 @@
 %% \titleformat*{\paragraph}{\mdseries}
 \titleformat*{\paragraph}{\bfseries}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% new lines:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% https://english.stackexchange.com/questions/479547/word-for-using-extra-line-breaks-to-improve-readability
 %% new sense-line
 %% switch off for stupid journals
 \newcommand{\newphrase}{\newline}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% customizing logline and abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{changepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% general stuff
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{graphicx,epsfig,verbatim,enumerate}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{verbatim}
+
+\usepackage{enumerate}
+\usepackage{enumitem}
+%% https://tex.stackexchange.com/questions/104353/how-to-move-an-enumerate-environment-to-the-right
+%% indenting itemized lists
+
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 \usepackage{ifthen}
 
@@ -175,7 +216,6 @@
 %% "hollow" letters
 %% https://tex.stackexchange.com/questions/360226/how-to-produce-hollow-greek-letters-in-math-mode
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% notation (accumulated)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,9 +237,6 @@
 
 % lettrines
 \usepackage{lettrine}
-
-\newcommand{\tbf}{\textbf}
-\newcommand{\tit}{\textit}
 
 %% differential equations and integrals
 \newcommand{\dee}[1]{\textnormal{d}#1}

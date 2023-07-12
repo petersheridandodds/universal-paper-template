@@ -2,7 +2,7 @@ zip \
     -FS \
     --exclude=make-zip-file* \
     --exclude=*.zip \
-    overleaf.zip \
+    `basename $PWD`-overleaf.zip \
     * \
     correspondence/* \
     correspondence/figures/* \

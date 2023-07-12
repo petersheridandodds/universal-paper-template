@@ -14,22 +14,21 @@
 %%   twoside,
 %%   byrevtex,
 %%   superscriptaddress,
-%%   showpacs,
 %%   floatfix,
-%% ]{revtex4-1}
+%% ]{revtex4-2}
 
 %% \documentclass[aps,
 %%   twocolumn,
-%% ]{revtex4-1}
+%% ]{revtex4-2}
 
 %% \documentclass[aps,
 %%   preprint,
-%% ]{revtex4-1}
+%% ]{revtex4-2}
 
 %% \documentclass[aps,
 %%   twocolumn,
 %%   draft,
-%% ]{revtex4-1}
+%% ]{revtex4-2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% general settings, packages, macros
@@ -50,6 +49,7 @@
 \newcommand{\onlineappendicesplain}{Online Appendices}
 %% \newcommand{\suppmaterial}{Supplementary Material}
 %% \newcommand{\suppmaterial}{Appendices}
+\newcommand{\paperrepository}{\href{https://gitlab.com/compstorylab/something}{https://gitlab.com/compstorylab/something}}
 \newcommand{\arxivonly}[1]{#1}
 
 %%%%%% author(s), address(es) plus abstract
@@ -86,8 +86,6 @@
   \input{\filenamebase.abs} 
 \end{abstract}
 
-\input{\filenamebase.pacs}
-
 \maketitle
 
 %%%%%%%%% end of author(s), address(es) plus abstract
@@ -106,7 +104,9 @@
 %% \section*{Changelog}
 %% \input{\filenamebase.changelog}
 
-
+%% local
+%% \bibliography{everything.bib}
+%% overleaf
 \bibliography{\filenamebase.bib}
 
 \clearpage

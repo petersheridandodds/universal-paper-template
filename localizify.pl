@@ -52,8 +52,12 @@ foreach $line (@lines) {
 # but then you would have failed as a human anyway.
 foreach $i (0..$#figures) {
     $figure = $figures[$i];
-	    
-    $filenames = `find figures -follow -name $figure -print 2>/dev/null`;
+
+    $filenames = `find figures -type d -name archive -prune -follow -o -name $figure -print 2>/dev/null`;
+
+    ## uses prune per here:
+    ## https://stackoverflow.com/questions/4210042/how-do-i-exclude-a-directory-when-using-find
+
     @filenames = split("\n",$filenames);
     @filenames = grep { $_ !~ m/$localfiguresdir/ } @filenames;
     

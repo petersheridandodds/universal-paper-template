@@ -110,9 +110,27 @@ Place for journal pdf's of entire submission.
 
 Key files:
 
-
-
 template.logline.tex
 
 1 to 3 sentences summarizing the paper.
 Used by some journals, essential for all papers.
+
+
+
+-------------------------
+
+Compiling locally:
+
+Yes, Overleaf became great for collaboration. But having your own
+local (wonderfully backed up) universe for writing remains
+my recommendation.
+
+makerevtex.pl
+makerevtex.pl -quick
+
+-------------------------
+
+logging:
+
+
+-------------------------
