@@ -87,8 +87,9 @@
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage[table]{xcolor}
 
 \newcommand{\tc}[2]{\textcolor{#1}{#2}}
@@ -143,6 +144,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% paragraphs:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{textblock}{\renewcommand{\item}{}}{}
+
+\newenvironment{abstractblock}{\renewcommand{\item}{}}{}
+
+%% abandoned:
+%% \let\paragraph\undefined
+%% \newcommand{\sentence}{%%
+%% }
 
 %% adjusted from https://tex.stackexchange.com/questions/469864/change-font-for-the-paragraph-command
 %% normal or maybe bold text for first line
@@ -499,4 +509,111 @@
 \newcommand{\clp}{\textnormal{$p$-value}}
 \newcommand{\sigamma}{1-\simonrho}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% semantic differentials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\semdiffsign}{\Leftrightarrow}
+\newcommand{\semdiff}[2]{\{#1\,$\semdiffsign$\,#2\}}
+
+\newcommand{\semdiffbold}[2]{\{\textbf{#1}\,$\semdiffsign$\,\textbf{#2}\}}
+\newcommand{\semdiffboldleft}[2]{\{\textbf{#1}\,$\semdiffsign$\,#2\}}
+\newcommand{\semdiffboldright}[2]{\{#1\,$\semdiffsign$\,\textbf{#2}\}}
+
+\newcommand{\semdiffmath}[2]{\{\textnormal{\textbf{#1}}\!\semdiffsign\!{\textnormal{\textbf{#2}}\}}}
+\newcommand{\semdiffmathleft}[2]{\{\textnormal{\textbf{#1}}\!\semdiffsign\!{\textnormal{#2}\}}}
+\newcommand{\semdiffmathright}[2]{\{\textnormal{#1}\!\semdiffsign\!{\textnormal{\textbf{#2}}\}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ousiometrics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Ntypes}{N_{\textnormal{types}}}
+\newcommand{\Nsd}{N_{\textnormal{differentials}}}
+
+%% meaning:
+
+\newcommand{\meaningsymbol}{M}
+\newcommand{\avgmeaning}{\meaningsymbol_{\textnormal{avg}}}
+\newcommand{\medmeaning}{\meaningsymbol_{\textnormal{med}}}
+
+\newcommand{\valencesymbol}{\textnormal{\textbf{Valence}}}
+\newcommand{\arousalsymbol}{\textnormal{\textbf{Arousal}}}
+\newcommand{\dominancesymbol}{\textnormal{\textbf{Dominance}}}
+
+\newcommand{\happinesssymbol}{\textnormal{\textbf{Happiness}}}
+\newcommand{\sadnesssymbol}{\textnormal{\textbf{Sadness}}}
+
+
+%% \newcommand{\Mvalence}{\meaningsymbol_{\valencesymbol}}
+%% \newcommand{\Marousal}{\meaningsymbol_{\textnormal{arousal}}}
+%% \newcommand{\Mdominance}{\meaningsymbol_{\textnormal{dominance}}}
+
+%% \newcommand{\Mdominance}{M_{3}^{\textnormal{VAD}}}
+   
+%% \newcommand{\powersymbol}{\textnormal{power}}
+%% \newcommand{\perilsymbol}{\textnormal{peril}}
+%% \newcommand{\playsymbol}{\textnormal{play}}
+%% 
+%% \newcommand{\Mpower}{\meaningsymbol_{\textnormal{power}}}
+%% \newcommand{\Mperil}{\meaningsymbol_{\textnormal{peril}}}
+%% \newcommand{\Mplay}{\meaningsymbol_{\textnormal{play}}}
+
+\newcommand{\powersymbol}{\textnormal{\textbf{Power}}}
+\newcommand{\dangersymbol}{\textnormal{\textbf{Danger}}}
+\newcommand{\structuresymbol}{\textnormal{\textbf{Structure}}}
+
+\newcommand{\weaknesssymbol}{\textnormal{\textbf{Weakness}}}
+\newcommand{\safetysymbol}{\textnormal{\textbf{Safety}}}
+
+%% \newcommand{\Mpower}{\meaningsymbol_{\textnormal{power}}}
+%% \newcommand{\Mdanger}{\meaningsymbol_{\textnormal{danger}}}
+%% \newcommand{\Mstructure}{\meaningsymbol_{\textnormal{structure}}}
+
+\newcommand{\goodnesssymbol}{\textnormal{\textbf{Goodness}}}
+\newcommand{\energysymbol}{\textnormal{\textbf{Energy}}}
+
+%% \newcommand{\Mgoodness}{\meaningsymbol_{\textnormal{goodness}}}
+%% \newcommand{\Menergy}{\meaningsymbol_{\textnormal{energy}}}
+
+
+\newcommand{\Mvalence}{V}
+\newcommand{\Marousal}{A}
+\newcommand{\Mdominance}{D}
+
+%% \newcommand{\Mdominance}{\mathbf{\textnormal{M}}_{3}^{\textnormal{(VAD)}}}
+\newcommand{\Mpower}{P}
+\newcommand{\Mdanger}{D}
+\newcommand{\Mstructure}{S}
+
+\newcommand{\Mgoodness}{G}
+\newcommand{\Menergy}{E}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Character dimensions and variance explained
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% use SVD
+
+\newcommand{\scorematrix}{\textmatrix{A}}
+
+\newcommand{\charsymbol}{\chi}
+\newcommand{\traitsymbol}{\tau}
+
+\newcommand{\chardimvar}{u}
+\newcommand{\chardimvec}{\hat{u}}
+
+\newcommand{\traidimvar}{v}
+\newcommand{\traitdimvec}{\hat{v}}
+
+\newcommand{\PVE}{\beta}
+\newcommand{\PVEdimension}[1]{\PVE_{\textnormal{#1}}}
+\newcommand{\PVEdimensinocharacter}[2]{\PVE_{\textnormal{#1}}^{\textnormal{#2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Variablify words 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\wordvar}[1]{\{\textnormal{\textbf{#1}}\}}
 

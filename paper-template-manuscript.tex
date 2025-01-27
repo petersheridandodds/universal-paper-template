@@ -1,0 +1,185 @@
+\documentclass[
+  10pt,
+  longbibliography,
+  twocolumn,
+  twoside,
+]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[numbers,round,comma,sort&compress]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% page layout
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+  left=0.65in,
+  right=0.65in,
+  top=0.65in,
+  bottom=0.65in,
+]{geometry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% section headers: ragged right
+%% https://tex.stackexchange.com/questions/184280/section-headings-with-long-titles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{sectsty}
+\sectionfont{\raggedright\large\bfseries}
+\subsectionfont{\raggedright\large}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% captions
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[font=small,labelfont=bf]{caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% floats
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pages can be all floats
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \renewcommand{\topfraction}{1}
+%% \renewcommand{\bottomfraction}{0}
+%% \renewcommand{\textfraction}{0}
+\renewcommand{\dbltopfraction}{1}
+
+%% allow text under large floats
+%% \renewcommand{\floatpagefraction}{.95}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% float barrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%% \usepackage{placeins}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% headers
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot{}
+\fancyhead{}
+\fancyhead[RO,LE]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general settings, packages, macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% general settings, packages, macros
+
+%% load in root name
+\usepackage[realmainfile]{currfile}
+\input{\currfilebase.settings}
+\input{\filenamebase.settings}
+
+\setboolean{twocolswitch}{true}
+
+\usepackage{natbib}
+\setcitestyle{square}
+\bibliographystyle{unsrtabbrv}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paragraph skip and ragged right
+%%
+%% similar to format used in the book "Several short sentences about writing"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://tex.stackexchange.com/questions/246526/adding-blank-line-between-and-indenting-first-line-of-all-paragraphs
+%% appears after begin document for revtex because:
+%% https://tex.stackexchange.com/questions/585414/parskip-doesnt-work
+\setlength{\parskip}{1\baselineskip plus .1\baselineskip  minus .1\baselineskip}
+
+%% for better reading
+\raggedright
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\suppmaterial}{Anciliary files}
+\newcommand{\mainappendix}{Appendix}
+\newcommand{\onlineappendices}{Online Appendices (\href{http://compstorylab.org/trumpstoryturbulence/}{compstorylab.org/trumpstoryturbulence/})}
+\newcommand{\onlineappendicesplain}{Online Appendices}
+%% \newcommand{\suppmaterial}{Supplementary Material}
+%% \newcommand{\suppmaterial}{Appendices}
+\newcommand{\arxivonly}[1]{#1}
+
+%%%%%% author(s), address(es) plus abstract
+
+
+
+\begin{document}
+
+\title{\protect
+\input{\filenamebase.title}
+}
+
+%% \input{\filenamebase.author}
+
+\date{\today}
+
+%% \begin{abstract}
+%%   \protect
+%%   \input{\filenamebase.abs} 
+%% \end{abstract}
+
+\maketitle
+
+%%%%%%%%% end of author(s), address(es) plus abstract
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\input{\filenamebase.body}
+
+%% methods
+
+\input{\filenamebase.methods}
+
+%% \acknowledgments
+\input{\filenamebase.acknowledgments}
+
+\clearpage
+
+%% \input{\filenamebase.biblio}
+%% \bibliographystyle{unsrtnat}
+\bibliography{\filenamebase}
+%% \bibliography{everything.bib}
+
+%% \clearpage
+
+%% %% appendix
+%%
+%% %% optional: switch to single column
+\onecolumn
+
+\appendix
+\section{Appendices}
+
+\setcounter{page}{1}
+\renewcommand{\thepage}{A\arabic{page}}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\renewcommand{\thesection}{A\arabic{section}}
+\setcounter{section}{0}
+
+\input{\filenamebase.appendix}
+
+\end{document}

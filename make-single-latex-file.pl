@@ -124,6 +124,9 @@ $tex =~ s/\n\n+/\n\n/msg;
 $tex =~ s/^\s+//;
 $tex =~ s/\s+$/\n/;
 
+# remove figures/localized/ from includegraphics
+$tex =~ s/figures\/localized\///msg;
+
 print OUTFILE $tex;
 
 close FILE;
