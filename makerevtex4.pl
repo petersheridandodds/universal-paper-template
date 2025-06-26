@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+$filetype = "revtex4-article";
+
 ## set up name in settings file
 `make-name-match-settingsfile.pl`;
 
@@ -9,8 +11,8 @@
 ## local directory (for global recording of writing data)
 ## works because paper/book directory names are in the format YYYY-MM-descriptive-tags
 ## downfall: directory names may change but that represents a rebuilding
-$fulldir = `pwd`;
-($localdir = `pwd`) =~ s/^.*\///;
+$fulldir = $ENV{'PWD'};
+($localdir = $ENV{'PWD'}) =~ s/^.*\///;
 
 foreach $argument (@ARGV) {
     if (($argument eq "-quick") or ($argument eq "-q"))
@@ -27,6 +29,7 @@ if ($#bodies eq -1) {
 }
 
 ($sec,$min,$hour,$numday,$month,$year,$wday,$yday,$isdst) = localtime(time);
+$monthnum = $month + 1;
 $year += 1900;
 $timestamp = "$year $month $numday $hour $min $sec";
 
@@ -131,10 +134,17 @@ foreach $body (@bodies) {
 	chomp $numwords;
 	chomp $numchars;
 
-		print "$numlines $numwords $numchars";
-
+	print "$numlines $numwords $numchars";
 
 	if (($numpages ne "") and ($numbytes ne "")) {
+	    $centrallogfile = sprintf("$ENV{HOME}/papers/log/writing/%d-%02d.txt",$year,$monthnum);
+	    `touch $centrallogfile`;
+	    open (CENTRALLOGFILE,">>$centrallogfile") or die "Can't open $centrallogfile: $!\n";
+
+	    print CENTRALLOGFILE "$timestamp $numtodos $numpages $numbytes $numlines $numwords $numchars $fulldir $filename $filetype \n";
+	    close CENTRALLOGFILE;
+
+	    
 	    open (LOGFILE, ">>$logfilename") or die "Can't open $logfilename: $!\n";
 	    print LOGFILE "$timestamp $numtodos $numpages $numbytes $numlines $numwords $numchars\n";
 	    close LOGFILE;

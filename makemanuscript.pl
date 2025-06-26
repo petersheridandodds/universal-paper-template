@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+$filetype = "manuscript";
+
 ## set up name in settings file
 `make-name-match-settingsfile.pl`;
 
@@ -43,13 +45,11 @@ foreach $body (@bodies) {
 	$command = "make-local-bibfile.pl $filename.bib $texfiles";
         system($command);
 
-	## make single line versions of title, abstract, logline
-	$command = "./singlelineify.pl $filename.title.tex\n";
-        system($command);
-	$command = "./singlelineify.pl $filename.abs.tex\n";
-        system($command);
-	$command = "./singlelineify.pl $filename.logline.tex\n";
-        system($command);
+	## onelineify title, logline, and abstract
+	`singlelineify.pl $filename.title.tex`;
+	`singlelineify.pl $filename.logline.tex`;
+	`singlelineify.pl $filename.abs.tex`;
+	`singlelineify.pl $filename.acknowledgments.tex`;
 
 	($logfilename = "log/progress-$body") =~ s/\.body\.tex$/-log/;
 	print "processing $filename...\n";
@@ -73,7 +73,7 @@ foreach $body (@bodies) {
 	}
 	    
 	if ($pdfswitch == 1) {
-	    `lualatex $filename-manuscript 1>&2`;
+	    `pdflatex $filename-manuscript 1>&2`;
 	}
 	else {
 	    `latex $filename-manuscript 1>&2`;
@@ -81,8 +81,8 @@ foreach $body (@bodies) {
 	unless ($quickswitch == 1) {
 	    `bibtex $filename-manuscript 1>&2`;
 	    if ($pdfswitch == 1) {
-		`lualatex $filename-manuscript 1>&2`;
-		`lualatex $filename-manuscript 1>&2`;
+		`pdflatex $filename-manuscript 1>&2`;
+		`pdflatex $filename-manuscript 1>&2`;
 	    }
 	    else {
 		`latex $filename-manuscript 1>&2`;
@@ -139,7 +139,6 @@ foreach $body (@bodies) {
 	    `touch $centrallogfile`;
 	    open (CENTRALLOGFILE,">>$centrallogfile") or die "Can't open $centrallogfile: $!\n";
 
-	    $filetype = "manuscript";
 	    print CENTRALLOGFILE "$timestamp $numtodos $numpages $numbytes $numlines $numwords $numchars $fulldir $filename $filetype \n";
 	    close CENTRALLOGFILE;
 	    
@@ -159,7 +158,7 @@ foreach $body (@bodies) {
 
     }
 
-    print "run lualatex $filename-newpax.tex separately if needed\n";    
+    print "run pdflatex $filename-newpax.tex separately if needed\n";    
 
 }
 

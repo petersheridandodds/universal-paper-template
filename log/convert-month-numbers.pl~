@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+
+## adjust month numbers before the start of 2025
+
+@files = <pre-corrected-2025/progress-*-log>;
+
+foreach $file (@files) {
+
+    print $file."\n";
+
+    ($outfile = $file) =~ s/pre-corrected/corrected/;
+
+    ##    print $file."\n";
+    ##    print $outfile."\n";
+
+    open (FILE,"$file") or die "Can't open $file: $!\n";
+    open (OUTFILE,">$outfile") or die "Can't open $outfile: $!\n";
+    
+    foreach $line (<FILE>) {
+
+	$line =~ m/^(.*?) (.*?) (.*)$/;
+	$year = $1;
+	if ($year < 2025) {
+	    $monthnum = $2 + 1;
+	} else {
+	    $monthnum = $2;
+	}
+	$newline = $year." ".$monthnum." ".$3."\n";
+
+	print OUTFILE $newline;
+    }
+
+    close FILE;
+    close OUTFILE;
+}
+    

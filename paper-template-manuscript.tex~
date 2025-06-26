@@ -1,4 +1,3 @@
-\DocumentMetadata{uncompress} %% for newpax
 \documentclass[
   10pt,
   longbibliography,
@@ -118,21 +117,7 @@
 
 %%%%%% author(s), address(es) plus abstract
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% keep links alive in imported pdfs
-%%
-%% turn on for final production
-%%
-%% use the link border color and style of the imported pdf
-%% and not hyperref colors
-%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{pdfpages}
-\usepackage{newpax}
-\newpaxsetup{usefileattributes=true}
-
-\usepackage{authblk}
 
 \begin{document}
 
@@ -144,70 +129,14 @@
 
 \date{\today}
 
+%% \begin{abstract}
+%%   \protect
+%%   \input{\filenamebase.abs} 
+%% \end{abstract}
+
 \maketitle
 
 %%%%%%%%% end of author(s), address(es) plus abstract
-
-\hspace*{-110pt}  
-\begin{minipage}{220pt}
-  
-  \centering
-
-  \renewcommand{\baselinestretch}{1.25}
-  \selectfont
-  
-  \textbf{Logline}
-
-  \raggedright
-  
-  \bigskip
-
-  \input{\filenamebase.logline}
-
-  \renewcommand{\baselinestretch}{1}
-  \selectfont
-  
-  \bigskip
-  \bigskip
-  \bigskip
-  \bigskip
-  
-  \includegraphics[width=\textwidth]{figures/localized/null.pdf}
-  
-\end{minipage}
-
-
-\clearpage
-
-
-\newgeometry{
-  left=2in,
-  right=2in,
-  top=1in,
-  bottom=1in,
-  }
-
-\onecolumn
-
-\renewcommand{\baselinestretch}{1.25}
-\selectfont
-
-\begin{center}
-
-{\Large\textbf{Abstract}}
-
-\end{center}
-
-\raggedright
-
-\input{\filenamebase.abs}
-
-\renewcommand{\baselinestretch}{1}
-\selectfont
-
-\twocolumn
-
-\restoregeometry
 
 \clearpage
 
@@ -223,10 +152,6 @@
 
 %% \acknowledgments
 \input{\filenamebase.acknowledgments}
-
-\section*{Changelog}
-
-\input{\filenamebase.changelog}
 
 \clearpage
 

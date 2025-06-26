@@ -1,0 +1,43 @@
+\documentclass{article}
+
+%% load the lua code
+\directlua{require("newpax")}
+
+%% write .newpax files for newpax.sty
+
+%% for references to the main data set
+\newcommand{\Ncharacters}{2000}
+\newcommand{\Ntraits}{464}
+\newcommand{\Nstories}{341}
+
+%%   newpax.writenewpax("figures/localized/Arrested-Development-Lucille-Bluth-\Ncharacters-\Ntraits-\Nstories")
+%%   newpax.writenewpax("figures/localized/Buffy-the-Vampire-Slayer-Buffy-Summers-\Ncharacters-\Ntraits-\Nstories")
+%%   newpax.writenewpax("figures/localized/rational--whimsical-\Ncharacters-\Ntraits-\Nstories")
+
+\directlua
+    {
+      newpax.writenewpax("figures/localized/stories-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/traits-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/archetypes-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/essential-traits-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/orderly--chaotic-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/Its-Always-Sunny-in-Philadelphia-Charlie-Kelly-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/Buffy-the-Vampire-Slayer-Buffy-Summers-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/Harry-Potter-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/Harry-Potter-dimensions-3-vs-4-\Ncharacters-\Ntraits-\Nstories")
+      newpax.writenewpax("figures/localized/comparison-Archer-Malory-Archer-vs-Arrested-Development-Lucille-Bluth-2000-464-341")
+      newpax.writenewpax("figures/localized/comparison-Archer-Sterling-Archer-vs-Bobs-Burgers-Bob-Belcher-2000-464-341")
+    }
+
+\begin{document}
+\end{document}
+
+%% - these don't work properly because the cropped pdfs include all of the original
+%% - moving to pngs
+%% 
+%%       newpax.writenewpax("figures/localized/orderly--chaotic-\Ncharacters-\Ntraits-\Nstories")
+%%       newpax.writenewpax("figures/localized/orderly--chaotic-\Ncharacters-\Ntraits-\Nstories-title")
+%%       newpax.writenewpax("figures/localized/Buffy-the-Vampire-Slayer-Buffy-Summers-\Ncharacters-\Ntraits-\Nstories-title")
+%%       newpax.writenewpax("figures/localized/outcast-angel-hero-header")
+%%       newpax.writenewpax("figures/localized/outcast-angel-hero-switcher")
+%%       newpax.writenewpax("figures/localized/essential-trait-007-positive-header")
