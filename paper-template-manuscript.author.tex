@@ -1,0 +1,66 @@
+%% https://tex.stackexchange.com/questions/214404/add-affiliations-to-the-authors-name-in-the-article-class
+%% https://tex.stackexchange.com/questions/259375/customize-author-and-affiliation-using-authblk
+
+\renewcommand*{\Authsep}{, }
+\renewcommand*{\Authand}{, }
+\renewcommand*{\Authands}{, }
+\renewcommand*{\Affilfont}{\normalsize\normalfont}
+\renewcommand*{\Authfont}{\bfseries}
+\setlength{\affilsep}{2em}
+
+\author[1,2*]{The First Author}
+\author[1,2*]{The Second Author}
+\author[1,2*]{Lots of Authors}
+\author[1,2,3]{Julia Witte Zimmerman}
+\author[1,2,4*]{Christopher M. Danforth}
+\author[1,2,3,5,6*]{Peter Sheridan Dodds}
+
+\affil[1]{
+  Computational Story Lab,
+  Vermont Advanced Computing Center,
+  University of Vermont,
+  Burlington,
+  VT 05405,
+  US
+}
+
+\affil[2]{
+  Vermont Complex Systems Institute,
+  MassMutual Center of Excellence for Complex Systems and Data Science,
+  University of Vermont,
+  Burlington,
+  VT 05405,
+  US
+}
+
+\affil[3]{
+  Computational Ethics Lab,
+  University of Vermont,
+  Burlington,
+  VT 05405,
+  US
+}
+
+\affil[4]{
+  Department of Mathematics \& Statistics,
+  University of Vermont,
+  Burlington,
+  VT 05405,
+  US
+  }
+
+\affil[5]{
+  Department of Computer Science,
+  University of Vermont,
+  Burlington,
+  VT 05405,
+  US
+}
+
+\affil[6]{
+  Santa Fe Institute,
+  1399 Hyde Park Rd,
+  Santa Fe,
+  NM 87501,
+  US
+}

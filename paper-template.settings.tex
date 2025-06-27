@@ -120,10 +120,13 @@
 \newcommand{\tcn}[2]{\color[named]{#1}{#2}}
 \definecolor{olivegreen}{rgb}{0.33333,.41961,0.18431}
 \definecolor{forestgreen}{rgb}{0.13333,.5451,0.13333}
+
 \definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
 \definecolor{verylightgrey}{rgb}{0.90,0.90,0.90}
 \definecolor{veryverylightgrey}{rgb}{0.95,0.95,0.95}
 \definecolor{grey}{rgb}{0.5,0.5,0.5}
+\definecolor{darkgrey}{rgb}{0.3,0.3,0.3}
+\definecolor{verydarkgrey}{rgb}{0.15,0.15,0.15}
 
 % change to charcoal #36454F RGB={54,69,79}
 % cinerous #98817B RGB={152,129,123}
@@ -149,6 +152,43 @@
 \definecolor{purpletaupe}{HTML}{3B444B}
 % arsenic #3B444B RGB={59,68,75}
 %% \definecolor{alertblue}{HTML}{3B444B}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% colors for tables, using magma and ice
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{headerorange}{RGB}{255,116,0}
+\definecolor{headergray}{RGB}{230,230,230}
+
+%% header for magma and ice tables
+\definecolor{headerpop}{RGB}{230,230,230}
+
+\definecolor{magmalight}{RGB}{252,251,195}
+\definecolor{magmalightalt}{RGB}{250,240,184}
+\definecolor{magmamedium}{RGB}{245,200,146}
+\definecolor{magmadark}{RGB}{224,106,98}
+
+\definecolor{icelight}{RGB}{223,242,244}
+\definecolor{icelightalt}{RGB}{189,222,226}
+\definecolor{icemedium}{RGB}{132,184,204}
+\definecolor{icedark}{RGB}{103,153,191}
+
+%% traits (icelight and icelightalt)
+\definecolor{traitrowcolor}{RGB}{223,242,244}
+\definecolor{traitrowcoloralt}{RGB}{189,222,226}
+
+%% characters (magmalight and magmalightalt)
+\definecolor{characterrowcolor}{RGB}{252,251,195}
+\definecolor{characterrowcoloralt}{RGB}{250,240,184}
+
+%% archetypes (pale pink and melon)
+\definecolor{archetyperowcolor}{RGB}{255,213,212} %% pale pink
+\definecolor{archetyperowcoloralt}{RGB}{255,182,179} %% melon
+
+%% datasets 
+\definecolor{datasetrowcolor}{RGB}{232,244,234}
+\definecolor{datasetrowcoloralt}{RGB}{210,231,214}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -194,11 +234,160 @@
 \newcommand{\newphrase}{\newline}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% structures for general (e.g., editor) and reviewer comments
+%%
+%% reply is in normal format below each comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% customizing logline and abstract
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{changepage}
+
+%% for quote environments
+%% https://tex.stackexchange.com/questions/63752/colored-frame-for-the-framed-environment
+\newcommand\Loadedframemethod{default}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+%% https://ctan.org/tex-archive/macros/latex/contrib/mdframed
+%% below is developed from mdframed-example-default.tex
+
+%% set up per mdframed example
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% logline box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{loglinetitle} =[draw=icedark, fill=icemedium!50, text=black]
+
+\newenvironment{loglinebox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[loglinetitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[loglinetitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=icedark,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=icelight,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% abstract box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{abstracttitle} =[draw=magmadark!75, fill=magmamedium!75, text=black]
+
+\newenvironment{abstractbox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[abstracttitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[abstracttitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=magmadark,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=magmalight,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% info box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{infotitle} =[draw=darkgrey, fill=lightgrey!50, text=black]
+
+\newenvironment{infobox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[infotitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[infotitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=grey,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=lightgrey!25,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% custom itemized lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% change log box
+%% (similar to info box but with itemizes internals)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{changelogtitle} =[draw=darkgrey, fill=lightgrey!50, text=black]
+
+\newenvironment{changelogbox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[changelogtitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[changelogtitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=grey,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=lightgrey!25,nobreak=true]\relax%
+     \raggedright
+     \begin{enumerate}[
+         noitemsep,
+         leftmargin=10pt,
+       ]
+}{
+     \end{enumerate}
+   \end{mdframed}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
