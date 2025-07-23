@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+`mkdir -p log`;
+
 $filetype = "manuscript";
 
 ## set up name in settings file

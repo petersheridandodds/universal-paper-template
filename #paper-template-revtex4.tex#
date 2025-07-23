@@ -1,0 +1,160 @@
+\documentclass[
+  pre,
+  twocolumn,
+  twoside,
+  byrevtex,
+  superscriptaddress,
+  nofootinbib,
+  floatfix,
+  longbibliography,
+]{revtex4-2}
+
+
+%% \documentclass[pre,
+%%   twocolumn,
+%%   twoside,
+%%   byrevtex,
+%%   superscriptaddress,
+%%   floatfix,
+%% ]{revtex4-2}
+
+%% \documentclass[aps,
+%%   twocolumn,
+%% ]{revtex4-2}
+
+%% \documentclass[aps,
+%%   preprint,
+%% ]{revtex4-2}
+
+%% \documentclass[aps,
+%%   twocolumn,
+%%   draft,
+%% ]{revtex4-2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general settings, packages, macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% load in root name
+\usepackage[realmainfile]{currfile}
+\input{\currfilebase.settings}
+\input{\filenamebase.settings}
+
+\setboolean{twocolswitch}{true}
+
+%% \bibliographystyle{unsrtabbrv}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\suppmaterial}{Anciliary files}
+\newcommand{\onlineappendices}{Online Appendices (\href{http://www.compstorylab.org/something/}{compstorylab.org/something/})}
+\newcommand{\onlineappendicesplain}{Online Appendices}
+%% \newcommand{\suppmaterial}{Supplementary Material}
+%% \newcommand{\suppmaterial}{Appendices}
+\newcommand{\paperrepository}{\href{https://gitlab.com/compstorylab/something}{https://gitlab.com/compstorylab/something}}
+\newcommand{\arxivonly}[1]{#1}
+
+%%%%%% author(s), address(es) plus abstract
+
+%% for refinements (loaded after xcolor)
+%% \usepackage{showframe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paragraph skip and ragged right
+%%
+%% similar to format used in the book "Several short sentences about writing"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://tex.stackexchange.com/questions/246526/adding-blank-line-between-and-indenting-first-line-of-all-paragraphs
+%% appears after begin document for revtex because:
+%% https://tex.stackexchange.com/questions/585414/parskip-doesnt-work
+
+%% for better reading
+\raggedright
+
+\title{\protect
+  \input{\filenamebase.title}
+}
+
+\input{\filenamebase.author}
+
+\date{\today}
+
+\begin{abstract}
+  \protect
+  \input{\filenamebase.abs} 
+\end{abstract}
+
+\maketitle
+
+%%%%%%%%% end of author(s), address(es) plus abstract
+
+\setlength{\parskip}{1\baselineskip plus .1\baselineskip  minus .1\baselineskip}
+
+\input{\filenamebase.body}
+
+%% Methods:
+%% 
+%% \input{\filenamebase.methods}
+
+\acknowledgments
+\input{\filenamebase.acknowledgments}
+
+%% changelog
+%% for updates to the *Xivs
+%% \section*{Changelog}
+%% \input{\filenamebase.changelog}
+
+%% local
+%% \bibliography{everything.bib}
+%% overleaf
+\bibliography{\filenamebase.bib}
+
+\clearpage
+
+%% %% appendix
+%%
+%% %% optional: switch to single column
+%% \onecolumngrid
+%% 
+%% \appendix
+%% \section{Auxiliary organ details}
+%% 
+%% \setcounter{page}{1}
+%% \renewcommand{\thepage}{A\arabic{page}}
+%% \renewcommand{\thefigure}{A\arabic{figure}}
+%% \renewcommand{\thetable}{A\arabic{table}}
+%% \setcounter{figure}{0}
+%% \setcounter{table}{0}
+%% 
+%% \input{\filenamebase.appendix}
+
+%% %% supplementary
+%% 
+%% %% %% optional: switch to single column
+%% \onecolumngrid
+%% 
+%% %% following records the starting page number of the supplementary
+%% %% section in a file called startsupp.txt
+%% %% enables script-based breaking of manuscript and supplementary
+%% \newwrite\tempfile
+%% \immediate\openout\tempfile=startsupp.txt
+%% \immediate\write\tempfile{\thepage}
+%% \immediate\closeout\tempfile
+%% 
+%% \setcounter{page}{1}
+%% \renewcommand{\thepage}{S\arabic{page}}
+%% 
+%% \renewcommand{\thefigure}{S\arabic{figure}}
+%% \setcounter{figure}{0}
+%% 
+%% \renewcommand{\thetable}{S\arabic{table}}
+%% \setcounter{table}{0}
+%% 
+%% \renewcommand{\thesection}{S\arabic{section}}
+%% \setcounter{section}{0}
+%% 
+%% \input{\filenamebase.supplementary}
+
+\end{document}

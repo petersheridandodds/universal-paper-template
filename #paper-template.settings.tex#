@@ -1,0 +1,886 @@
+\lefthyphenmin=3
+\righthyphenmin=2
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+%% helpful for complicated papers
+%% in finding out which figures, etc. are not being referenced
+
+%% \usepackage{refcheck}
+%% also helpful, highlighting the value of adding taxonomy to labels:
+%% grep -A 1 refcheck paper-template-revtex4.log | grep -A 1 fig:
+
+
+%% links
+\usepackage{url}
+%% url style
+\urlstyle{same}
+
+%% allow hyphenation for urls with long many-hyphenated strings
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\usepackage{colortbl}
+
+\definecolor{goodblue}{RGB}{0, 91, 187}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  allcolors=goodblue,
+  urlcolor=goodblue,
+  citecolor=goodblue,
+  pdfborder={0 0 0},
+  breaklinks=true,
+}
+
+%% arrows
+\usepackage{stmaryrd}
+
+%% to optionally add to end of links
+%% \newcommand{\paperlinksymbol}{}
+%% \newcommand{\paperlinksymbol}{{$^{{}_{\nearrow}}$}}
+%% \newcommand{\paperlinksymbol}{$\mbox{\tiny\ensuremath{^{{}_{\nearrow}}}}$}
+
+\newcommand{\onlinelinksymbol}{$\nnearrow$}
+\newcommand{\externallinksymbol}{{\tiny$^{{}_{\nnearrow}}$\!\!}}
+\newcommand{\internallinksymbol}{{$^{\Rsh}$\!\!}}
+\newcommand{\paperlinksymbol}{\externallinksymbol}
+
+%% options for internal link
+%% \sswarrow
+%% \rightsquigarrow
+%% \Rsh
+%% \Lsh
+
+
+%% \newcommand{\paperlink}[2]{\href{#1}{\dashuline{#2}}}
+\newcommand{\paperlink}[2]{\href{#1}{\textcolor{darkgrey}{#2}}}
+
+
+%% exciting emphasis action
+%% https://tex.stackexchange.com/questions/218418/book-title-in-revtex-bibliography
+%% plain ulem breaks bibliography:
+%% fix:
+\usepackage[normalem]{ulem}
+
+%% minus sign
+%% \textminus
+%% https://tex.stackexchange.com/questions/79141/is-there-a-designated-symbol-for-the-negative-sign-in-say-16
+\usepackage{textcomp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% for figure adjustment
+%% https://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage[export]{adjustbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% color table with fix for revtex4
+%%
+%% see
+%% https://tex.stackexchange.com/questions/102665/revtex4-1-and-colortbl-doesnt-fill-cells
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\makeatletter
+
+\def\CT@@do@color{%
+  \global\let\CT@do@color\relax
+  \@tempdima\wd\z@
+  \advance\@tempdima\@tempdimb
+  \advance\@tempdima\@tempdimc
+  \advance\@tempdimb\tabcolsep
+  \advance\@tempdimc\tabcolsep
+  \advance\@tempdima2\tabcolsep
+  \kern-\@tempdimb
+  \leaders\vrule
+  %^^A                     \@height\p@\@depth\p@
+  \hskip\@tempdima\@plus  1fill
+  \kern-\@tempdimc
+  \hskip-\wd\z@ \@plus -1fill }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[table]{xcolor}
+
+\newcommand{\tc}[2]{\textcolor{#1}{#2}}
+\newcommand{\tcn}[2]{\color[named]{#1}{#2}}
+\definecolor{olivegreen}{rgb}{0.33333,.41961,0.18431}
+\definecolor{forestgreen}{rgb}{0.13333,.5451,0.13333}
+
+\definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
+\definecolor{verylightgrey}{rgb}{0.90,0.90,0.90}
+\definecolor{veryverylightgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\definecolor{darkgrey}{rgb}{0.3,0.3,0.3}
+\definecolor{verydarkgrey}{rgb}{0.15,0.15,0.15}
+
+% change to charcoal #36454F RGB={54,69,79}
+% cinerous #98817B RGB={152,129,123}
+% feldgrau #4D5D53 RGB={77,93,83}
+% glaucous #6082B6 RGB={96,130,182}
+% arsenic #3B444B RGB={59,68,75}
+
+% header 51, 54, 126
+\definecolor{headerblue}{HTML}{33367E}
+\definecolor{unitednationsblue}{HTML}{4D88FF}
+
+\definecolor{charcoal}{HTML}{36454F}
+\definecolor{cinerous}{HTML}{98817B}
+\definecolor{feldgrau}{HTML}{4D5D53}
+\definecolor{glaucous}{HTML}{6082B6}
+\definecolor{arsenic}{HTML}{3B444B}
+\definecolor{xanadu}{HTML}{738678}
+
+\definecolor{firebrick}{HTML}{B22222}
+\definecolor{orangered}{HTML}{FF4500}
+\definecolor{tomato}{HTML}{FF6347}
+
+\definecolor{purpletaupe}{HTML}{3B444B}
+% arsenic #3B444B RGB={59,68,75}
+%% \definecolor{alertblue}{HTML}{3B444B}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% colors for tables, using magma and ice
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{headerorange}{RGB}{255,116,0}
+\definecolor{headergray}{RGB}{230,230,230}
+
+%% header for magma and ice tables
+\definecolor{headerpop}{RGB}{230,230,230}
+
+\definecolor{magmalight}{RGB}{252,251,195}
+\definecolor{magmalightalt}{RGB}{250,240,184}
+\definecolor{magmamedium}{RGB}{245,200,146}
+\definecolor{magmadark}{RGB}{224,106,98}
+
+\definecolor{icelight}{RGB}{223,242,244}
+\definecolor{icelightalt}{RGB}{189,222,226}
+\definecolor{icemedium}{RGB}{132,184,204}
+\definecolor{icedark}{RGB}{103,153,191}
+
+%% traits (icelight and icelightalt)
+\definecolor{traitrowcolor}{RGB}{223,242,244}
+\definecolor{traitrowcoloralt}{RGB}{189,222,226}
+
+%% characters (magmalight and magmalightalt)
+\definecolor{characterrowcolor}{RGB}{252,251,195}
+\definecolor{characterrowcoloralt}{RGB}{250,240,184}
+
+%% archetypes (pale pink and melon)
+\definecolor{archetyperowcolor}{RGB}{255,213,212} %% pale pink
+\definecolor{archetyperowcoloralt}{RGB}{255,182,179} %% melon
+
+%% datasets 
+\definecolor{datasetrowcolor}{RGB}{232,244,234}
+\definecolor{datasetrowcoloralt}{RGB}{210,231,214}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% build papers out of todo lists and first lines of paragraphs
+%% (think Twitter threads or code documentation)
+%%
+%% also:
+%% https://english.stackexchange.com/questions/479547/word-for-using-extra-line-breaks-to-improve-readability
+%%
+%% and use newlines as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\todo}[1]{\noindent\textcolor{goodblue}{{$\Box$ #1}}}
+\newcommand{\done}[1]{}
+\newcommand{\paragraphnutshell}[1]{\noindent\textcolor{firebrick}{{Paragraph: #1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paragraphs (crucial):
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{textblock}{\renewcommand{\item}{}\ignorespaces}{}
+
+%% the ignorespaces prevents errant paragraph indenting
+
+%% abandoned:
+%% \let\paragraph\undefined
+%% \newcommand{\sentence}{%%
+%% }
+
+%% adjusted from https://tex.stackexchange.com/questions/469864/change-font-for-the-paragraph-command
+%% normal or maybe bold text for first line
+\usepackage{titlesec}
+%% \titleformat*{\paragraph}{\mdseries}
+\titleformat*{\paragraph}{\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% new lines:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://english.stackexchange.com/questions/479547/word-for-using-extra-line-breaks-to-improve-readability
+%% new sense-line
+%% switch off for stupid journals
+\newcommand{\newphrase}{\newline}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% structures for general (e.g., editor) and reviewer comments
+%%
+%% reply is in normal format below each comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% customizing logline and abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{changepage}
+
+%% for quote environments
+%% https://tex.stackexchange.com/questions/63752/colored-frame-for-the-framed-environment
+\newcommand\Loadedframemethod{default}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+%% https://ctan.org/tex-archive/macros/latex/contrib/mdframed
+%% below is developed from mdframed-example-default.tex
+
+%% set up per mdframed example
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% logline box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{loglinetitle} =[draw=icedark, fill=icemedium!50, text=black]
+
+\newenvironment{loglinebox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[loglinetitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[loglinetitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=icedark,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=icelight,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% abstract box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{abstracttitle} =[draw=magmadark!75, fill=magmamedium!75, text=black]
+
+\newenvironment{abstractbox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[abstracttitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[abstracttitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=magmadark,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=magmalight,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% info box
+%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{infotitle} =[draw=darkgrey, fill=lightgrey!50, text=black]
+
+\newenvironment{infobox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[infotitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[infotitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=grey,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=lightgrey!25,nobreak=true]\relax%
+     \raggedright
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% custom itemized lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% change log box
+%% (similar to info box but with itemizes internals)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{changelogtitle} =[draw=darkgrey, fill=lightgrey!50, text=black]
+
+\newenvironment{changelogbox}[1][]{
+
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[changelogtitle, anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}
+  }%
+  {\mdfsetup{%
+     frametitle={%
+       \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[changelogtitle,anchor=east,rectangle]
+        {\strut~~#1:~~\strut};}}%
+   }%
+   \mdfsetup{innertopmargin=5pt,linecolor=grey,%
+             linewidth=0.5pt,topline=true,
+             frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+   \begin{mdframed}[backgroundcolor=lightgrey!25,nobreak=true]\relax%
+     \raggedright
+     \begin{enumerate}[
+         noitemsep,
+         leftmargin=10pt,
+       ]
+}{
+     \end{enumerate}
+   \end{mdframed}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{verbatim}
+
+\usepackage{enumerate}
+\usepackage{enumitem}
+%% https://tex.stackexchange.com/questions/104353/how-to-move-an-enumerate-environment-to-the-right
+%% indenting itemized lists
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{ifthen}
+
+\usepackage{longtable}
+
+\usepackage{mathtools}
+%% \usepackage{abraces}
+
+%% \usepackage{tikz-cd}
+%% \usetikzlibrary{arrows}
+%% \tikzset{
+%%   commutative diagrams/.cd,
+%%   arrow style=tikz,
+%%  diagrams={>=space}}
+
+\newboolean{twocolswitch}
+
+%%%%%%%%%%%%%%%%%%%%
+%% stack words
+%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{stackengine}
+
+%%%%%%%%%%%%%%%%%%%%
+%% array
+%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{array}
+
+%%%%%%%%%%%%%%%%%%%%
+%% adjustbox
+%%%%%%%%%%%%%%%%%%%%
+
+%% for figure adjustment
+%% https://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left
+\usepackage[export]{adjustbox}
+
+% ragged right in arrays
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS = \PreserveBackslash
+
+%% centering entries
+%% https://tex.stackexchange.com/questions/157389/how-to-center-column-values-in-a-table
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+%% blackboard font efforts; not good enough
+%% would need to go before amssym
+%% 
+%% blackboard font for matrices
+%% https://tex.stackexchange.com/questions/3473/blackboard-bold-variants-for-greek-letters
+%% \usepackage[bbgreekl]{mathbbol}
+
+%% "hollow" letters
+%% https://tex.stackexchange.com/questions/360226/how-to-produce-hollow-greek-letters-in-math-mode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% center a wide figure:
+%% https://tex.stackexchange.com/questions/16582/center-figure-that-is-wider-than-textwidth
+%% \centerfloat
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% notation (accumulated)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\avg}[1]{\left\langle#1\right\rangle}
+\newcommand{\tavg}[1]{\langle#1\rangle}
+
+\newcommand{\LavgHa}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\LavgHaN}[2]{\tavg{L_{#1,#2}}}
+\newcommand{\Lavg}{\tavg{L}}
+
+\newcommand{\sindex}[1]{}
+\newcommand{\nindex}[1]{}
+
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\www}[1]{\url{#1}}
+\newcommand{\req}[1]{(\ref{#1})}
+\newcommand{\Req}[1]{Eq.~(\ref{#1})}
+
+% lettrines
+\usepackage{lettrine}
+
+%% differential equations and integrals
+\newcommand{\dee}[1]{\textnormal{d}#1}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdiffsq}[2]{\frac{\partial^{2} #1}{{\partial #2}^{2}}}
+\newcommand{\diff}[2]{\frac{{\rm d}#1}{{\rm d}#2}}
+\newcommand{\diffsq}[2]{\frac{{\rm d}^{2}#1}{{\rm d} {#2}^{2}}}
+\newcommand{\tdiff}[2]{\textnormal{d} #1/\textnormal{d} #2}
+\newcommand{\tdiffsq}[2]{\textnormal{d}^{2} #1/\textnormal{d} {#2}^{2}}
+\newcommand{\tpdiff}[2]{\partial #1/\partial #2}
+\newcommand{\tpdiffsq}[2]{\partial^{2} #1/\partial {#2}^{2}}
+\newcommand{\postdee}[1]{\,\textnormal{d}#1}
+
+
+\newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Variablify words 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\wordvar}[1]{\{\textnormal{\textbf{#1}}\}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% logarithms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\logtwo}{\textnormal{log}_{2}}
+\newcommand{\loge}{\textnormal{log}_{e}}
+\newcommand{\logten}{\textnormal{log}_{10}}
+
+%%%%%%%%%%%%%%%%%%   
+%% matrices
+%%%%%%%%%%%%%%%%%%   
+
+\newcommand{\colvec}[1]{
+  \left[
+    \begin{array}{c}
+      #1
+    \end{array}
+  \right]
+}
+
+\newcommand{\rowop}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} \\
+      \mbox{= #1 -} \\ 
+      \mbox{#2 #3} \\
+    \end{array}
+  }
+}
+
+\newcommand{\rowoptwobytwo}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} 
+      \mbox{= #1 -}
+      \mbox{#2 #3} \\
+    \end{array}
+  }
+}
+
+\newcommand{\rowopeq}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \left\lgroup
+        \mbox{\tiny
+          \begin{tabular}{c}
+            #1' =  \\
+            #1 - #2 #3 \\
+          \end{tabular}
+        }
+      \right\rgroup
+    \end{array}
+  }
+}
+
+\newcommand{\rowswapeq}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\large =} \\
+      \left\lgroup
+        \mbox{\tiny
+          #1 $\leftrightarrow$ #2
+        }
+      \right\rgroup
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivthreebythree}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+      \mbox{row 3'} = \mbox{row 3/(#3)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdiv}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{#1'} = \mbox{#1/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivtwobytwo}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivtwobytwoeq}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{row 1'} = \mbox{row 1/(#1)}\\
+      \mbox{row 2'} = \mbox{row 2/(#2)}\\
+    \end{array}
+  }
+}
+
+\newcommand{\rowdivthreebythreeeqR}[3]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{R1'} = \mbox{R1/(#1)}\\
+      \mbox{R2'} = \mbox{R2/(#2)}\\
+      \mbox{R3'} = \mbox{R3/(#3)}\\
+    \end{array}
+  }
+}
+
+
+\newcommand{\rowdivtwobytwoeqR}[2]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large =} \\
+      \mbox{R1'} = \mbox{R1/(#1)}\\
+      \mbox{R2'} = \mbox{R2/(#2)}\\
+    \end{array}
+  }
+}
+
+
+\newcommand{\rowonediv}[1]{
+  {
+    \scriptsize
+    \begin{array}{c}
+      \mbox{\Large $\leadsto$} \\
+      \mbox{row 1'} = \mbox{row 1/#1}\\
+    \end{array}
+  }
+}
+
+\newcommand{\mymatrix}[2]{
+  \left[
+    \begin{array}{#1}
+      #2
+    \end{array}
+  \right]
+}
+
+%% \newcommand{\matrix}[1]{\mathbf{#1}}
+%% \newcommand{\textmatrix}[1]{#1}
+%% \renewcommand{\m}[1]{\mathbf{#1}}
+%% \newcommand{\m}[1]{\mathbf{#1}}
+
+\newcommand{\textmatrix}[1]{\mathbf{#1}}
+
+\newcommand{\Axb}{\mathbf{A}\vec{x}=\vec{b}}
+\newcommand{\Axzero}{\mathbf{A}\vec{x}=\vec{0}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\AT}{\mathbf{A}^{\rm T}}
+\newcommand{\CA}{C(\mathbf{A})}
+\newcommand{\NA}{N(\mathbf{A})}
+\newcommand{\CAT}{C(\mathbf{A}^{\rm T})}
+\newcommand{\NAT}{N(\mathbf{A}^{\rm T})}
+
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\R}{\mathbf{R}}
+
+\newcommand{\augAb}{[\A \, | \, \vec{b} \, ]}
+
+\newcommand{\rref}[1]{\R_{#1}}
+
+\newcommand{\lmat}{\left[
+    \begin{array}
+    }
+    \newcommand{\rmat}{\end{array}
+  \right]
+}
+
+%%%%%%%%%%%%%%%%
+%% contagion
+%%%%%%%%%%%%%%%%
+
+% \newcommand{\kstar}{d^{\ast}}
+% \newcommand{\kstari}{k_i^\ast}
+\newcommand{\kstar}{d^\ast}
+\newcommand{\kstari}{d_i^\ast}
+
+\newcommand{\dstar}{d^\ast}
+\newcommand{\dstari}{d_i^\ast}
+
+\newcommand{\phifix}{{\phi^{\ast}}}
+\newcommand{\phifixc}{{\phi_c^{\ast}}}
+\newcommand{\phifixb}{{\phi_b^{\ast}}}
+
+\newcommand{\phiiactive}{\phi_{i,t}}
+
+\newcommand{\phiiup}{{\phi_{i,\rm on}}}
+\newcommand{\phiidown}{{\phi_{i,\rm off}}}
+
+\newcommand{\phiup}{{\phi_{\rm on}}}
+\newcommand{\phidown}{{\phi_{\rm off}}}
+
+
+\newcommand{\Gfun}{G}
+
+\newcommand{\dstardist}{g}
+\newcommand{\dosedist}{f}
+\newcommand{\dosedistk}{f^{k\star}}
+
+% chaotic contagion
+\newcommand{\edgeinfprob}{\rho}
+\newcommand{\nodeinfprob}{\phi}
+
+\newcommand{\avgdegree}{k_{\rm avg}}
+
+\newcommand{\stateA}{S_{0}}
+\newcommand{\stateB}{S_{1}}
+
+\newcommand{\lcce}{H}
+
+%% \newcommand{\effectivecount}{f_{\textnormal{eff}}}
+
+\newcommand{\effectivecount}{f_{q,\textnormal{exp}}}
+\newcommand{\effectivecountq}[1]{f_{#1,\textnormal{exp}}}
+
+\newcommand{\simonrho}{\rho}
+\newcommand{\zipfexponent}{\alpha}
+
+\newcommand{\partitionprob}{q}
+\newcommand{\partitiontype}[1]{$\partitionprob$$=$$#1$}
+
+\newcommand{\onehalf}{\frac{1}{2}}
+\newcommand{\onequarter}{\frac{1}{4}}
+
+\newcommand{\clgamma}{\hat{\zipfexponent}}
+\newcommand{\xmin}{r_{\textnormal{max}}}
+\newcommand{\kstat}{D}
+\newcommand{\clp}{\textnormal{$p$-value}}
+\newcommand{\sigamma}{1-\simonrho}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% semantic differentials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% semantic differentials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\semdiffsign}{\Leftrightarrow}
+\newcommand{\semdiffsignleft}{\Leftarrow}
+\newcommand{\semdiffsignright}{\Rightarrow}
+
+\newcommand{\semdiff}[2]{\{#1\,$\semdiffsign$\,#2\}}
+\newcommand{\semdiffleft}[2]{\{#1\,$\semdiffsignleft$\,#2\}}
+\newcommand{\semdiffright}[2]{\{#1\,$\semdiffsignright$\,#2\}}
+
+\newcommand{\semdiffbold}[2]{\{\textbf{#1}\,$\semdiffsign$\,\textbf{#2}\}}
+\newcommand{\semdiffboldleft}[2]{\{\textbf{#1}\,$\semdiffsignleft$\,#2\}}
+\newcommand{\semdiffboldright}[2]{\{#1\,$\semdiffsignright$\,\textbf{#2}\}}
+
+\newcommand{\semdiffmath}[2]{\{\textnormal{\textbf{#1}}\!\semdiffsign\!{\textnormal{\textbf{#2}}\}}}
+\newcommand{\semdiffmathleft}[2]{\{\textnormal{\textbf{#1}}\!\semdiffsign\!{\textnormal{#2}\}}}
+\newcommand{\semdiffmathright}[2]{\{\textnormal{#1}\!\semdiffsign\!{\textnormal{\textbf{#2}}\}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ousiometrics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Ntypes}{N_{\textnormal{types}}}
+\newcommand{\Nsd}{N_{\textnormal{differentials}}}
+
+%% meaning:
+
+\newcommand{\meaningsymbol}{M}
+\newcommand{\avgmeaning}{\meaningsymbol_{\textnormal{avg}}}
+\newcommand{\medmeaning}{\meaningsymbol_{\textnormal{med}}}
+
+\newcommand{\valencesymbol}{\textnormal{\textbf{Valence}}}
+\newcommand{\arousalsymbol}{\textnormal{\textbf{Arousal}}}
+\newcommand{\dominancesymbol}{\textnormal{\textbf{Dominance}}}
+
+\newcommand{\happinesssymbol}{\textnormal{\textbf{Happiness}}}
+\newcommand{\sadnesssymbol}{\textnormal{\textbf{Sadness}}}
+
+
+%% \newcommand{\Mvalence}{\meaningsymbol_{\valencesymbol}}
+%% \newcommand{\Marousal}{\meaningsymbol_{\textnormal{arousal}}}
+%% \newcommand{\Mdominance}{\meaningsymbol_{\textnormal{dominance}}}
+
+%% \newcommand{\Mdominance}{M_{3}^{\textnormal{VAD}}}
+   
+%% \newcommand{\powersymbol}{\textnormal{power}}
+%% \newcommand{\perilsymbol}{\textnormal{peril}}
+%% \newcommand{\playsymbol}{\textnormal{play}}
+%% 
+%% \newcommand{\Mpower}{\meaningsymbol_{\textnormal{power}}}
+%% \newcommand{\Mperil}{\meaningsymbol_{\textnormal{peril}}}
+%% \newcommand{\Mplay}{\meaningsymbol_{\textnormal{play}}}
+
+\newcommand{\powersymbol}{\textnormal{\textbf{Power}}}
+\newcommand{\dangersymbol}{\textnormal{\textbf{Danger}}}
+\newcommand{\structuresymbol}{\textnormal{\textbf{Structure}}}
+
+\newcommand{\weaknesssymbol}{\textnormal{\textbf{Weakness}}}
+\newcommand{\safetysymbol}{\textnormal{\textbf{Safety}}}
+
+%% \newcommand{\Mpower}{\meaningsymbol_{\textnormal{power}}}
+%% \newcommand{\Mdanger}{\meaningsymbol_{\textnormal{danger}}}
+%% \newcommand{\Mstructure}{\meaningsymbol_{\textnormal{structure}}}
+
+\newcommand{\goodnesssymbol}{\textnormal{\textbf{Goodness}}}
+\newcommand{\energysymbol}{\textnormal{\textbf{Energy}}}
+
+%% \newcommand{\Mgoodness}{\meaningsymbol_{\textnormal{goodness}}}
+%% \newcommand{\Menergy}{\meaningsymbol_{\textnormal{energy}}}
+
+
+\newcommand{\Mvalence}{V}
+\newcommand{\Marousal}{A}
+\newcommand{\Mdominance}{D}
+
+%% \newcommand{\Mdominance}{\mathbf{\textnormal{M}}_{3}^{\textnormal{(VAD)}}}
+\newcommand{\Mpower}{P}
+\newcommand{\Mdanger}{D}
+\newcommand{\Mstructure}{S}
+
+\newcommand{\Mgoodness}{G}
+\newcommand{\Menergy}{E}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Character dimensions and variance explained
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% use SVD
+
+\newcommand{\scorematrix}{\textmatrix{A}}
+
+\newcommand{\charsymbol}{\chi}
+\newcommand{\traitsymbol}{\tau}
+
+\newcommand{\chardimvar}{u}
+\newcommand{\chardimvec}{\hat{u}}
+
+\newcommand{\traidimvar}{v}
+\newcommand{\traitdimvec}{\hat{v}}
+
+\newcommand{\PVE}{\beta}
+\newcommand{\PVEdimension}[1]{\PVE_{\textnormal{#1}}}
+\newcommand{\PVEdimensinocharacter}[2]{\PVE_{\textnormal{#1}}^{\textnormal{#2}}}
+

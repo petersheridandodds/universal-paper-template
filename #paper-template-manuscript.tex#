@@ -117,8 +117,7 @@
 %% \newcommand{\mainappendix}{Appendix}
 
 %% \newcommand{\onlineappendices}{Online Appendices (\href{?}{?})}
-%%\newcommand{\onlineappendicesplain}{Online Appendices}
-
+%% \newcommand{\onlineappendicesplain}{Online Appendices}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% arXiv only pieces
