@@ -258,7 +258,8 @@
 
 \clearpage
 
-%% \input{\filenamebase.biblio}
+\addcontentsline{toc}{section}{References}
+
 %% \bibliographystyle{unsrtnat}
 \bibliography{\filenamebase}
 %% \bibliography{everything.bib}
