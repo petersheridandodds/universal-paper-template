@@ -27,10 +27,10 @@
 %% section headers: ragged right
 %% https://tex.stackexchange.com/questions/184280/section-headings-with-long-titles
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{sectsty}
-\sectionfont{\raggedright\large\bfseries}
-\subsectionfont{\raggedright\large}
+\usepackage{titlesec}
+\titleformat{\section}{\raggedright\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\raggedright\large}{\thesubsection}{1em}{}
+\usepackage{ragged2e}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% captions
