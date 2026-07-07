@@ -1,0 +1,8 @@
+Possible places:
+
+1. PNAS
+2. Science Advances
+3. EPJ Data Science
+4. Journal of Cultural Analytics
+5. Nature Humanities and Social Sciences Communications
+6. Big Data & Society

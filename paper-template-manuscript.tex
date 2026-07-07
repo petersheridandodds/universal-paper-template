@@ -10,6 +10,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[numbers,round,comma,sort&compress]{natbib}
+\setcitestyle{square}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% page layout
@@ -42,7 +44,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% floats
 %%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% pages can be all floats
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,7 +152,16 @@
 
 \title{\protect
 \input{\filenamebase.title}
+
+%%%%%%% for arXiv when published
+%% 
+%%  \bigskip
+%%
+%%  \large
+%%  \protect\input{\filenamebase.published-reference.tex}
+
 }
+
 
 \input{\filenamebase-manuscript.author}
 
@@ -260,8 +271,9 @@
 \addcontentsline{toc}{section}{References}
 
 %% \bibliographystyle{unsrtnat}
-\bibliography{\filenamebase}
 %% \bibliography{everything.bib}
+
+\bibliography{\filenamebase}
 
 %% \clearpage
 

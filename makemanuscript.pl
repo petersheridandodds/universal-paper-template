@@ -8,7 +8,8 @@ $filetype = "manuscript";
 `make-name-match-settingsfile.pl`;
 
 ## localize figures and inputs (for better sharing and also overcomes legacy figure search slowness)
-`./localizify.pl`;
+## add files here as needed
+`./localizify.pl *.body.tex *-manuscript.tex`;
 
 ## local directory (for global recording of writing data)
 ## works because paper/book directory names are in the format YYYY-MM-descriptive-tags
